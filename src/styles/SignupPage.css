@@ -1,0 +1,84 @@
+/* Основний контейнер для реєстрації */
+
+* {
+    box-sizing: border-box;
+}
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color:#f9f9f9;
+}
+
+/* Заголовок форми */
+.signup-title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Форма реєстрації */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Контейнер для кожного інпуту */
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Інпут для імені користувача, електронної пошти та пароля */
+.signup-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.signup-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Кнопка для реєстрації */
+.signup-button {
+    width: 100%;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+} 
+
+.signup-button:hover {
+    background-color: #0056b3;
+}
+
+.back-button{
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 16px;
+}
