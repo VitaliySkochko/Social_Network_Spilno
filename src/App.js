@@ -8,21 +8,25 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar';
+import CreateCommunityPage from './pages/CreateCommunityPage';
+import CommunitiesPage from './pages/CommunitiesPage';
 
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Navbar/>
-        <Routes>
-          <Route path='/' element={<FeedPage/>}/>
-          <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-          <Route path='/community/:id' element={<CommunityPage/>}/>
-          <Route path='/login' element={<LoginPage/>}/>
-          <Route path='/signup' element={<SignupPage/>} />
-        </Routes>
-      </Router>
+       <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<FeedPage />} />
+        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+        <Route path="/community/:id" element={<CommunityPage />} />
+        <Route path="/create-community" element={<PrivateRoute><CreateCommunityPage /></PrivateRoute>} />
+        <Route path="/communities" element={<CommunitiesPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+      </Routes>
+    </Router>
     </div>
   );
 }

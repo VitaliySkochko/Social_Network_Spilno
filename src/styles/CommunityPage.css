@@ -1,0 +1,129 @@
+.community-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.community-info {
+    margin-bottom: 20px;
+}
+
+.community-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.community-description {
+    font-size: 16px;
+    color: #666;
+}
+
+.join-community-button{
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.join-community-button:hover {
+    background-color: #45a049;
+}
+
+.community-member-message {
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.leave-community-button {
+    background-color: #e53935; /* Червоний колір для кнопки */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+  
+  .leave-community-button:hover {
+    background-color: #d32f2f;
+}
+  
+
+.post-form-title,
+.posts-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #333;
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.post-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    min-height: 80px;
+}
+
+.post-button {
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.post-button:hover {
+    background-color: #45a049;
+}
+
+.posts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.post-item:last-child {
+    border-bottom: none;
+}
+
+.post-content {
+    font-size: 16px;
+    color: #333;
+}
+
+.post-date {
+    font-size: 12px;
+    color: #999;
+}
+
+

@@ -12,9 +12,11 @@ const Navbar = () => {
     return (
         <nav>
             <Link to='/profile'>Головна</Link>
+            <Link to="/communities">Спільноти</Link>
             {user ? (
                 <>
                 <Link to='/profile'>Профіль</Link>
+                <Link to="/create-community">Створити спільноту</Link>
                 </>
             ) : (
                 <>
