@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "social-network-spilno"
-  }
+    "default": "social-network-spilno",
+    "spilno": "social-network-spilno"
+  },
+  "targets": {},
+  "etags": {}
 }
