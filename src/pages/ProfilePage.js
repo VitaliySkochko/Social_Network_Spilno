@@ -4,12 +4,15 @@ import { signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { auth, db } from '../services/firebase';
-import '../styles/ProfilePage.css'; 
+import EditProfile from './EditProfile';
+import {format} from 'date-fns'
+import '../styles/ProfilePage.css';
 
 const ProfilePage = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isEditing, setIsEditing] = useState(false); // Новий стан для редагування
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -38,7 +41,11 @@ const ProfilePage = () => {
     };
 
     if (loading) {
-        return <div className="loading-message">Завантаження...</div>;
+        return (
+            <div className="loading-spinner">
+                <div className="spinner"></div>
+            </div>
+        );
     }
 
     if (error) {
@@ -48,22 +55,54 @@ const ProfilePage = () => {
     return (
         <div className="profile-container">
             <h2 className="profile-title">Профіль користувача</h2>
-            {userData ? (
-                <div className="profile-info">
-                    <p className="profile-name">{userData.firstName}</p>
-                    <p className="profile-surname">{userData.lastName}</p>
-                    <p><strong>Дата народження:</strong> {userData.birthDate}</p>
-                    <p><strong>Стать:</strong> {userData.gender}</p>
-                    <p><strong>Email:</strong> {userData.email}</p>
-                    <button onClick={handleLogout} className="logout-button">Вийти</button>
-                </div>
+            {isEditing ? (
+                <EditProfile userData={userData} setUserData={setUserData} setIsEditing={setIsEditing} />
             ) : (
-                <p className="loading-message">Не вдалося завантажити дані користувача.</p>
+                <>
+                    {userData ? (
+                        <div className="profile-info">
+                            <div className='profile-group-name-surname'>
+                                <p className="profile-name">{userData.firstName}</p>
+                                <p className="profile-surname">{userData.lastName}</p>
+                            </div>
+                            <p><strong>Дата народження:</strong> {userData.birthDate ? format(new Date(userData.birthDate), 'dd/MM/yyyy') : ''}</p>
+                            <p><strong>Стать:</strong> {userData.gender}</p>
+                            <p><strong>Email:</strong> {userData.email}</p>
+                            {userData.interests && ( // Відображаємо, якщо поле заповнене
+                                <p><strong>Інтереси та хобі:</strong> {userData.interests}</p>
+                            )}
+                            {userData.country && userData.city && (
+                                <p><strong>Місце проживання:</strong> {userData.city} ({userData.country}) </p>
+                            )}
+                            <h3>Контактні дані та соціальні мережі</h3>
+                            {userData.facebook && (
+                                <p><strong>Facebook:</strong> <a href={userData.facebook} target='_blank' rel="noopener noreferrer"> {userData.facebook}</a></p>
+                            )}
+                            {userData.instagram && (
+                                <p><strong>Instagram:</strong> <a href={userData.instagram} target='_blank' rel="noopener noreferrer"> {userData.instagram}</a></p>
+                            )}
+                            {userData.telegram && (
+                                <p><strong>Telegram:</strong> <a href={userData.telegram} target='_blank' rel="noopener noreferrer"> {userData.telegram}</a></p>
+                            )}
+                            {userData.linkedIn && (
+                                <p><strong>LinkedIn:</strong> <a href={userData.linkedIn} target="_blank" rel="noopener noreferrer">{userData.linkedIn}</a></p>
+                            )}
+                             {userData.phone && (
+                                <p><strong>Телефон:</strong> {userData.phone}</p>
+                            )}
+                            {userData.additionalEmail && (
+                                <p><strong>Додатковий email:</strong> {userData.additionalEmail}</p>
+                            )}
+                            <button onClick={() => setIsEditing(true)} className="edit-button">Редагувати</button>
+                            <button onClick={handleLogout} className="logout-button">Вийти</button>
+                        </div>
+                    ) : (
+                        <p className="loading-message">Не вдалося завантажити дані користувача.</p>
+                    )}
+                </>
             )}
         </div>
     );
 };
 
 export default ProfilePage;
-
-

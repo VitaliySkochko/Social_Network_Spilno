@@ -20,7 +20,7 @@ const Navbar = () => {
                 </>
             ) : (
                 <>
-                <Link to='/login'></Link>
+                <Link to='/login'>Вхід</Link>
                 </>
             )}
         </nav>

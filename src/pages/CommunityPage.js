@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { db, auth } from '../services/firebase';
-import { doc, getDoc, collection, addDoc, getDocs, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { doc, getDoc, collection, addDoc, getDocs, updateDoc, arrayUnion, arrayRemove, query, where } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import "../styles/CommunityPage.css";
 
@@ -14,6 +14,7 @@ const CommunityPage = () => {
   const [newPost, setNewPost] = useState("");
   const [user] = useAuthState(auth);
   const [isMember, setIsMember] = useState(false);
+  const [members, setMembers] = useState([]);
 
   useEffect(() => {
     const fetchCommunity = async () => {
@@ -22,6 +23,20 @@ const CommunityPage = () => {
         const communityData = communityDoc.data();
         setCommunity(communityData);
         setIsMember(communityData.members && communityData.members.includes(user?.uid));
+
+        // Завантаження інформації про учасників
+        if (communityData.members) {
+          const q = query(collection(db, 'users'), where('uid', 'in', communityData.members));
+          const querySnapshot = await getDocs(q);
+          const membersList = querySnapshot.docs.map((doc) => {
+            const memberData = doc.data();
+            return {
+              uid: memberData.uid,
+              displayName: `${memberData.firstName} ${memberData.lastName}` || "Анонім", // Додаємо обробку імені та прізвища
+            };
+          });
+          setMembers(membersList);
+        }
       }
     };
 
@@ -92,6 +107,14 @@ const CommunityPage = () => {
         <div className="community-info">
           <h2 className="community-name">{community.name}</h2>
           <p className="community-description">{community.description}</p>
+          <h3 className="members-title">Учасники спільноти:</h3>
+          <ul className="members-list">
+            {members.map((member) => (
+              <li key={member.uid} className="member-item">
+                {member.displayName}
+              </li>
+            ))}
+          </ul>
           {!isMember ? (
             <button onClick={handleJoinCommunity} className="join-community-button">
               Приєднатися
