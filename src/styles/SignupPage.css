@@ -1,84 +1,223 @@
-/* Основний контейнер для реєстрації */
 
-* {
-    box-sizing: border-box;
-}
 
-.signup-container {
+.signup-container{
+    width: 90%;
+    max-width: clamp(300px, 90%, 450px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color:#f9f9f9;
+    background: linear-gradient(135deg, #1c1c1c,#4a4a4a);
+    color: #ffd700;
+    padding: 50px 50px;
+    border-radius: 15px;
 }
 
-/* Заголовок форми */
 .signup-title {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffe600; /* Трохи яскравіший відтінок */
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
 }
 
-/* Форма реєстрації */
 .signup-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+    width: 100%;
 }
 
-/* Контейнер для кожного інпуту */
-.form-group {
+.signup-input{
     width: 100%;
-    margin-bottom: 15px;
-}
-
-/* Інпут для імені користувача, електронної пошти та пароля */
-.signup-input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 14px;
     font-size: 16px;
+    background-color: #333;
+    border: 1px solid #ffd700;
+    border-radius: 18px;
+    transition: all 0.3s ease;
+    color: #ffd700;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signup-input::placeholder {
+    color: #aaa;
 }
 
 .signup-input:focus {
-    border-color: #007bff;
+    background-color: #444;
+    box-shadow: 0 0 5px #ffe600, inset 0 2px 4px rgba(0, 0, 0, 0.6);
     outline: none;
 }
 
-/* Кнопка для реєстрації */
-.signup-button {
-    width: 100%;
-    padding: 10px;
-    background-color: green;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-} 
-
-.signup-button:hover {
-    background-color: #0056b3;
+.signup-button-group {
+    display: flex;
+    
+    gap: 15px;
 }
 
-.back-button{
+.signup-button,
+.back-button {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    padding: 14px;
     font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    color: #1c1c1c;
+    background: linear-gradient(145deg, #ffd700, #e6c200);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
+
+.signup-button:hover,
+.back-button:hover {
+    background: linear-gradient(145deg, #e6c200, #d4a400);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+}
+
+.signup-button:active,
+.back-button:active {
+    background: linear-gradient(145deg, #d4a400, #b58c00);
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.error-message {
+    font-size: 14px;
+    color: #ff4d4d;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Медіазапит для мобільних пристроїв (менше 600px) */
+@media (max-width: 600px) {
+    .signup-container {
+        width: 95%;
+        max-width: 400px;
+        padding: 30px 20px;
+    }
+
+    .signup-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .signup-input {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .signup-button, .back-button {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .signup-form {
+        gap: 15px;
+    }
+}
+
+/* Для мобільних пристроїв */
+@media (max-width: 600px) {
+    .signup-container {
+        width: 90%;
+        max-width: 400px;
+        padding: 30px 15px;
+    }
+
+    .signup-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .signup-input {
+        font-size: 14px;
+        padding: 12px;
+        width: 100%;
+    }
+
+    .signup-button, .back-button {
+        font-size: 14px;
+        padding: 12px;
+        width: 100%;
+    }
+
+    .signup-form {
+        gap: 15px;
+    }
+
+    .signup-button-group {
+        gap: 12px;
+    }
+
+    .error-message {
+        font-size: 12px;
+    }
+}
+
+/* Для планшетів */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .signup-container {
+        width: 85%;
+        max-width: 450px;
+        padding: 40px 25px;
+    }
+
+    .signup-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .signup-input {
+        font-size: 15px;
+        padding: 14px;
+    }
+
+    .signup-button, .back-button {
+        font-size: 15px;
+        padding: 14px;
+    }
+
+    .signup-form {
+        gap: 18px;
+    }
+}
+
+/* Для великих екранів */
+@media (min-width: 1025px) {
+    .signup-container {
+        width: 80%;
+        max-width: 500px;
+        padding: 50px 50px;
+    }
+
+    .signup-title {
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+
+    .signup-input {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .signup-button, .back-button {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .signup-form {
+        gap: 20px;
+    }
+}
+
+
+

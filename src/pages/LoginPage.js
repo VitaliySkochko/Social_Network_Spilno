@@ -79,8 +79,10 @@ const LoginPage = () => {
             className="login-input"
           />
         </div>
-        <button type="submit" className="login-button">Увійти</button>
-        <button type="button" onClick={handleSignupRedirect} className="registred-button">Зареєструватись</button>
+        <div className="login-button-group">
+          <button type="submit" className="login-button">Увійти</button>
+          <button type="button" onClick={handleSignupRedirect} className="registred-button">Зареєструватись</button>
+        </div>
       </form>
     </div>
   );

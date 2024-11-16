@@ -63,7 +63,7 @@ const ProfilePage = () => {
                         <div className="profile-info">
                             <div className='profile-group-name-surname'>
                                 <p className="profile-name">{userData.firstName}</p>
-                                <p className="profile-surname">{userData.lastName}</p>
+                                <p className="profile-name">{userData.lastName}</p>
                             </div>
                             <p><strong>Дата народження:</strong> {userData.birthDate ? format(new Date(userData.birthDate), 'dd/MM/yyyy') : ''}</p>
                             <p><strong>Стать:</strong> {userData.gender}</p>

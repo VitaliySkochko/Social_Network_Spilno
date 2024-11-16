@@ -11,7 +11,7 @@ const Navbar = () => {
 
     return (
         <nav>
-            <Link to='/profile'>Головна</Link>
+            <Link to='/'>Головна</Link>
             <Link to="/communities">Спільноти</Link>
             {user ? (
                 <>

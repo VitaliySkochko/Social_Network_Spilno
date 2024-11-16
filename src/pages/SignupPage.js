@@ -156,9 +156,10 @@ const SignupPage = () => {
                         required
                     />
                 </div>
-
-                <button type="submit" className="signup-button">Зареєструватися</button>
-                <button type="button" onClick={handleBack} className="back-button">Назад</button>
+                <div className='signup-button-group'>
+                   <button type="submit" className="signup-button">Зареєструватися</button>
+                   <button type="button" onClick={handleBack} className="back-button">Назад</button>
+                </div>
             </form>
         </div>
     );
