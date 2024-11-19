@@ -4,10 +4,11 @@
     max-width: 800px;
     margin: 40px auto;
     padding: 30px;
-    background-color: #1c1c1c; /* Dark background */
+    background: rgba(255, 255, 255, 0.85); /* Напівпрозорий білий фон */
     border-radius: 10px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-    color: #ffd700; /* Gold text */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    color: #0056b3; /* Темно-синій текст */
+    backdrop-filter: blur(8px); /* Ефект розмиття для прозорості */
 }
 
 .community-title {
@@ -15,7 +16,7 @@
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 25px;
-    color: #ffd700;
+    color: #003d80; /* Насичений синій */
 }
 
 .community-form {
@@ -29,9 +30,9 @@
     width: 100%;
     padding: 12px;
     font-size: 16px;
-    color: #ffd700;
-    background-color: #333;
-    border: 1px solid #ffd700;
+    color: #003d80; /* Синій текст */
+    background-color: rgba(255, 255, 255, 0.9); /* Напівпрозорий фон */
+    border: 1px solid #0056b3; /* Синя рамка */
     border-radius: 8px;
     box-sizing: border-box;
     transition: all 0.3s ease;
@@ -39,8 +40,8 @@
 
 .community-input:focus,
 .community-textarea:focus {
-    background-color: #2a2a2a;
-    border-color: #e6c200; /* Slightly lighter gold */
+    background-color: rgba(240, 240, 255, 0.9); /* Легкий відтінок блакитного */
+    border-color: #003d80; /* Темно-синя рамка */
     outline: none;
 }
 
@@ -52,21 +53,66 @@
     padding: 12px;
     font-size: 16px;
     font-weight: 600;
-    color: #1c1c1c;
-    background-color: #ffd700; /* Gold button */
+    color: white;
+    background-color: #0056b3; /* Синя кнопка */
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .community-button:hover {
-    background-color: #e6c200; /* Lighter gold on hover */
-    transform: translateY(-2px); /* Subtle lift effect */
+    background-color: #003d80; /* Темніший синій при наведенні */
+    transform: translateY(-2px); /* Легке підняття */
 }
 
 .community-button:active {
-    background-color: #d4a400;
-    transform: translateY(0); /* Button returns on click */
+    background-color: #002d66; /* Темно-синій при натисканні */
+    transform: translateY(0); /* Кнопка повертається назад */
+}
+/* Мобільні пристрої (до 480px) */
+@media (max-width: 480px) {
+    .community-page {
+        padding: 20px;
+    }
+
+    .community-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .community-input,
+    .community-textarea {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .community-button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* Планшети (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .community-page {
+        padding: 25px;
+    }
+
+    .community-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .community-input,
+    .community-textarea {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .community-button {
+        padding: 12px;
+        font-size: 15px;
+    }
 }

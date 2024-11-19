@@ -1,74 +1,96 @@
-/* Communities Page Container */
+
 .communities-page {
     max-width: 1200px;
     margin: 0 auto;
     padding: 25px;
-    background-color: #333;
+    background: rgba(255, 255, 255, 0.85); /* Напівпрозорий білий */
     border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    color: #ffd700; /* Gold text */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    color: #333; /* Темний текст для контрасту */
 }
 
-/* Page Title */
 .communities-title {
     text-align: center;
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 25px;
-    color: #ffd700;
+    color: black;
 }
 
-/* Communities List */
 .communities-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* Individual Community Item */
 .community-item {
     padding: 18px;
-    border-bottom: 1px solid #555;
-    transition: background-color 0.3s ease;
-}
-
-.community-item:last-child {
-    border-bottom: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9); /* Світлий фон */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 8px; /* Кути елементів */
 }
 
 .community-item:hover {
-    background-color: #444;
-    border-radius: 8px;
+    background-color: rgba(0, 123, 255, 0.1); /* Легкий синій акцент */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Community Link */
 .community-link {
     font-size: 22px;
     font-weight: bold;
-    color: #ffd700;
+    color: #007BFF; /* Яскравий синій */
     text-decoration: none;
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .community-link:hover {
-    color: #e6c200;
-    transform: translateX(5px);
+    color: #0056b3; /* Темніший синій */
+    transform: scale(1.05);
 }
 
-/* Community Description */
 .community-description {
     font-size: 16px;
-    color: #ccc;
+    color: #666; /* Світло-сірий */
     margin-top: 8px;
     line-height: 1.5;
 }
 
-/* Responsive Design */
-
-/* Mobile (max-width: 480px) */
+/* Мобільні пристрої (до 480px) */
 @media (max-width: 480px) {
+    .communities-page {
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.95); /* Трохи прозоріше для читабельності */
+    }
+
+    .communities-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .community-link {
+        font-size: 16px;
+    }
+
+    .community-description {
+        font-size: 14px;
+    }
+
+    .community-item {
+        padding: 12px;
+    }
+}
+
+/* Планшети (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .communities-page {
+        padding: 20px;
+    }
+
     .communities-title {
         font-size: 24px;
+        margin-bottom: 20px;
     }
 
     .community-link {
@@ -76,21 +98,11 @@
     }
 
     .community-description {
-        font-size: 14px;
-    }
-}
-
-/* Tablet (481px - 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-    .communities-title {
-        font-size: 26px;
-    }
-
-    .community-link {
-        font-size: 20px;
-    }
-
-    .community-description {
         font-size: 15px;
     }
+
+    .community-item {
+        padding: 15px;
+    }
 }
+

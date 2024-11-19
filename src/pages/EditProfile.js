@@ -58,19 +58,19 @@ const EditProfile = ({ userData, setUserData, setIsEditing }) => {
                 </div>
             )}
             <label>
-                Ім'я:
+                Ім'я
                 <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
             </label>
             <label>
-                Прізвище:
+                Прізвище
                 <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
             </label>
             <label>
-                Дата народження:
+                Дата народження
                 <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
             </label>
             <label>
-                Стать:
+                Стать
                 <select name="gender" value={formData.gender} onChange={handleChange}>
                     <option value="Чоловік">Чоловік</option>
                     <option value="Жінка">Жінка</option>
@@ -107,7 +107,7 @@ const EditProfile = ({ userData, setUserData, setIsEditing }) => {
                 <input type='email' name='additionalEmail' value={formData.additionalEmail} onChange={handleChange}/>
             </label>
             <button onClick={handleSave} className="save-button">Зберегти</button>
-            <button onClick={() => setIsEditing(false)} className="back-button">Назад</button>
+            <button onClick={() => setIsEditing(false)} className="back-button-edit">Назад</button>
         </div>
     );
 };

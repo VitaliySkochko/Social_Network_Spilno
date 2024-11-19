@@ -3,7 +3,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { db, auth } from '../services/firebase';
-import { doc, getDoc, collection, addDoc, getDocs, updateDoc, deleteDoc, arrayUnion, arrayRemove, query, where } from 'firebase/firestore';
+import { 
+  doc, 
+  getDoc, 
+  collection, 
+  addDoc, 
+  getDocs, 
+  updateDoc, 
+  deleteDoc, 
+  arrayUnion, 
+  arrayRemove, 
+  query, 
+  where, 
+  orderBy 
+} from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import CommunityInfo from './CommunityInfo';
 import PostForm from './PostForm';
@@ -22,13 +35,13 @@ const CommunityPage = () => {
   const [newComment, setNewComment] = useState('');
 
   useEffect(() => {
-    const fetchCommunity = async () => {
+    const fetchCommunityData = async () => {
       const communityDoc = await getDoc(doc(db, "communities", id));
       if (communityDoc.exists()) {
         const communityData = communityDoc.data();
         setCommunity(communityData);
         setIsMember(communityData.members && communityData.members.includes(user?.uid));
-
+  
         if (communityData.members) {
           const q = query(collection(db, 'users'), where('uid', 'in', communityData.members));
           const querySnapshot = await getDocs(q);
@@ -43,7 +56,7 @@ const CommunityPage = () => {
         }
       }
     };
-
+  
     const fetchPosts = async () => {
       const querySnapshot = await getDocs(collection(db, `communities/${id}/posts`));
       const postsList = querySnapshot.docs.map((doc) => ({
@@ -51,9 +64,14 @@ const CommunityPage = () => {
         ...doc.data(),
       }));
       setPosts(postsList);
+  
+      // Запит коментарів для кожного поста
+      postsList.forEach((post) => {
+        fetchComments(post.id);
+      });
     };
-
-    fetchCommunity();
+  
+    fetchCommunityData();
     fetchPosts();
   }, [id, user]);
 
@@ -96,7 +114,7 @@ const CommunityPage = () => {
     try {
       const userDoc = await getDoc(doc(db, "users", user.uid));
       const userData = userDoc.exists() ? userDoc.data() : { firstName: "Анонім", lastName: "" };
-  
+
       const newPostData = {
         content: newPost,
         createdAt: new Date(),
@@ -112,11 +130,18 @@ const CommunityPage = () => {
   };
 
   const fetchComments = async (postId) => {
-    const commentsSnapshot = await getDocs(collection(db, `communities/${id}/posts/${postId}/comments`));
-    const commentsList = commentsSnapshot.docs.map(doc => ({
+    const commentsSnapshot = await getDocs(
+      query(
+        collection(db, `communities/${id}/posts/${postId}/comments`),
+        orderBy('createdAt', 'desc') // Сортування коментарів за спаданням
+      )
+    );
+  
+    const commentsList = commentsSnapshot.docs.map((doc) => ({
       id: doc.id,
-      ...doc.data()
+      ...doc.data(),
     }));
+  
     setComments((prevComments) => ({
       ...prevComments,
       [postId]: commentsList,
@@ -128,7 +153,7 @@ const CommunityPage = () => {
     try {
       const userDoc = await getDoc(doc(db, "users", user.uid));
       const userData = userDoc.exists() ? userDoc.data() : { firstName: "Анонім", lastName: "" };
-  
+
       const commentData = {
         content: newComment,
         author: `${userData.firstName} ${userData.lastName}`,
@@ -146,7 +171,7 @@ const CommunityPage = () => {
   const handleDeletePost = async (postId) => {
     try {
       await deleteDoc(doc(db, `communities/${id}/posts/${postId}`));
-      setPosts(posts.filter(post => post.id !== postId));
+      setPosts(posts.filter((post) => post.id !== postId));
     } catch (error) {
       console.error("Помилка видалення допису:", error.message);
     }
@@ -160,6 +185,7 @@ const CommunityPage = () => {
       console.error("Помилка видалення коментаря:", error.message);
     }
   };
+  
 
   return (
     <div className="community-page-spilno">
@@ -201,5 +227,6 @@ const CommunityPage = () => {
 };
 
 export default CommunityPage;
+
 
 

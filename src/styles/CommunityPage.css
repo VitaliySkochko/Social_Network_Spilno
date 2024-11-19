@@ -1,0 +1,325 @@
+.community-page-spilno{
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.community-info{
+    width: 100%;
+}
+/* Назва спільноти */
+.community-name{
+    font-size: 24px;
+    font-weight: bold;
+    display: inline;
+    background-color: #0095f6;
+    color: white;
+    border-radius: 30px;
+    padding: 10px;
+}
+/* Опис спільноти */
+.community-description{
+    font-size: 16px;
+    font-style: italic;
+    color: #666;
+}
+/* Список учасників */
+.members-title{
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.members-list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.member-item{
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+} 
+
+.member-item::before{
+    content: '';
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-right: 10px;
+}
+
+/* Кнопка "Приєднатися" */
+.join-community-button,
+.leave-community-button {
+  background-color: #0095f6;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 250px;
+  align-self: center;
+  margin-bottom: 15px;
+}
+
+.join-community-button:hover,
+.leave-community-button:hover {
+    background-color: #006db3;
+}
+  /* Повідомлення для учасників */
+  .community-member-message {
+    font-size: 14px;
+    color: #4d9a5b;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  /* Загальні стилі для форми */
+.post-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+}
+
+.post-textarea{
+    font-size: 16px; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.post-textarea:focus {
+    background-color: rgba(240, 240, 255, 0.9); /* Легкий відтінок блакитного */
+    border-color: #003d80; /* Темно-синя рамка */
+    outline: none;
+}
+
+.post-button{
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #0095f6;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+/* Загальний контейнер для поста */
+.posts-list{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 15px;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.post-item{
+    border: 1px solid #d0d0d0; 
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+/* Контент поста */
+.post-content {
+    font-size: 16px;
+    margin-bottom: 10px; /* Відступ до автора */
+    color: #333; /* Темний текст */
+}
+/* Автор поста */
+.post-author {
+    font-size: 14px;
+    font-weight: bold;
+    color: #0056b3; /* Синій колір */
+    margin-right: 10px;
+}
+/* Дата створення */
+.post-date {
+    font-size: 12px;
+    color: #666; /* Сірий текст */
+}
+/* Кнопка видалення допису */
+.delete-post-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 15px;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+.delete-post-button:hover .icon {
+    transform: scale(1.1); /* Легке збільшення на наведення */
+    color: #b52e2a; 
+}
+/* Секція коментарів */
+.comments-section {
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid #d0d0d0; 
+}
+.comments-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+/* Коментар */
+.comment-item {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+    margin: 0;
+}
+  .comment-content {
+    font-size: 14px;
+    color: #333;
+}
+.comment-author {
+    font-size: 12px;
+    color: #0056b3; /* Синій текст */
+    font-weight: bold;
+}
+.delete-comment-button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 15px;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+.delete-comment-button:hover .icon {
+    transform: scale(1.1); /* Легке збільшення на наведення */
+    color: #b52e2a; 
+}
+/* Додавання коментаря */
+.add-comment-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+}
+.comment-textarea {
+    font-size: 16px; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.comment-textarea:focus{
+    background-color: rgba(240, 240, 255, 0.9); /* Легкий відтінок блакитного */
+    border-color: #003d80; /* Темно-синя рамка */
+    outline: none;
+}
+.add-comment-button {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #0095f6;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  .toggle-comments-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Відступ між іконкою та текстом */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .toggle-comments-button:hover {
+    color: #0056b3;
+  }
+  
+  .toggle-comments-button .icon {
+    font-size: 1.2rem;
+  } 
+  /* Загальні стилі для кнопок */
+.like-button, 
+.dislike-button, 
+.heart-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+  transition: transform 0.2s ease;
+}
+
+.like-button .icon {
+  color: #2ecc71;
+}
+
+.dislike-button .icon {
+  color: #e74c3c;
+}
+
+.heart-button .icon {
+  color: #e84393;
+}
+
+/* Секція дій для постів */
+.post-actions {
+  display: flex;
+  margin-top: 10px;
+}
+
+/* Секція дій для коментарів */
+.comment-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+
+/* Ефект натискання */
+.like-button:active, 
+.dislike-button:active, 
+.heart-button:active {
+  transform: scale(0.9);
+}
+
+  
+
+  
+
+  
+  
+  
+
+
+  
+  
+  
+
+  
+  
+
+
+
+
+
+

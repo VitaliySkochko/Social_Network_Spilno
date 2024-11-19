@@ -1,11 +1,10 @@
 body {
-  background: linear-gradient(135deg, #1c1c1c, #ffd700);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(to bottom, #ffffff, #007BFF); /* Синьо-білий градієнт */
   min-height: 100vh;
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  color: white;
-  
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
 }
