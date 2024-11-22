@@ -1,10 +1,10 @@
 // Cторінка для створення спільнот
 
 import React, { useState } from 'react';
-import { db } from '../services/firebase';
+import { db } from '../../services/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import '../styles/CreateCommunityPage.css'
+import '../../styles/CreateCommunityPage.css'
 
 const CreateCommunityPage = () => {
     const [name, setName] = useState('');

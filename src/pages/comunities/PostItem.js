@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { FaTrashAlt, FaCommentDots, FaThumbsUp, FaThumbsDown, FaHeart } from 'react-icons/fa';
 import CommentSection from './CommentSection';
-import "../styles/CommunityPage.css";
+import "../../styles/CommunityPage.css";
 
 const PostItem = ({ 
   post, 
@@ -15,7 +15,9 @@ const PostItem = ({
   newComment, 
   setNewComment, 
   handleDeleteComment, 
-  isMember 
+  isMember,
+  handlePostReaction,
+  handleCommentReaction 
 }) => {
   const [showComments, setShowComments] = useState(false);
 
@@ -57,21 +59,38 @@ const PostItem = ({
         <span>({comments[post.id]?.length || 0})</span>
       </button>
 
-      {/* Секція лайків для посту */}
       <div className="post-actions">
-        <button className="like-button">
-          <FaThumbsUp className="icon" title='Подобається'/>
-        </button>
-        <button className="dislike-button">
-          <FaThumbsDown className="icon" title='Не подобається'/>
-        </button>
-        <button className="heart-button">
-          <FaHeart className="icon" title='Сердечко'/>
-        </button>
-      </div>
+  {/* Кнопка лайку */}
+  <button
+    className="like-button"
+    onClick={() => handlePostReaction(post.id, 'likes')}
+  >
+    <FaThumbsUp className="icon" title="Подобається" />
+    <span>{post.likes?.length || 0}</span> {/* Відображення кількості лайків */}
+  </button>
+
+  {/* Кнопка дизлайку */}
+  <button
+    className="dislike-button"
+    onClick={() => handlePostReaction(post.id, 'dislikes')}
+  >
+    <FaThumbsDown className="icon" title="Не подобається" />
+    <span>{post.dislikes?.length || 0}</span> {/* Відображення кількості дизлайків */}
+  </button>
+
+  {/* Кнопка сердечка */}
+  <button
+    className="heart-button"
+    onClick={() => handlePostReaction(post.id, 'hearts')}
+  >
+    <FaHeart className="icon" title="Сердечко" />
+    <span>{post.hearts?.length || 0}</span> {/* Відображення кількості сердечок */}
+  </button>
+</div>
 
       {showComments && (
         <CommentSection
+          post={post}
           postId={post.id}
           comments={comments[post.id] || []}
           handleAddComment={handleAddComment}
@@ -80,6 +99,7 @@ const PostItem = ({
           handleDeleteComment={handleDeleteComment}
           user={user}
           isMember={isMember}
+          handleCommentReaction={handleCommentReaction}
         />
       )}
     </li>

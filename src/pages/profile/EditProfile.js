@@ -2,8 +2,12 @@
 
 import React, { useState } from 'react';
 import { doc, updateDoc } from 'firebase/firestore';
-import { db, auth } from '../services/firebase';
-import '../styles/EditProfile.css';
+import { db, auth } from '../../services/firebase';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import '../../styles/EditProfile.css';
+import { useDropzone } from 'react-dropzone';
+
+const storage = getStorage();
 
 const EditProfile = ({ userData, setUserData, setIsEditing }) => {
     const [formData, setFormData] = useState({
@@ -19,10 +23,41 @@ const EditProfile = ({ userData, setUserData, setIsEditing }) => {
         telegram: userData.telegram || '',
         linkedIn: userData.linkedIn || '',
         phone: userData.phone || '',
-        additionalEmail: userData.additionalEmail || '', 
+        additionalEmail: userData.additionalEmail || '',
+        profilePhoto: userData.profilePhoto || '', 
     });
     const [message, setMessage] = useState(null); // Стан для повідомлення
     const [messageType, setMessageType] = useState(''); // Тип повідомлення: 'success' або 'error'
+    const [isUploading, setIsUploading] = useState(false);
+
+    const { getRootProps, getInputProps } = useDropzone({
+        accept: 'image/*',
+        maxFiles: 1,
+        onDrop: async (acceptedFiles) => {
+            if (acceptedFiles.length > 0) {
+                const file = acceptedFiles[0];
+                await uploadProfilePhoto(file);
+            }
+        },
+    });
+
+    const uploadProfilePhoto = async (file) => {
+        try {
+            setIsUploading(true);
+            const storageRef = ref(storage, `profilePhotos/${auth.currentUser.uid}`);
+            await uploadBytes(storageRef, file);
+            const downloadURL = await getDownloadURL(storageRef);
+            setFormData((prev) => ({ ...prev, profilePhoto: downloadURL }));
+            setMessage('Фото успішно завантажено!');
+            setMessageType('success');
+        } catch (error) {
+            console.error('Помилка при завантаженні фото:', error);
+            setMessage('Не вдалося завантажити фото.');
+            setMessageType('error');
+        } finally {
+            setIsUploading(false);
+        }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -48,9 +83,44 @@ const EditProfile = ({ userData, setUserData, setIsEditing }) => {
         }
     };
 
+    // Функція для редагування (завантаження нового фото)
+const handleEditPhoto = () => {
+    document.querySelector('input[type="file"]').click(); // Викликає діалог вибору файлу
+};
+
+// Функція для видалення фото
+const handleDeletePhoto = () => {
+    setFormData((prevData) => ({
+        ...prevData,
+        profilePhoto: '', // Видаляємо фото з state
+    }));
+};
+
     return (
         <div className="edit-profile-container">
             <h2>Редагування профілю</h2>
+            {message && <div className={`message ${messageType}`}>{message}</div>}
+            <div className="profile-photo-edit">
+        <img
+            src={formData.profilePhoto || 'default-profile.png'}
+            alt="Фото профілю"
+            className="profile-photo-preview"
+        />
+    </div>
+
+    <div className="photo-actions">
+        <button className="icon-button" onClick={handleEditPhoto}>
+            ✏️ Редагувати
+        </button>
+        <button className="icon-button delete" onClick={handleDeletePhoto}>
+            🗑️ Видалити
+        </button>
+    </div>
+
+    <div className="photo-dropzone" {...getRootProps()}>
+        <input {...getInputProps()} />
+        <p>{isUploading ? 'Завантаження...' : 'Перетягніть фото або натисніть для вибору'}</p>
+    </div>
             <h3>Основна інформація</h3>
             {message && (
                 <div className={`message ${messageType}`}>

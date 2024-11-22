@@ -3,16 +3,17 @@
 import { signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import { auth, db } from '../services/firebase';
+import { auth, db } from '../../services/firebase';
 import EditProfile from './EditProfile';
 import {format} from 'date-fns'
-import '../styles/ProfilePage.css';
+import '../../styles/ProfilePage.css';
 
 const ProfilePage = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isEditing, setIsEditing] = useState(false); // Новий стан для редагування
+    
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -61,6 +62,15 @@ const ProfilePage = () => {
                 <>
                     {userData ? (
                         <div className="profile-info">
+                            {userData.profilePhoto && (
+                                <div className='profaile-photo-container'>
+                            <img
+                                src={userData.profilePhoto}
+                                alt="Фото профілю"
+                                className="profile-photo"
+                            />
+                            </div>
+                        )}
                             <div className='profile-group-name-surname'>
                                 <p className="profile-name">{userData.firstName}</p>
                                 <p className="profile-name">{userData.lastName}</p>
@@ -103,6 +113,6 @@ const ProfilePage = () => {
             )}
         </div>
     );
-};
+}; 
 
 export default ProfilePage;

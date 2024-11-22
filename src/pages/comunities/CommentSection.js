@@ -2,7 +2,7 @@
 
 import React from 'react';
 import CommentItem from './CommentItem';
-import "../styles/CommunityPage.css";
+import "../../styles/CommunityPage.css";
 
 const CommentSection = ({ 
   postId, 
@@ -12,7 +12,8 @@ const CommentSection = ({
   setNewComment, 
   handleDeleteComment, 
   user, 
-  isMember 
+  isMember,
+  handleCommentReaction 
 }) => {
   return (
     <div className="comments-section">
@@ -33,9 +34,11 @@ const CommentSection = ({
         {comments.map((comment) => (
           <CommentItem 
             key={comment.id}
+            postId={postId}
             comment={comment}
             handleDeleteComment={() => handleDeleteComment(postId, comment.id)}
             user={user}
+            handleCommentReaction={handleCommentReaction}
           />
         ))}
       </ul>

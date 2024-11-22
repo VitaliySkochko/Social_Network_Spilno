@@ -1,7 +1,7 @@
 //Компонент відповідає за форму для створення допису
 
 import React from 'react';
-import "../styles/CommunityPage.css";
+import "../../styles/CommunityPage.css";
 
 const PostForm = ({ newPost, setNewPost, handlePostSubmit }) => (
   <form className="post-form" onSubmit={handlePostSubmit}>

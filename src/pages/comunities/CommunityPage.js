@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { db, auth } from '../services/firebase';
+import { db, auth } from '../../services/firebase';
 import { 
   doc, 
   getDoc, 
@@ -21,7 +21,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import CommunityInfo from './CommunityInfo';
 import PostForm from './PostForm';
 import PostItem from './PostItem';
-import "../styles/CommunityPage.css";
+import "../../styles/CommunityPage.css";
 
 const CommunityPage = () => {
   const { id } = useParams();
@@ -35,7 +35,8 @@ const CommunityPage = () => {
   const [newComment, setNewComment] = useState('');
 
   useEffect(() => {
-    const fetchCommunityData = async () => {
+    //Завантажує дані про спільноту з Firestore. Оновлює стан community, isMember, members
+    const fetchCommunityData = async () => { 
       const communityDoc = await getDoc(doc(db, "communities", id));
       if (communityDoc.exists()) {
         const communityData = communityDoc.data();
@@ -56,7 +57,8 @@ const CommunityPage = () => {
         }
       }
     };
-  
+
+    //Завантажує всі пости з поточної спільноти. Оновлює стан posts. Завантажує коментарі для кожного посту (fetchComments).
     const fetchPosts = async () => {
       const querySnapshot = await getDocs(collection(db, `communities/${id}/posts`));
       const postsList = querySnapshot.docs.map((doc) => ({
@@ -75,6 +77,8 @@ const CommunityPage = () => {
     fetchPosts();
   }, [id, user]);
 
+
+  // Додає користувача до списку учасників спільноти (members).
   const handleJoinCommunity = async () => {
     if (!user) {
       alert("Будь ласка, увійдіть в акаунт, щоб приєднатися до спільноти.");
@@ -90,6 +94,7 @@ const CommunityPage = () => {
     }
   };
 
+  // Видаляє користувача зі списку учасників спільноти.
   const handleLeaveCommunity = async () => {
     if (!user) {
       alert("Будь ласка, увійдіть в акаунт, щоб вийти зі спільноти.");
@@ -105,6 +110,7 @@ const CommunityPage = () => {
     }
   };
 
+  //Додає новий пост до спільноти. Зберігає дані про пост у Firestore і оновлює локальний стан posts.
   const handlePostSubmit = async (e) => {
     e.preventDefault();
     if (!user) {
@@ -129,6 +135,7 @@ const CommunityPage = () => {
     }
   };
 
+  //Завантажує коментарі для певного посту. Оновлює стан comments.
   const fetchComments = async (postId) => {
     const commentsSnapshot = await getDocs(
       query(
@@ -148,6 +155,8 @@ const CommunityPage = () => {
     }));
   };
 
+
+  //Додає новий коментар до певного посту. Зберігає коментар у Firestore і оновлює стан.
   const handleAddComment = async (postId) => {
     if (!newComment.trim() || !user) return;
     try {
@@ -168,6 +177,7 @@ const CommunityPage = () => {
     }
   };
 
+  //Видаляє пост із Firestore і оновлює стан posts.
   const handleDeletePost = async (postId) => {
     try {
       await deleteDoc(doc(db, `communities/${id}/posts/${postId}`));
@@ -177,12 +187,130 @@ const CommunityPage = () => {
     }
   };
 
+  //Видаляє коментар із Firestore і оновлює стан comments.
   const handleDeleteComment = async (postId, commentId) => {
     try {
       await deleteDoc(doc(db, `communities/${id}/posts/${postId}/comments/${commentId}`));
       fetchComments(postId);
     } catch (error) {
       console.error("Помилка видалення коментаря:", error.message);
+    }
+  };
+  
+  //Додає/змінює реакцію (лайк/дизлайк/серце) для посту.
+  const handlePostReaction = async (postId, reactionType) => {
+    if (!user) {
+      alert("Будь ласка, увійдіть, щоб взаємодіяти з постами.");
+      return;
+    }
+  
+    try {
+      const postRef = doc(db, `communities/${id}/posts`, postId);
+      const postDoc = await getDoc(postRef);
+  
+      if (postDoc.exists()) {
+        const postData = postDoc.data();
+        const userReactions = {
+          likes: postData.likes || [],
+          dislikes: postData.dislikes || [],
+          hearts: postData.hearts || [],
+        };
+  
+        // Перевірити, чи є поточна реакція
+        const currentReaction = Object.keys(userReactions).find((key) =>
+          userReactions[key].includes(user.uid)
+        );
+  
+        // Оновлення Firestore
+        const updates = {};
+  
+        // Якщо вже є реакція і вона така ж, видаляємо її
+        if (currentReaction === reactionType) {
+          updates[reactionType] = arrayRemove(user.uid);
+        } else {
+          // Видалити попередню реакцію, якщо вона є
+          if (currentReaction) {
+            updates[currentReaction] = arrayRemove(user.uid);
+          }
+          // Додати нову реакцію
+          updates[reactionType] = arrayUnion(user.uid);
+        }
+  
+        await updateDoc(postRef, updates);
+  
+        // Оптимістичне оновлення стану
+        setPosts((prevPosts) =>
+          prevPosts.map((post) =>
+            post.id === postId
+              ? {
+                  ...post,
+                  likes:
+                    reactionType === "likes" && currentReaction !== "likes"
+                      ? [...(post.likes || []), user.uid]
+                      : post.likes?.filter((uid) => uid !== user.uid),
+                  dislikes:
+                    reactionType === "dislikes" && currentReaction !== "dislikes"
+                      ? [...(post.dislikes || []), user.uid]
+                      : post.dislikes?.filter((uid) => uid !== user.uid),
+                  hearts:
+                    reactionType === "hearts" && currentReaction !== "hearts"
+                      ? [...(post.hearts || []), user.uid]
+                      : post.hearts?.filter((uid) => uid !== user.uid),
+                }
+              : post
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Помилка взаємодії з постом:", error.message);
+    }
+  };
+
+  const handleCommentReaction = async (postId, commentId, reactionType) => {
+    if (!user) {
+      alert("Будь ласка, увійдіть, щоб взаємодіяти з коментарями.");
+      return;
+    }
+  
+    try {
+      const commentRef = doc(db, `communities/${id}/posts/${postId}/comments`, commentId);
+      const commentDoc = await getDoc(commentRef);
+  
+      if (commentDoc.exists()) {
+        const commentData = commentDoc.data();
+        const userReactions = {
+          likes: commentData.likes || [],
+          dislikes: commentData.dislikes || [],
+          hearts: commentData.hearts || [],
+        };
+  
+        // Перевірити поточну реакцію користувача
+        const currentReaction = Object.keys(userReactions).find((key) =>
+          userReactions[key].includes(user.uid)
+        );
+  
+        // Формуємо оновлення для Firestore
+        const updates = {};
+  
+        // Видаляємо поточну реакцію, якщо вона збігається
+        if (currentReaction === reactionType) {
+          updates[reactionType] = arrayRemove(user.uid);
+        } else {
+          // Видаляємо попередню реакцію
+          if (currentReaction) {
+            updates[currentReaction] = arrayRemove(user.uid);
+          }
+          // Додаємо нову реакцію
+          updates[reactionType] = arrayUnion(user.uid);
+        }
+  
+        await updateDoc(commentRef, updates);
+  
+        // Оновлення стану для коментарів
+        fetchComments(postId);
+      }
+    } catch (error) {
+      console.error("Помилка взаємодії з коментарем:", error.message);
     }
   };
   
@@ -219,6 +347,8 @@ const CommunityPage = () => {
             setNewComment={setNewComment}
             handleDeleteComment={handleDeleteComment}
             isMember={isMember}
+            handlePostReaction={handlePostReaction}
+            handleCommentReaction={handleCommentReaction}
           />
         ))}
       </ul>

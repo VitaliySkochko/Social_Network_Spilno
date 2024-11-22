@@ -1,7 +1,7 @@
 // Компонент відповідає за відображення інформації про спільноту та учасників
 
 import React from 'react';
-import "../styles/CommunityPage.css";
+import "../../styles/CommunityPage.css";
 
 const CommunityInfo = ({ community, members, isMember, handleJoinCommunity, handleLeaveCommunity }) => (
   <div className="community-info">

@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../services/firebase";
+import { auth } from "../../services/firebase";
 import { useNavigate } from "react-router-dom";
-import "../styles/LoginPage.css";
-import logo from '../img/logo-title.PNG';
+import "../../styles/LoginPage.css";
+import logo from '../../img/logo-title.PNG';
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");

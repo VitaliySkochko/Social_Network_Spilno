@@ -1,9 +1,9 @@
 // Сторінка для перегляду списку спільнот
 import React, { useEffect, useState } from 'react';
-import { db } from '../services/firebase';
+import { db } from '../../services/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
-import '../styles/CommunitiesPage.css'
+import '../../styles/CommunitiesPage.css'
 
 const CommunitiesPage = () => {
     const [communities, setCommunities] = useState([]);

@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { FaTrashAlt, FaThumbsUp, FaThumbsDown, FaHeart } from 'react-icons/fa';
-import "../styles/CommunityPage.css";
+import "../../styles/CommunityPage.css";
 
-const CommentItem = ({ comment, handleDeleteComment, user }) => (
+const CommentItem = ({ comment, handleDeleteComment, user, handleCommentReaction, postId }) => (
   <li className="comment-item">
     <div className="comment-header">
       <small className="comment-author">
@@ -20,20 +20,29 @@ const CommentItem = ({ comment, handleDeleteComment, user }) => (
 
     {/* Секція лайків для коментарів */}
     <div className="comment-actions">
-      <button className="like-button">
+      <button 
+      onClick={() => handleCommentReaction(postId, comment.id, "likes")}
+      className="like-button">
         <FaThumbsUp className="icon" title='Подобається'/>
+        <span>{comment.likes?.length || 0}</span> {/* Відображення кількості лайків */}
       </button>
-      <button className="dislike-button">
+      <button 
+      onClick={() => handleCommentReaction(postId, comment.id, "dislikes")}
+      className="dislike-button">
         <FaThumbsDown className="icon" title='Не подобається'/>
+        <span>{comment.dislikes?.length || 0}</span> {/* Відображення кількості дизлайків */}
       </button>
-      <button className="heart-button">
-        <FaHeart className="icon" title='Сердечко'/>
+      <button 
+      onClick={() => handleCommentReaction(postId, comment.id, "hearts")}
+      className="heart-button">
+        <FaHeart className="icon" title='Сердечко'/> 
+        <span>{comment.hearts?.length || 0}</span> {/* Відображення кількості сердечок */}
       </button>
     </div>
   </li>
 );
 
-export default CommentItem;
+export default CommentItem; 
 
 
 

@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../services/firebase';
+import { auth, db } from '../../services/firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import '../styles/SignupPage.css';
+import '../../styles/SignupPage.css';
 
 const SignupPage = () => {
     const [firstName, setFirstName] = useState('');

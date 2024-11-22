@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import ProfilePage from './pages/ProfilePage';
-import CommunityPage from './pages/CommunityPage';
+import ProfilePage from './pages/profile/ProfilePage';
+import CommunityPage from './pages/comunities/CommunityPage';
 import FeedPage from './pages/FeedPage';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
+import LoginPage from './pages/registration/LoginPage';
+import SignupPage from './pages/registration/SignupPage';
 import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar';
-import CreateCommunityPage from './pages/CreateCommunityPage';
-import CommunitiesPage from './pages/CommunitiesPage';
+import CreateCommunityPage from './pages/comunities/CreateCommunityPage';
+import CommunitiesPage from './pages/comunities/CommunitiesPage';
 
 
 function App() {
