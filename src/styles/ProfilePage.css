@@ -9,14 +9,6 @@
     color: #333;
 }
 
-.profile-title{
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #222;
-    margin-bottom: 25px;
-}
-
 .profile-info{
     display: flex;
     flex-direction: column;
@@ -101,6 +93,23 @@ h3 {
     padding-bottom: 8px;
 }
 
+.edit-button{
+    border: none; /* Без рамки */
+    background: none; /* Прибираємо фон */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Шрифт */
+    font-weight: bold; /* Жирний текст */
+    font-size: 20px; /* Розмір тексту */
+    cursor: pointer; /* Вказівник-рука при наведенні */
+    color: #007BFF; /* Синій текст */
+    padding: 0; /* Прибираємо відступи */
+    text-decoration: none; /* Без підкреслення */
+    transition: font-style 0.3s ease, color 0.3s ease; /* Анімація */
+}
+
+.edit-button:hover{
+    font-style: italic; /* Курсив при наведенні */ 
+}
+
 .loading-spinner {
     position: fixed;
     top: 50%;
@@ -117,10 +126,6 @@ h3 {
     height: 50px;
     animation: spin 1s linear infinite;
 }
-
-/*Редагування фото профілю*/
-
-
 
 @keyframes spin {
     to {

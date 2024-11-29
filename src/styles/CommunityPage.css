@@ -1,5 +1,5 @@
 .community-page-spilno{
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     margin: 0 auto;
     background-color: white;
     padding: 20px;
@@ -10,6 +10,12 @@
 .community-info{
     width: 100%;
 }
+/* Відображення фото спільноти */
+.community-photo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 /* Назва спільноти */
 .community-name{
     font-size: 24px;

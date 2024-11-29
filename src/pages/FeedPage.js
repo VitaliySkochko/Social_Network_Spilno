@@ -1,8 +1,9 @@
 import React from 'react';
-import CommunitiesPage from './comunities/CommunitiesPage';
 import Header from './Header';
-import Sibedar from './Sibedar'
-import Footer from './Footer'
+import Sibedar from './Sidebar';
+import FeedNews from './FeedNews';
+import Footer from './Footer';
+import '../styles/FeedPage.css'
 
 const FeedPage = () => {
     return (
@@ -10,7 +11,7 @@ const FeedPage = () => {
             <Header/>
             <div className='content'>
                 <Sibedar/>
-                <CommunitiesPage/>
+                <FeedNews/>
             </div>
             <Footer/>
         </div>

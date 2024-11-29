@@ -1,22 +1,33 @@
 // Сторінка для перегляду списку спільнот
 import React, { useEffect, useState } from 'react';
 import { db } from '../../services/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, query, orderBy, getDocs } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
-import '../../styles/CommunitiesPage.css'
+import { FaUsers } from 'react-icons/fa'; // Імпорт іконки
+import '../../styles/CommunitiesPage.css';
 
 const CommunitiesPage = () => {
     const [communities, setCommunities] = useState([]);
 
     useEffect(() => {
         const fetchCommunities = async () => {
-            const querySnapshot = await getDocs(collection(db, 'communities'));
-            const communitiesList = querySnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setCommunities(communitiesList);
+            try {
+                // Створюємо запит із сортуванням за полем createdAt
+                const q = query(
+                    collection(db, 'communities'),
+                    orderBy('createdAt', 'desc') // Сортування за спаданням
+                );
+                const querySnapshot = await getDocs(q);
+                const communitiesList = querySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setCommunities(communitiesList);
+            } catch (error) {
+                console.error('Помилка при завантаженні спільнот:', error);
+            }
         };
+
         fetchCommunities();
     }, []);
 
@@ -25,11 +36,23 @@ const CommunitiesPage = () => {
             <h2 className="communities-title">Спільноти</h2>
             <ul className="communities-list">
                 {communities.map((community) => (
-                    <li key={community.id} className="community-item">
-                        <Link to={`/community/${community.id}`} className="community-link">
-                            {community.name}
+                    <li key={community.id} className="communities-item">
+                        <Link to={`/community/${community.id}`} className="communities-link">
+                            {/* Відображення фото або іконки */}
+                            {community.photoURL ? (
+                                <img
+                                    src={community.photoURL}
+                                    alt={community.name}
+                                    className="communities-photo"
+                                />
+                            ) : (
+                                <FaUsers className="communities-icon" /> // Іконка, якщо фото немає
+                            )}
+                            <div className="communities-info">
+                                <h3 className="communities-name">{community.name}</h3>
+                                <p className="communities-description">{community.description}</p>
+                            </div>
                         </Link>
-                        <p className="community-description">{community.description}</p>
                     </li>
                 ))}
             </ul>

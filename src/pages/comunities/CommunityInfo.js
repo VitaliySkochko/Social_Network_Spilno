@@ -1,10 +1,23 @@
 // Компонент відповідає за відображення інформації про спільноту та учасників
 
 import React from 'react';
+import { FaUsers } from "react-icons/fa"; // Іконка для заміни фото
 import "../../styles/CommunityPage.css";
 
 const CommunityInfo = ({ community, members, isMember, handleJoinCommunity, handleLeaveCommunity }) => (
   <div className="community-info">
+    {/* Відображення фото або іконки */}
+    <div className="community-photo-container">
+      {community.photoURL ? (
+        <img
+          src={community.photoURL}
+          alt={community.name}
+          className="communities-photo"
+        />
+      ) : (
+        <FaUsers className="communities-icon" />
+      )}
+    </div>
     <h2 className="community-name">{community.name}</h2>
     <p className="community-description">{community.description}</p>
     <h3 className="members-title">Учасники спільноти:</h3>
@@ -31,4 +44,6 @@ const CommunityInfo = ({ community, members, isMember, handleJoinCommunity, hand
 );
 
 export default CommunityInfo;
+
+
 

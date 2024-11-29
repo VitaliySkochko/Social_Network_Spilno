@@ -15,7 +15,7 @@ import {
   arrayRemove, 
   query, 
   where, 
-  orderBy 
+  orderBy, 
 } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import CommunityInfo from './CommunityInfo';

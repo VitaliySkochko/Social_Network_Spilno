@@ -1,0 +1,85 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: white;
+}
+
+.header-logo {
+    height: 85px;
+}
+
+.header-user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+}
+
+.profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Прибираємо підкреслення */
+    color: #333; /* Основний текстовий колір */
+    gap: 10px;
+    transition: color 0.3s ease; /* Анімація при наведенні */
+}
+
+.profile-link:hover {
+    color: #007BFF; /* Синій колір при наведенні */
+    text-decoration: none;
+}
+
+.header-photo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #e0e0e0; /* Фон для іконки */
+    overflow: hidden;
+}
+
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Робимо аватар круглим */
+    border: 2px solid #007BFF; /* Окантовка */
+    object-fit: cover; /* Забезпечує правильне відображення фото */
+}
+
+.user-avatar-icon{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Робимо аватар круглим */
+    border: 2px solid #007BFF; /* Окантовка */
+    object-fit: cover; /* Забезпечує правильне відображення фото */
+}
+
+.user-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logout-button {
+    padding: 8px 12px;
+    background-color: #FF4D4D; /* Червоний колір кнопки */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Анімація при наведенні */
+    font-size: 14px;
+}
+
+.logout-button:hover {
+    background-color: #E60000; /* Темніший червоний при наведенні */
+}
+

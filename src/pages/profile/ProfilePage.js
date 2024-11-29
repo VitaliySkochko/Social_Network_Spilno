@@ -1,6 +1,6 @@
 // Сторінка профілю
 
-import { signOut } from 'firebase/auth';
+
 import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { auth, db } from '../../services/firebase';
@@ -38,10 +38,7 @@ const ProfilePage = () => {
         fetchUserData();
     }, []);
 
-    const handleLogout = async () => {
-        await signOut(auth);
-    };
-
+   
     if (loading) {
         return (
             <div className="loading-spinner">
@@ -56,7 +53,6 @@ const ProfilePage = () => {
 
     return (
         <div className="profile-container">
-        <h2 className="profile-title">Профіль користувача</h2>
         {isEditing ? (
             <EditProfile userData={userData} setUserData={setUserData} setIsEditing={setIsEditing} />
         ) : (
@@ -112,7 +108,6 @@ const ProfilePage = () => {
                             <p><strong>Додатковий email:</strong> {userData.additionalEmail}</p>
                         )}
                         <button onClick={() => setIsEditing(true)} className="edit-button">Редагувати</button>
-                        <button onClick={handleLogout} className="logout-button">Вийти</button>
                     </div>
                 ) : (
                     <p className="loading-message">Не вдалося завантажити дані користувача.</p>

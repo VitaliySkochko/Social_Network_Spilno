@@ -171,15 +171,20 @@
 }
 
 .save-button, .cancel-button{
-    border: none;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-    cursor: pointer;
+    border: none; /* Без рамки */
+    background: none; /* Прибираємо фон */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Шрифт */
+    font-weight: bold; /* Жирний текст */
+    font-size: 20px; /* Розмір тексту */
+    cursor: pointer; /* Вказівник-рука при наведенні */
+    color: #007BFF; /* Синій текст */
+    padding: 0; /* Прибираємо відступи */
+    text-decoration: none; /* Без підкреслення */
+    transition: font-style 0.3s ease, color 0.3s ease; /* Анімація */
 }
 
 .save-button:hover, .cancel-button:hover{
-    font-style: italic;
+    font-style: italic; /* Курсив при наведенні */ 
 }
 
 

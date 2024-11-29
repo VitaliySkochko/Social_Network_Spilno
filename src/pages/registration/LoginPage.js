@@ -34,7 +34,7 @@ const LoginPage = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/profile"); // перенаправлення на сторінку профілю після входу
+      navigate("/"); // перенаправлення на сторінку профілю після входу
     } catch (error) {
       console.error("Помилка входу:", error.message);
       // Обробка специфічних помилок

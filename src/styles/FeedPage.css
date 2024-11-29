@@ -1,0 +1,11 @@
+.feed-page {
+    display: flex;
+    flex-direction: column;      /* Встановлюємо вертикальне вирівнювання */
+    min-height: 100vh;           /* Забезпечуємо висоту на весь екран */   
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

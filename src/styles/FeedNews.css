@@ -1,0 +1,11 @@
+.feednews-conteiner{
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.news-item {
+    margin-bottom: 10px;
+}
