@@ -34,7 +34,7 @@ const LoginPage = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/"); // перенаправлення на сторінку профілю після входу
+      navigate("/"); 
     } catch (error) {
       console.error("Помилка входу:", error.message);
       // Обробка специфічних помилок
@@ -54,7 +54,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-conteiner">
+    <div className="login-spilno">
       <img src={logo} alt="logo" className="login-logo" />
 
       <h2 className="login-title">Вхід</h2>
@@ -84,6 +85,7 @@ const LoginPage = () => {
           <button type="button" onClick={handleSignupRedirect} className="registred-button">Зареєструватись</button>
         </div>
       </form>
+    </div>
     </div>
   );
 };

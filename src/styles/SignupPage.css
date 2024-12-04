@@ -1,6 +1,13 @@
 
+.signup-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Висота контейнера = висота екрана */
+    width: 100%; /* Ширина контейнера на весь екран */
+}
 
-.signup-container {
+.signup-spilno {
     width: 90%;
     max-width: clamp(300px, 90%, 450px);
     display: flex;
@@ -11,7 +18,7 @@
     color: #ffffff; /* Білий текст */
     padding: 50px 50px;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Глибока тінь */
+    
 }
 
 .signup-title {
@@ -96,31 +103,49 @@
     margin-top: 10px;
 }
 
-/* Адаптивні стилі для різних пристроїв залишаються майже незмінними */
+/* Медіазапит для екранів мобільних телефонів (до 600px) */
 @media (max-width: 600px) {
-    .signup-container {
-        width: 95%;
-        max-width: 400px;
-        padding: 30px 20px;
+    .login-conteiner, .signup-container {
+        padding: 10px; /* Додаємо відступи для мобільних */
     }
-
-    .signup-title {
-        font-size: 22px;
-        margin-bottom: 20px;
+    .login-spilno, .signup-spilno {
+        padding: 20px; /* Зменшуємо відступи в контейнерах */
+        width: 100%;
+        max-width: 100%;
     }
-
-    .signup-input {
-        font-size: 14px;
-        padding: 12px;
+    .login-title, .signup-title {
+        font-size: 20px; /* Зменшуємо розмір шрифта для заголовків */
     }
-
-    .signup-button, .back-button {
-        font-size: 14px;
-        padding: 12px;
+    .login-input, .signup-input {
+        font-size: 14px; /* Зменшуємо шрифт у полях вводу */
+        padding: 12px; /* Зменшуємо відступи в полях вводу */
     }
+    .login-button, .registred-button, .signup-button, .back-button {
+        padding: 12px; /* Зменшуємо розміри кнопок */
+        font-size: 14px; /* Зменшуємо шрифт на кнопках */
+    }
+}
 
-    .signup-form {
-        gap: 15px;
+/* Медіазапит для екранів планшетів (від 601px до 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .login-conteiner, .signup-container {
+        padding: 20px; /* Відступи для планшетів */
+    }
+    .login-spilno, .signup-spilno {
+        padding: 30px;
+        width: 90%;
+        max-width: 90%;
+    }
+    .login-title, .signup-title {
+        font-size: 22px; /* Помірний розмір шрифта для заголовків */
+    }
+    .login-input, .signup-input {
+        font-size: 15px;
+        padding: 13px; /* Відступи в полях вводу для планшетів */
+    }
+    .login-button, .registred-button, .signup-button, .back-button {
+        padding: 13px;
+        font-size: 15px; /* Зменшуємо шрифт на кнопках */
     }
 }
 

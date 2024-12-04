@@ -92,7 +92,7 @@ const CreateCommunityPage = () => {
                     {photoPreview ? (
                         <img src={photoPreview} alt="Прев'ю" className="photo-preview" />
                     ) : (
-                        <p>Додати фото</p>
+                        <p>Додати фото для спільноти</p>
                     )}
                 </div>
                 <button className="community-button" type="submit" disabled={uploading}>

@@ -2,12 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
-    background-color: white;
+    padding: 20px;
+    background: linear-gradient(to right, #007BFF, #ffffff); /* Синьо-білий градієнт */
 }
 
 .header-logo {
     height: 85px;
+    border-radius: 15px;
 }
 
 .header-user-info {
@@ -83,3 +84,138 @@
     background-color: #E60000; /* Темніший червоний при наведенні */
 }
 
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.spinner {
+    border: 4px solid white(0, 0, 0, 0.2);
+    border-top: 4px solid blue;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Медіазапити для мобільних пристроїв (до 600px) */
+@media (max-width: 600px) {
+    .header-container {
+        padding: 10px; /* Зменшуємо відступи на мобільних */
+        flex-direction: row; /* Залишаємо елементи на одній лінії */
+        justify-content: space-between; /* Розміщуємо елементи по краях */
+    }
+
+    .header-logo {
+        height: 60px; /* Зменшуємо розмір логотипу */
+    }
+
+    .user-info {
+        gap: 8px; /* Зменшуємо відстань між елементами */
+    }
+
+    .user-name {
+        font-size: 16px; /* Зменшуємо розмір шрифта */
+    }
+
+    .logout-button {
+        padding: 6px 10px; /* Зменшуємо розмір кнопки */
+        font-size: 12px; /* Зменшуємо шрифт кнопки */
+    }
+
+    .header-photo-container {
+        width: 50px; /* Зменшуємо розмір аватара */
+        height: 50px;
+    }
+
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Медіазапит для планшетів (від 601px до 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .header-container {
+        padding: 15px; /* Відступи для планшетів */
+        flex-direction: row; /* Залишаємо горизонтальне розташування */
+        justify-content: space-between; /* Вирівнюємо елементи по ширині */
+    }
+
+    .header-logo {
+        height: 70px; /* Зменшуємо розмір логотипу */
+    }
+
+    .user-info {
+        gap: 8px; /* Зменшуємо відстань між елементами */
+    }
+
+    .user-name {
+        font-size: 18px; /* Помірний розмір шрифта для планшетів */
+    }
+
+    .logout-button {
+        padding: 8px 12px;
+        font-size: 12px; /* Зменшуємо шрифт кнопки */
+    }
+
+    .header-photo-container {
+        width: 55px;
+        height: 55px;
+    }
+
+    .user-avatar {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+/* Медіазапит для великих екранів (від 1025px) */
+@media (min-width: 1025px) {
+    .header-container {
+        padding: 20px; /* Стандартні відступи для великих екранів */
+        flex-direction: row; /* Залишаємо горизонтальне розташування */
+        justify-content: space-between; /* Вирівнюємо елементи по ширині */
+    }
+
+    .header-logo {
+        height: 85px; /* Залишаємо оригінальний розмір логотипу */
+    }
+
+    .header-user-info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .user-info {
+        gap: 10px;
+    }
+
+    .user-name {
+        font-size: 20px; /* Стандартний розмір шрифта */
+    }
+
+    .logout-button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .header-photo-container {
+        width: 60px;
+        height: 60px;
+    }
+
+    .user-avatar {
+        width: 60px;
+        height: 60px;
+    }
+}

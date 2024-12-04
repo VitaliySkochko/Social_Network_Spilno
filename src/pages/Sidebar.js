@@ -1,14 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Sidebar.css'
 
 const Sibedar = () => {
     return (
-        <div>
-            <aside className='sibedar-conteiner'>
-                <h2>Спільноти</h2>
-            </aside>
-        </div>
-    );
+        <aside className="sidebar">
+          <Link to="/">Головна</Link>
+          <Link to="/profile">Профіль</Link>
+          <Link to="/create-community">Створити спільноту</Link>
+          <Link to="/communities">Спільноти</Link>         
+        </aside>
+      );
 };
 
 export default Sibedar;

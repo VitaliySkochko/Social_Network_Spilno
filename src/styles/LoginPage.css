@@ -1,14 +1,25 @@
 
-.login-container {
+/* Основний контейнер для форми входу */
+
+.login-conteiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Висота контейнера = висота екрана */
+    width: 100%; /* Ширина контейнера на весь екран */
+}
+.login-spilno{
+    width: 90%;
+    max-width: clamp(300px, 90%, 450px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 90vh;
-    min-width: 150vh;
+    background: linear-gradient(135deg, #0066cc, #004080); /* Синій градієнт */
+    color: #ffffff; /* Білий текст */
+    padding: 50px 50px;
     border-radius: 15px;
-    padding: 20px;
-    color: #007BFF; /* Синій текст */
+    
 }
 
 .login-logo {
@@ -16,146 +27,137 @@
     margin-bottom: 20px;
 }
 
+/* Заголовок */
 .login-title {
-    font-size: 28px;
-    margin-bottom: 25px;
-    color: #004AAD; /* Насичений синій для заголовка */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffffff; /* Білий для заголовків */
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
 }
 
+/* Форма входу */
 .login-form {
     display: flex;
     flex-direction: column;
-    width: 40%;
-    max-width: 800px;
-    padding: 45px;
-    background: #ffffff; /* Білий фон форми */
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
 }
 
-.input-group {
-    margin-bottom: 18px;
-}
-
+/* Вхідний інпут */
 .login-input {
-    width: 93%;
+    width: 100%;
     padding: 14px;
     font-size: 16px;
-    color: #007BFF; /* Синій текст */
-    background-color: #f9f9f9; /* Світлий фон для вводу */
-    border: 1px solid #007BFF;
-    border-radius: 8px;
+    background-color: #004080; /* Темно-синій фон */
+    border: 1px solid #0066cc; /* Світліший синій для бордера */
+    border-radius: 18px;
     transition: all 0.3s ease;
+    color: #ffffff; /* Білий текст */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
 }
+
+.login-input::placeholder {
+    color: #cce0ff; /* Світло-блакитний плейсхолдер */
+}
+
 .login-input:focus {
-    background-color: #e6f0ff; /* Світло-синій фон при фокусі */
-    border-color: #004AAD;
+    background-color: #005bb5; /* Яскравіший синій */
+    box-shadow: 0 0 8px #cce0ff, inset 0 2px 4px rgba(0, 0, 0, 0.6);
     outline: none;
 }
 
+/* Група кнопок */
 .login-button-group {
     display: flex;
-    flex-direction: column;
     gap: 15px;
 }
 
+/* Кнопки */
 .login-button, .registred-button {
     width: 100%;
     padding: 14px;
-    background: #007BFF; /* Синій фон кнопки */
-    color: #ffffff; /* Білий текст */
     font-size: 16px;
     font-weight: bold;
+    border: none;
     border-radius: 8px;
+    color: #ffffff; /* Білий текст */
+    background: linear-gradient(145deg, #0066cc, #005bb5); /* Синій градієнт */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-.login-button:hover, .registred-button:hover {
-    background: #0056b3; /* Темніший синій при наведенні */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-.login-button:active, .registred-button:active {
-    background: #004AAD; /* Ще темніший при натисканні */
+.login-button:hover,
+.registred-button:hover {
+    background: linear-gradient(145deg, #005bb5, #004080); /* Темніший градієнт при наведенні */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
 }
 
+.login-button:active,
+.registred-button:active {
+    background: linear-gradient(145deg, #004080, #002850); /* Ще темніший синій при кліку */
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Повідомлення про помилки */
 .error-message {
-    color: #ff4d4d;
     font-size: 14px;
-    margin-bottom: 10px;
+    color: #ff4d4d; /* Червоний для помилок */
     text-align: center;
+    margin-top: 10px;
 }
 
-/* Адаптивність для телефонів */
+/* Медіазапити для мобільних пристроїв (екрани до 768px) */
 @media (max-width: 768px) {
-    .login-container {
-        min-width: auto;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .login-logo {
-        width: 200px;
-        margin-bottom: 15px;
+    .login-spilno {
+        padding: 30px 30px; /* Зменшуємо відступи на мобільних пристроях */
     }
 
     .login-title {
-        font-size: 22px;
-        margin-bottom: 20px;
-    }
-
-    .login-form {
-        width: 90%;
-        max-width: 400px;
-        padding: 20px;
-        border-radius: 10px;
+        font-size: 20px; /* Зменшуємо розмір заголовку */
     }
 
     .login-input {
-        font-size: 14px;
-        padding: 12px;
+        font-size: 14px; /* Зменшуємо шрифт інпуту */
+        padding: 12px; /* Зменшуємо відступи в інпуті */
     }
 
     .login-button, .registred-button {
-        font-size: 14px;
-        padding: 12px;
-    }
-
-    .error-message {
-        font-size: 12px;
+        padding: 12px; /* Зменшуємо відступи в кнопках */
+        font-size: 14px; /* Зменшуємо шрифт кнопок */
     }
 }
 
-/* Адаптивність для планшетів */
-@media (max-width: 1024px) {
-    .login-container {
-        min-width: 90vw;
-        padding: 15px;
-        border-radius: 12px;
+/* Медіазапити для мобільних пристроїв (екрани до 480px) */
+@media (max-width: 480px) {
+    .login-spilno {
+        width: 95%; /* Розширюємо ширину контейнера */
+        padding: 20px 20px; /* Ще більше зменшуємо відступи */
     }
 
     .login-logo {
-        width: 220px;
+        width: 200px; /* Зменшуємо ширину логотипу */
     }
 
     .login-title {
-        font-size: 24px;
-    }
-
-    .login-form {
-        width: 70%;
-        max-width: 600px;
-        padding: 30px;
+        font-size: 18px; /* Зменшуємо розмір заголовку */
+        margin-bottom: 20px; /* Менші відступи */
     }
 
     .login-input {
-        font-size: 15px;
-        padding: 14px;
+        font-size: 12px; /* Зменшуємо шрифт інпуту */
+        padding: 10px; /* Зменшуємо відступи в інпуті */
     }
 
     .login-button, .registred-button {
-        font-size: 15px;
-        padding: 14px;
+        padding: 10px; /* Зменшуємо відступи в кнопках */
+        font-size: 12px; /* Зменшуємо шрифт кнопок */
     }
 }

@@ -1,11 +1,14 @@
-.feednews-conteiner{
+.feednews-container {
     flex: 1;
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.news-item {
+    margin-left: 260px; /* Відступ зліва для десктопів (враховуючи ширину sidebar) */
+    transition: margin 0.3s ease; /* Плавна зміна для адаптивного переходу */
+  }
+  
+  .news-item {
     margin-bottom: 10px;
-}
+  }
+  

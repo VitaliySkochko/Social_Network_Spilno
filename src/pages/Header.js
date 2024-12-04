@@ -44,8 +44,10 @@ const Header = () => {
             </Link>
             <div className="header-user-info">
                 {user ? (
-                    loading ? (
-                        <p>Завантаження...</p>
+                    loading ? ( 
+                        <div className="loading-spinner">
+                <div className="spinner"></div>
+            </div>
                     ) : (
                         <div className="user-info">
                         <Link to="/profile" className="profile-link">

@@ -1,10 +1,4 @@
 .profile-container{
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 30px;
-    background: linear-gradient(135deg, #ffffff, #f0f0f0);
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     font-family: 'Roboto', sans-serif;
     color: #333;
 }
@@ -95,19 +89,18 @@ h3 {
 
 .edit-button{
     border: none; /* Без рамки */
+    text-decoration: none; /* Без підкреслення */
     background: none; /* Прибираємо фон */
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Шрифт */
     font-weight: bold; /* Жирний текст */
     font-size: 20px; /* Розмір тексту */
+    padding: 10px 15px;
     cursor: pointer; /* Вказівник-рука при наведенні */
-    color: #007BFF; /* Синій текст */
-    padding: 0; /* Прибираємо відступи */
-    text-decoration: none; /* Без підкреслення */
-    transition: font-style 0.3s ease, color 0.3s ease; /* Анімація */
+    color: #333; 
+    transition: transform 0.2s;
 }
 
 .edit-button:hover{
-    font-style: italic; /* Курсив при наведенні */ 
+    transform: scale(1.05); /* Легке збільшення */
 }
 
 .loading-spinner {

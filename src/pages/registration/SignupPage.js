@@ -74,7 +74,8 @@ const SignupPage = () => {
     };
 
     return (
-        <div className="signup-container">
+        <div className='signup-container'>
+        <div className="signup-spilno">
             <h1 className="signup-title">Створити обліковий запис</h1>
             <form className="signup-form" onSubmit={handleSignup}>
                 {error && <p className="error-message">{error}</p>}
@@ -161,6 +162,7 @@ const SignupPage = () => {
                    <button type="button" onClick={handleBack} className="back-button">Назад</button>
                 </div>
             </form>
+        </div>
         </div>
     );
 };
