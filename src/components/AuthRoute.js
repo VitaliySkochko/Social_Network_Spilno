@@ -5,10 +5,13 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../services/firebase';
 
-const AuthRoute = () => {
+const AuthRoute = () => { 
   const [user, loading] = useAuthState(auth);
 
-  if (loading) return <p>Завантаження...</p>;
+  if (loading) return 
+  <div className="loading-spinner">
+     <div className="spinner"></div>
+  </div>;
 
   return user ? <Outlet /> : <Navigate to="/login" />;
 };

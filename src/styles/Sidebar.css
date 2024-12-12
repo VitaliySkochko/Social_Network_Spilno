@@ -2,7 +2,7 @@
 .sidebar {
     width: 250px;
     height: 100vh; /* Повна висота вікна */
-    background: linear-gradient(180deg, #007BFF, #ffffff); /* Синьо-білий градієнт */
+    background: linear-gradient(180deg, #ffffff, #f0f0f0); /* Синьо-білий градієнт */ 
     padding: 20px;
     box-shadow: 2px 0 2px rgba(0, 0, 0, 0.3); /* Тінь для Sidebar */
     position: fixed; /* Фіксована позиція зліва */
@@ -14,20 +14,7 @@
     font-family: 'Arial', sans-serif; /* Простий і сучасний шрифт */
   }
   
-  /* Стилі для посилань */
-  .sidebar a {
-    color: #333; /* Білий текст для посилань */
-    text-decoration: none; /* Без підкреслення */
-    font-size: 18px;
-    font-weight: bold;
-    padding: 10px 15px;
-    transition: transform 0.2s; /* Плавні переходи */
-  }
-  
-  /* Ефект при наведенні */
-  .sidebar a:hover {
-    transform: scale(1.05); /* Легке збільшення */
-  }
+ 
   
   /* Активна сторінка */
   .sidebar a.active {
@@ -43,7 +30,7 @@
     position: static; /* Відміняємо фіксацію */
     width: 100%; /* Панель займає всю ширину */
     height: auto; /* Висота підлаштовується під контент */
-    background: linear-gradient(90deg, #007BFF, #ffffff); /* Градієнт змінюється на горизонтальний */
+    background: linear-gradient(90deg, #ffffff, #f0f0f0); /* Градієнт змінюється на горизонтальний */
     box-shadow: none; /* Забираємо тінь */
     padding: 10px; /* Менший padding */
     flex-direction: row; /* Горизонтальне розташування елементів */

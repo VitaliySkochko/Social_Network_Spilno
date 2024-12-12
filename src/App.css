@@ -1,14 +1,295 @@
+/*------ОСНОВНІ СТИЛІ------*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
-
 body {
-  /*background: linear-gradient(to bottom, #ffffff, #007BFF);*/
-  min-height: 100vh;
   margin: 0;
   font-family: Arial, sans-serif;
   color: #333;
 }
+
+
+/*------КНОПКИ------*/
+.button-menu{
+  color: #333; 
+  text-decoration: none; /* Без підкреслення */
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 15px;
+  transition: transform 0.2s; /* Плавні переходи */
+}
+.button-menu:hover{
+  transform: scale(1.05); /* Легке збільшення */
+  text-decoration: none;
+  color: #333;
+}
+.button-exit{
+  padding: 8px 12px;
+  background-color: #FF4D4D; /* Червоний колір кнопки */
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Анімація при наведенні */
+  font-size: 14px;
+  font-weight: bold;
+}
+.button-exit:hover{
+  background-color: #E60000; /* Темніший червоний при наведенні */
+}
+.button-main-conteiner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 15px;
+}
+.button-main{
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  color: #ffffff; /* Білий текст */
+  background: linear-gradient(145deg, #0066cc, #005bb5); /* Синій градієнт */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.button-main:hover{
+  background: linear-gradient(145deg, #005bb5, #004080); /* Темніший градієнт при наведенні */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+}
+.button-delete {
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  color: #ffffff; /* Білий текст */
+  background: linear-gradient(145deg, #ff4d4d, #cc0000); /* Червоний градієнт */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.button-delete:hover {
+  background: linear-gradient(145deg, #cc0000, #990000); /* Темніший червоний градієнт при наведенні */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+}
+.button-modal{
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #6e7dd7, #5d8bb8); /* Градієнт для кнопки */
+  border: none;
+  border-radius: 50px; /* Округлені краї */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Плавний перехід */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легка тінь */
+}
+
+.button-modal:hover {
+  background: linear-gradient(135deg, #5d8bb8, #6e7dd7); /* Зміна кольору на ховер */
+  transform: translateY(-2px); /* Підняття кнопки */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Підсилена тінь */
+}
+
+.button-modal:active {
+  transform: translateY(1px); /* При натисканні кнопка опускається */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Повернення тіні до початкового стану */
+}
+
+
+
+/*-------ІКОНКИ-------*/
+/*іконка користувача*/
+.user-icon {
+  font-size: 50px;
+  color:#007bff;
+  cursor: pointer;
+}
+.delete-icon{
+  color:#007bff;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: none;
+}
+.download-icon{
+  color:#007bff;
+  cursor: pointer;
+}
+
+
+/*------СПІНЕР НА ЗАВАНТАЖЕННЯ-------*/
+.loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.spinner {
+  border: 4px solid white(0, 0, 0, 0.2);
+  border-top: 4px solid blue;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+
+/*------ЗАГОЛОВКИ ТА ТЕКСТ-------*/
+h2{
+  font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333; /* Білий текст */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding-bottom: 8px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Легка тінь для тексту */
+}
+h3{
+   text-align: center;
+    margin-top: 30px;
+    font-size: 1.5rem;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 8px;
+}
+p{
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+strong{
+  color: #000;
+}
+
+
+/*-------Поля вводу-------*/
+label{
+  font-size: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+.title-input,
+.description-textarea,
+.list-select{
+  width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    color: #003d80; /* Синій текст */
+    background-color: rgba(255, 255, 255, 0.9); /* Напівпрозорий фон */
+    border: 1px solid #0056b3; /* Синя рамка */
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.title-input::placeholder,
+.description-textarea::placeholder,
+.list-select::placeholder{
+  color: #7aa4d9; 
+}
+.title-input:focus,
+.description-textarea:focus,
+.list-select:focus{
+  background-color: rgba(240, 240, 255, 0.9); /* Легкий блакитний фон */
+  border-color: #003d80; /* Темно-синя рамка */
+  box-shadow: 0 0 8px rgba(0, 86, 179, 0.5);
+  outline: none;
+}
+.description-textarea{
+  min-height: 120px;
+}
+
+
+/*-------СПІЛЬНОТИ-------*/
+
+
+
+/*-------Модельне вікно для фото-------*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Переконатися, що модальне вікно на передньому плані */
+}
+.modal-content {
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 90%; /* Обмежуємо максимальну ширину */
+  max-height: 90vh; /* Обмежуємо висоту, щоб зображення не виходило за межі екрану */
+  overflow: hidden; /* Забезпечуємо, щоб вміст не виходив за межі контейнера */
+}
+.modal-photo {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+
+/*-------FOOTER-------*/
+.footer-conteiner {
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+/*-------Модельне вікно учасників спільнот-------*/
+.modal-overlay-group {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Переконатися, що модальне вікно на передньому плані */
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+}
+
+
+
+

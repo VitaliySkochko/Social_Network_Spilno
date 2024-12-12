@@ -1,44 +1,48 @@
 // Сторінка для перегляду списку спільнот
 import React, { useEffect, useState } from 'react';
-import { db } from '../../services/firebase';
-import { collection, query, orderBy, getDocs } from 'firebase/firestore';
+import { fetchCommunities } from '../../services/firebaseCommunityService';
 import { Link } from 'react-router-dom';
-import { FaUsers } from 'react-icons/fa'; // Імпорт іконки
-import '../../styles/CommunitiesPage.css';
+import { FaUsers } from 'react-icons/fa';
+import CommunityCount from './CommunityCount';
+import CommunitySearch from './CommunitySearch';
+import '../../styles/CommunityList.css';
 
-const CommunitiesPage = () => {
+const CommunityList = () => {
     const [communities, setCommunities] = useState([]);
+    const [filteredCommunities, setFilteredCommunities] = useState([]);
 
     useEffect(() => {
-        const fetchCommunities = async () => {
+        const loadCommunities = async () => {
             try {
-                // Створюємо запит із сортуванням за полем createdAt
-                const q = query(
-                    collection(db, 'communities'),
-                    orderBy('createdAt', 'desc') // Сортування за спаданням
-                );
-                const querySnapshot = await getDocs(q);
-                const communitiesList = querySnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
+                const communitiesList = await fetchCommunities();
                 setCommunities(communitiesList);
+                setFilteredCommunities(communitiesList);
             } catch (error) {
                 console.error('Помилка при завантаженні спільнот:', error);
             }
         };
 
-        fetchCommunities();
+        loadCommunities();
     }, []);
 
+    const handleSearch = (searchTerm) => {
+        const filtered = communities.filter((community) =>
+            community.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredCommunities(filtered);
+    };
+
     return (
-        <div className="communities-page">
+        <div className="community-list-page">
             <h2 className="communities-title">Спільноти</h2>
+            <div className='community-list-count-search'>
+            <CommunityCount count={filteredCommunities.length} />
+            <CommunitySearch onSearch={handleSearch} />
+            </div>
             <ul className="communities-list">
-                {communities.map((community) => (
+                {filteredCommunities.map((community) => (
                     <li key={community.id} className="communities-item">
-                        <Link to={`/community/${community.id}`} className="communities-link">
-                            {/* Відображення фото або іконки */}
+                        <Link to={`/communities/${community.id}`} className="communities-link">
                             {community.photoURL ? (
                                 <img
                                     src={community.photoURL}
@@ -46,7 +50,7 @@ const CommunitiesPage = () => {
                                     className="communities-photo"
                                 />
                             ) : (
-                                <FaUsers className="communities-icon" /> // Іконка, якщо фото немає
+                                <FaUsers className="user-icon-list" />
                             )}
                             <div className="communities-info">
                                 <h3 className="communities-name">{community.name}</h3>
@@ -60,4 +64,4 @@ const CommunitiesPage = () => {
     );
 };
 
-export default CommunitiesPage;
+export default CommunityList;

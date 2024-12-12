@@ -1,0 +1,168 @@
+/* Основний контейнер для сторінки */
+/*Список спільнот*/
+.community-list-page { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    font-family: 'Roboto', sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    background: linear-gradient(120deg, #007bff, #ffffff);
+    background-attachment: fixed;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  .communities-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(3, 1fr); /* 3 фіксовані ряди */
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%; /* Щоб список займав повну висоту */
+  }
+  .communities-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background: linear-gradient(145deg, #ffffff, #f0f8ff);
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+   
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    height: 350px; /* Фіксована висота для однакового вигляду */
+  }
+  .communities-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .communities-link:hover {
+    text-decoration: none;
+  }
+  
+  .communities-photo {
+    width: 200px;
+    height: 150px; /* Фіксована висота */
+    border-radius: 10%;
+    object-fit: cover; /* Робить фото однакового розміру */
+    margin-bottom: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  .user-icon-list{
+    width: 200px;
+    height: 150px; /* Фіксована висота */
+    border-radius: 10%;
+    object-fit: cover; /* Робить фото однакового розміру */
+    margin-bottom: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+
+  }
+  .communities-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333; 
+    margin: 10px 0 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  }
+  .communities-description {
+    font-size: 16px;
+    color: #444;
+    margin-top: 8px;
+    line-height: 1.6;
+    max-height: 3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+  .community-list-count-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    margin-bottom: 50px;
+  }
+
+  /* Медіазапит для планшетів (максимум 768px) */
+@media (max-width: 768px) {
+  .community-list-page {
+      padding: 20px;
+      max-width: 100%;
+  }
+
+  .communities-list {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Зменшуємо ширину колонок */
+      gap: 20px; /* Менші проміжки */
+  }
+
+  .communities-item {
+      padding: 20px;
+      height: auto; /* Адаптивна висота */
+  }
+
+  .communities-photo, .user-icon-list {
+      width: 180px;
+      height: 130px;
+  }
+
+  .communities-name {
+      font-size: 20px;
+  }
+
+  .communities-description {
+      font-size: 14px;
+  }
+
+  .community-list-count-search {
+      gap: 50px;
+  }
+}
+
+/* Медіазапит для мобільних телефонів (максимум 480px) */
+@media (max-width: 480px) {
+  .community-list-page {
+      padding: 15px;
+  }
+
+  .communities-list {
+      grid-template-columns: 1fr; /* Один елемент у рядку */
+      gap: 15px;
+  }
+
+  .communities-item {
+      padding: 15px;
+  }
+
+  .communities-photo, .user-icon-list {
+      width: 150px;
+      height: 100px;
+  }
+
+  .communities-name {
+      font-size: 18px;
+  }
+
+  .communities-description {
+      font-size: 12px;
+      line-height: 1.4;
+  }
+
+  .community-list-count-search {
+      flex-direction: column;
+      gap: 20px;
+  }
+}

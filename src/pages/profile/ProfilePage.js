@@ -1,20 +1,21 @@
 // Сторінка профілю
 
-
-import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../../services/firebase';
 import EditProfile from './EditProfile';
-import {format} from 'date-fns'
-import '../../styles/ProfilePage.css';
-import { FaUser} from "react-icons/fa";
+import ProfilePhoto from './ProfilePhoto';
+import ProfileInfo from './ProfileInfo';
+import ContactInfo from './ContactInfo';
+import Modal from '../../components/Modal.js'; // Імпортуємо компонент Modal
+import '../../styles/Profile.css';
 
 const ProfilePage = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isEditing, setIsEditing] = useState(false); // Новий стан для редагування
-    
+    const [isEditing, setIsEditing] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);  // Стан для відкриття/закриття модального вікна
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -38,7 +39,6 @@ const ProfilePage = () => {
         fetchUserData();
     }, []);
 
-   
     if (loading) {
         return (
             <div className="loading-spinner">
@@ -51,71 +51,38 @@ const ProfilePage = () => {
         return <div className="error-message">{error}</div>;
     }
 
+    const openModal = () => setIsModalOpen(true);  // Відкриваємо модальне вікно
+    const closeModal = () => setIsModalOpen(false);  // Закриваємо модальне вікно
+
     return (
         <div className="profile-container">
-        {isEditing ? (
-            <EditProfile userData={userData} setUserData={setUserData} setIsEditing={setIsEditing} />
-        ) : (
-            <>
-                {userData ? (
-                    <div className="profile-info">
-                        {/* Відображення фото профілю */}
-                        <div className="profile-photo-container">
-                            {userData.profilePhoto ? (
-                                <img
-                                    src={userData.profilePhoto}
-                                    alt="Фото профілю"
-                                    className="profile-photo"
-                                />
-                            ) : (
-                                <div className="default-photo-placeholder">
-                                    <FaUser className="user-icon" />
-                                </div>
-                            )}
+            {isEditing ? (
+                <EditProfile userData={userData} setUserData={setUserData} setIsEditing={setIsEditing} />
+            ) : (
+                userData && (
+                    <>
+                        <ProfilePhoto 
+                            profilePhoto={userData.profilePhoto} 
+                            openModal={openModal}  // Передаємо функцію відкриття модального вікна
+                        />
+                        <ProfileInfo userData={userData} setIsEditing={setIsEditing} />
+                        <ContactInfo userData={userData} />
+                        <div className='button-main-conteiner'>
+                            <button onClick={() => setIsEditing(true)} className="button-main">Редагувати</button>
                         </div>
-
-                        {/* Відображення інших даних профілю */}
-                        <div className="profile-group-name-surname">
-                            <p className="profile-name">{userData.firstName}</p>
-                            <p className="profile-name">{userData.lastName}</p>
-                        </div>
-                        <p><strong>Дата народження:</strong> {userData.birthDate ? format(new Date(userData.birthDate), 'dd/MM/yyyy') : ''}</p>
-                        <p><strong>Стать:</strong> {userData.gender}</p>
-                        <p><strong>Email:</strong> {userData.email}</p>
-                        {userData.interests && (
-                            <p><strong>Про себе:</strong> {userData.interests}</p>
-                        )}
-                        {userData.country && userData.city && (
-                            <p><strong>Місце проживання:</strong> {userData.city} ({userData.country}) </p>
-                        )}
-                        <h3>Контактні дані та соціальні мережі</h3>
-                        {userData.facebook && (
-                            <p><strong>Facebook:</strong> <a href={userData.facebook} target='_blank' rel="noopener noreferrer"> {userData.facebook}</a></p>
-                        )}
-                        {userData.instagram && (
-                            <p><strong>Instagram:</strong> <a href={userData.instagram} target='_blank' rel="noopener noreferrer"> {userData.instagram}</a></p>
-                        )}
-                        {userData.telegram && (
-                            <p><strong>Telegram:</strong> <a href={userData.telegram} target='_blank' rel="noopener noreferrer"> {userData.telegram}</a></p>
-                        )}
-                        {userData.linkedIn && (
-                            <p><strong>LinkedIn:</strong> <a href={userData.linkedIn} target="_blank" rel="noopener noreferrer">{userData.linkedIn}</a></p>
-                        )}
-                        {userData.phone && (
-                            <p><strong>Телефон:</strong> {userData.phone}</p>
-                        )}
-                        {userData.additionalEmail && (
-                            <p><strong>Додатковий email:</strong> {userData.additionalEmail}</p>
-                        )}
-                        <button onClick={() => setIsEditing(true)} className="edit-button">Редагувати</button>
-                    </div>
-                ) : (
-                    <p className="loading-message">Не вдалося завантажити дані користувача.</p>
-                )}
-            </>
-        )}
-    </div>
+                    </>
+                )
+            )}
+            
+            {/* Модальне вікно для перегляду фото */}
+            {isModalOpen && (
+                <Modal 
+                    imageSrc={userData.profilePhoto}  // Фото профілю, яке потрібно відобразити в модальному вікні
+                    onClose={closeModal}  // Функція для закриття модального вікна
+                />
+            )}
+        </div>
     );
-}; 
+};
 
 export default ProfilePage;

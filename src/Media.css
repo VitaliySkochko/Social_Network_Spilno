@@ -1,0 +1,57 @@
+/*-------Вхід/Реєстрація------*/
+/* Маленькі телефони (320px і більше) */
+@media (max-width: 480px) {
+    .login-spilno {
+      padding: 30px 20px;
+      max-width: 320px; /* Зменшення максимальної ширини */
+    }
+    .login-title {
+      font-size: 20px; /* Зменшення розміру шрифту заголовка */
+      margin-bottom: 20px;
+    }
+    .login-input {
+      padding: 10px;
+      font-size: 14px; /* Менший розмір тексту */
+    }
+    .login-logo {
+      width: 200px; /* Менший розмір логотипа */
+    }
+  }
+  /* Середні телефони (481px і більше) */
+  @media (max-width: 768px) {
+    .login-spilno {
+      padding: 40px 30px;
+      max-width: 380px;
+    }
+    .login-title {
+      font-size: 22px;
+      margin-bottom: 25px;
+    }
+    .login-input {
+      padding: 12px;
+      font-size: 15px;
+    }
+    .login-logo {
+      width: 220px;
+    }
+  }
+  /* Планшети (769px і більше) */
+  @media (max-width: 1024px) {
+    .login-spilno {
+      padding: 50px 40px;
+      max-width: 400px;
+    }
+    .login-title {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+    .login-input {
+      padding: 14px;
+      font-size: 16px;
+    }
+    .login-logo {
+      width: 240px;
+    }
+  }
+  
+  

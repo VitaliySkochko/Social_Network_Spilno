@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../pages/Header';
+import Header from './Header';
 import Sidebar from '../pages/Sidebar';
-import Footer from '../pages/Footer';
+import Footer from './Footer';
 import '../styles/MainLayout.css';
 
 const MainLayout = () => {
@@ -10,7 +10,6 @@ const MainLayout = () => {
     <div className="main-layout">
       {/* Верхній заголовок */}
       <Header />
-
       {/* Основний контейнер з боковою панеллю та вмістом */}
       <div className="content-container">
         <Sidebar />
