@@ -107,21 +107,44 @@ body {
 
 
 /*-------ІКОНКИ-------*/
-/*іконка користувача*/
+/*користувач*/
 .user-icon {
   font-size: 50px;
   color:#007bff;
   cursor: pointer;
 }
+/*видалити*/
 .delete-icon{
   color:#007bff;
   cursor: pointer;
   background-color: #ffffff;
   border: none;
 }
+/*завантажити*/
 .download-icon{
   color:#007bff;
   cursor: pointer;
+}
+/*додати*/
+.add-icon{
+  color:#007bff;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: none;
+}
+/*фото*/
+.photo-icon{
+  color:#007bff;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: none;
+}
+/*відео*/
+.video-icon{
+  color:#007bff;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: none;
 }
 
 
@@ -215,9 +238,51 @@ label{
   min-height: 120px;
 }
 
+/*-------User Card-------*/
+.profile-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Прибираємо підкреслення */
+  color: #333; /* Основний текстовий колір */
+  gap: 10px;
+  transition: color 0.3s ease; /* Анімація при наведенні */
+}
+.profile-link:hover {
+  color: #007BFF; /* Синій колір при наведенні */
+  text-decoration: none;
+}
+.user-photo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #e0e0e0; /* Фон для іконки */
+  overflow: hidden;
+}
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Робимо аватар круглим */
+  border: 2px solid #007BFF; /* Окантовка */
+  object-fit: cover; /* Забезпечує правильне відображення фото */
+}
+.user-avatar-icon{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Робимо аватар круглим */
+  border: 2px solid #007BFF; /* Окантовка */
+  object-fit: cover; /* Забезпечує правильне відображення фото */
+}
+.user-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
 
 /*-------СПІЛЬНОТИ-------*/
-
 
 
 /*-------Модельне вікно для фото-------*/
@@ -260,14 +325,6 @@ label{
 }
 
 
-/*-------FOOTER-------*/
-.footer-conteiner {
-  background-color: white;
-  color: black;
-  text-align: center;
-  padding: 10px 20px;
-}
-
 /*-------Модельне вікно учасників спільнот-------*/
 .modal-overlay-group {
   position: fixed;
@@ -281,7 +338,6 @@ label{
   align-items: center;
   z-index: 1000; /* Переконатися, що модальне вікно на передньому плані */
 }
-
 .modal {
   background: white;
   padding: 20px;
@@ -289,6 +345,109 @@ label{
   max-width: 500px;
   width: 100%;
 }
+
+
+/*-------FOOTER-------*/
+.footer-conteiner {
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+
+/*-------Контейнер для каруселі зображень-------*/
+.post-images {
+  display: flex;
+  justify-content: center; /* Центрування */
+  align-items: center;
+  margin-top: 10px;
+  overflow: hidden;
+  width: 100%; /* Ширина на весь блок */
+}
+/* Стилі для одного зображення */
+.post-thumbnail {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto; /* Центрує зображення */
+}
+/* Стилі для Swiper */
+.post-carousel {
+  width: 100%; /* Займає всю ширину батьківського контейнера */
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Стилі для SwiperSlide */
+.swiper-slide {
+  display: flex;
+  justify-content: center; /* Центрує контент усередині слайду */
+  align-items: center;
+}
+
+
+/*-------Контейнер для каруселі відео-------*/
+.post-videos {
+  display: flex;
+  justify-content: center; /* Центрування */
+  align-items: center;
+  margin-top: 10px;
+  overflow: hidden;
+  width: 100%; /* Ширина на весь блок */
+}
+/* Стилі для одного відео */
+.post-video {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto; /* Центрує відео */
+}
+/* Стилі для каруселі відео */
+.video-carousel {
+  width: 100%; /* Займає всю ширину батьківського контейнера */
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Для розміщення кнопок перемикання */
+}
+/* Кнопки перемикання між відео */
+.carousel-button {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+}
+.prev-button {
+  left: 10px;
+}
+.next-button {
+  right: 10px;
+}
+/* Стилі для відео, коли кілька відео в каруселі */
+.carousel-video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+
+
+
+
+
 
 
 

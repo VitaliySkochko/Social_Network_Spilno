@@ -1,3 +1,5 @@
+//Кнопка пошуку спільноти
+
 import React, { useState } from 'react';
 
 const CommunitySearch = ({ onSearch }) => {

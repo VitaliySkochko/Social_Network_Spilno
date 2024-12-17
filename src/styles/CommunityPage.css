@@ -20,6 +20,29 @@
     flex-direction: column;
     gap: 10px;
   }
+  .community-button-group{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .community-members-group .user-photo-container {
+    width: 40px; 
+    height: 40px;
+  }
+  .community-members-group .user-avatar {
+    width: 40px; 
+    height: 40px;
+  }
+  .community-members-group .user-avatar-icon{
+    width: 40px; 
+    height: 40px;
+  }
+  .community-members-group .user-name{
+    font-size: 15px;
+    font-weight: bold;
+  }
+
   /* Медіазапит для планшетів (максимум 768px) */
 @media (max-width: 768px) {
     .community-page {

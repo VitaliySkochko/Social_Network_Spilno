@@ -1,4 +1,4 @@
-.header-container { 
+.header-container {  
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,53 +23,6 @@
     gap: 10px;
     padding: 10px 15px;
 }
-
-.profile-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none; /* Прибираємо підкреслення */
-    color: #333; /* Основний текстовий колір */
-    gap: 10px;
-    transition: color 0.3s ease; /* Анімація при наведенні */
-}
-
-.profile-link:hover {
-    color: #007BFF; /* Синій колір при наведенні */
-    text-decoration: none;
-}
-
-.user-photo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #e0e0e0; /* Фон для іконки */
-    overflow: hidden;
-}
-
-.user-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%; /* Робимо аватар круглим */
-    border: 2px solid #007BFF; /* Окантовка */
-    object-fit: cover; /* Забезпечує правильне відображення фото */
-}
-
-.user-avatar-icon{
-    width: 60px;
-    height: 60px;
-    border-radius: 50%; /* Робимо аватар круглим */
-    border: 2px solid #007BFF; /* Окантовка */
-    object-fit: cover; /* Забезпечує правильне відображення фото */
-}
-
-.user-name {
-    font-size: 20px;
-    font-weight: bold;
-}
-
 
 
 
@@ -104,10 +57,7 @@
         height: 50px;
     }
 
-    .user-avatar {
-        width: 50px;
-        height: 50px;
-    }
+   
 }
 
 /* Медіазапит для планшетів (від 601px до 1024px) */
@@ -140,10 +90,7 @@
         height: 55px;
     }
 
-    .user-avatar {
-        width: 55px;
-        height: 55px;
-    }
+    
 }
 
 /* Базові стилі для великих екранів (десктоп) */
@@ -175,10 +122,7 @@
     height: 60px;
 }
 
-.user-avatar {
-    width: 60px;
-    height: 60px;
-}
+
 
 /* ===== Медіазапити для різних екранів ===== */
 
@@ -212,10 +156,7 @@
         height: 40px;
     }
 
-    .user-avatar {
-        width: 40px;
-        height: 40px;
-    }
+    
 }
 
 /* Великі смартфони (від 481px до 600px) */
@@ -249,10 +190,7 @@
         height: 50px;
     }
 
-    .user-avatar {
-        width: 50px;
-        height: 50px;
-    }
+    
 }
 
 /* Планшети (від 601px до 1024px) */
@@ -285,10 +223,7 @@
         height: 55px;
     }
 
-    .user-avatar {
-        width: 55px;
-        height: 55px;
-    }
+    
 }
 
 /* Вузькі планшети або великі смартфони (від 481px до 768px, портрет) */
@@ -322,10 +257,7 @@
         height: 45px;
     }
 
-    .user-avatar {
-        width: 45px;
-        height: 45px;
-    }
+    
 }
 
 /* Великі планшети або ноутбуки (від 1025px до 1280px) */
@@ -358,8 +290,5 @@
         height: 58px;
     }
 
-    .user-avatar {
-        width: 58px;
-        height: 58px;
-    }
+    
 }

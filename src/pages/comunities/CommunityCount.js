@@ -1,3 +1,5 @@
+// Загальна кількість спільнот
+
 import React from 'react';
 
 const CommunityCount = ({ count }) => {

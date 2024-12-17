@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { FaUser, FaEdit, FaTrash } from "react-icons/fa";
+import { FaUser, FaImage, FaTrash } from "react-icons/fa";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../services/firebase";
 import { v4 as uuidv4 } from "uuid";
@@ -84,8 +84,8 @@ const ProfilePhotoSection = ({
           </div>
         ) : (
           <>
-            <label className="download-icon" title="Завантажити фото">
-              <FaEdit />
+            <label className="photo-icon" title="Завантажити фото">
+              <FaImage/>
               <input
                 type="file"
                 {...getInputProps()}
