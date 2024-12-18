@@ -1,3 +1,5 @@
+// Створення поста
+
 import React, { useState } from 'react';
 import CreatePost from './CreatePost';
 import PostList from './PostList';

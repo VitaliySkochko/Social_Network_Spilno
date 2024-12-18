@@ -24,7 +24,7 @@ function App() {
         <Route element={<AuthRoute />}>
           <Route element={<MainLayout />}>
             <Route path="/" element={<FeedPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile" element={<ProfilePage />} />           
             <Route path="/communities/:id" element={<CommunityPage />} />
             <Route path="/create-community" element={<CreateCommunityPage />} />
             <Route path="/communities" element={<CommunityList/>} />

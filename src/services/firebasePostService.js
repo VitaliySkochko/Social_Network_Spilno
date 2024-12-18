@@ -15,6 +15,14 @@ export const createPost = async (communityId, userId, content, images = [], vide
             images, // Масив зображень
             videos, // Масив відео URL
             createdAt: new Date(),
+            likes: {
+                like: [],
+                dislike: [],
+                love: [],
+                laugh: [],
+                surprised: [],
+                angry: [],
+            }, 
         });
         return docRef.id;
     } catch (error) {

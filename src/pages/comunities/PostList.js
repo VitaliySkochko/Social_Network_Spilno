@@ -7,6 +7,7 @@ import PostVideosCarousel from "../../components/PostVideosCarousel"; // Імп�
 import UserCard from "../../components/UserCard";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../services/firebase";
+import Reactions from "../../components/Reactions";
 
 const PostList = ({ communityId }) => {
   const [posts, setPosts] = useState([]);
@@ -78,6 +79,7 @@ const PostList = ({ communityId }) => {
           {post.videos && post.videos.length > 0 && (
             <PostVideosCarousel videos={post.videos} />
           )}
+          <Reactions postId={post.id} />
         </div>
       ))}
     </div>

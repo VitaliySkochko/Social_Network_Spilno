@@ -1,0 +1,74 @@
+/*-------Лайки------*/
+/* Стилі для контейнера реакцій */
+.reactions-container {
+    display: flex;
+    gap: 15px; 
+    justify-content: center; 
+    margin-top: 30px;
+  }
+  /* Стилі для кнопок реакцій */
+  .reaction-button {
+    background-color: white; 
+    border: 2px solid #ddd; 
+    border-radius: 30px; 
+    padding: 8px 15px; 
+    font-size: 14px; 
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; 
+  }
+  .reaction-button:hover {
+    background-color: #f0f0f0; 
+    transform: scale(1.1); 
+  }
+  /* Стиль для вибраної кнопки (активна реакція) */
+  .reaction-button.selected {
+    background-color: #a8d8ff; /* Яскравий жовтий фон для вибраної реакції */
+    border-color: blue; /* Темніше жовте для рамки */
+    color: #fff; /* Білий колір тексту (емодзі та цифри) */
+  }
+  /* Стилі для лічильників реакцій */
+  .reaction-button span {
+    font-weight: bold; /* Жирний шрифт для лічильника */
+    margin-left: 8px; /* Відступ між емодзі та лічильником */
+  }
+
+  /*МЕДІАЗАПИТИ*/
+  /* Медіа запити для маленьких екранів (телефони) */
+@media (max-width: 480px) {
+  .reactions-container {
+      flex-direction: row; /* Залишаємо кнопки горизонтальними навіть на маленьких екранах */
+      gap: 8px; /* Зменшений відступ між кнопками */
+      justify-content: center; /* Центруємо кнопки */
+  }
+
+  .reaction-button {
+      font-size: 10px; /* Додатково зменшуємо розмір шрифта на маленьких екранах */
+      padding: 4px 8px; /* Зменшені відступи в кнопках */
+  }
+}
+
+/* Медіа запити для середніх екранів (планшети) */
+@media (max-width: 768px) {
+  .reactions-container {
+      flex-direction: row; /* Залишаємо кнопки горизонтальними навіть на планшетах */
+      gap: 10px; /* Менший відступ між кнопками */
+      justify-content: center; /* Центруємо кнопки */
+  }
+
+  .reaction-button {
+      font-size: 11px; /* Зменшуємо розмір шрифта на планшетах */
+      padding: 5px 10px; /* Зменшуємо відступи в кнопках */
+  }
+}
+
+/* Медіа запити для великих екранів (настільні комп'ютери та більші планшети) */
+@media (min-width: 1024px) {
+  .reactions-container {
+      gap: 12px; /* Відступи між кнопками на великих екранах */
+  }
+
+  .reaction-button {
+      font-size: 12px; /* Стандартний розмір шрифта для великих екранів */
+      padding: 6px 12px; /* Стандартні відступи */
+  }
+}
