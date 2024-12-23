@@ -2,10 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 
-
-const UserCard = ({ profilePhoto, firstName, lastName }) => {
+const UserCard = ({ uid, profilePhoto, firstName, lastName }) => {
     return (
-        <Link to="/profile" className="profile-link">
+        <Link to={`/profile/${uid}`} className="profile-link">
             <div className="user-photo-container">
                 {profilePhoto ? (
                     <img

@@ -1,58 +1,58 @@
 /* Загальний контейнер для Sidebar */
 .sidebar {
-    width: 250px;
-    height: 100vh; /* Повна висота вікна */
-    background: linear-gradient(180deg, #ffffff, #f0f0f0); /* Синьо-білий градієнт */ 
-    padding: 20px;
-    box-shadow: 2px 0 2px rgba(0, 0, 0, 0.3); /* Тінь для Sidebar */
-    position: fixed; /* Фіксована позиція зліва */
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Відступ між елементами */
-    font-family: 'Arial', sans-serif; /* Простий і сучасний шрифт */
-  }
-  
- 
-  
-  /* Активна сторінка */
-  .sidebar a.active {
-    background-color: #ffffff; /* Білий фон */
-    color: #007BFF; /* Синій текст */
-  }
+  width: 250px;
+  height: 100vh; /* Повна висота вікна */
+  background: linear-gradient(180deg, #ffffff, #f0f0f0); /* Синьо-білий градієнт */ 
+  padding: 20px;
+  box-shadow: 2px 0 2px rgba(0, 0, 0, 0.3); /* Тінь для Sidebar */
+  position: fixed; /* Фіксована позиція зліва */
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Відступ між елементами */
+  font-family: 'Arial', sans-serif; /* Простий і сучасний шрифт */
+}
 
-  /* --- Адаптивні стилі --- */
+
+
+/* Активна сторінка */
+.sidebar a.active {
+  background-color: #ffffff; /* Білий фон */
+  color: #007BFF; /* Синій текст */
+}
+
+/* --- Адаптивні стилі --- */
 
 /* Для планшетів і мобільних пристроїв */
 @media (max-width: 768px) {
-  .sidebar {
-    position: static; /* Відміняємо фіксацію */
-    width: 100%; /* Панель займає всю ширину */
-    height: auto; /* Висота підлаштовується під контент */
-    background: linear-gradient(90deg, #ffffff, #f0f0f0); /* Градієнт змінюється на горизонтальний */
-    box-shadow: none; /* Забираємо тінь */
-    padding: 10px; /* Менший padding */
-    flex-direction: row; /* Горизонтальне розташування елементів */
-    gap: 10px; /* Менший відступ між елементами */
-  }
+.sidebar {
+  position: static; /* Відміняємо фіксацію */
+  width: 100%; /* Панель займає всю ширину */
+  height: auto; /* Висота підлаштовується під контент */
+  background: linear-gradient(90deg, #ffffff, #f0f0f0); /* Градієнт змінюється на горизонтальний */
+  box-shadow: none; /* Забираємо тінь */
+  padding: 10px; /* Менший padding */
+  flex-direction: row; /* Горизонтальне розташування елементів */
+  gap: 10px; /* Менший відступ між елементами */
+}
 
-  .sidebar a {
-    font-size: 16px; /* Зменшуємо розмір шрифту */
-    padding: 5px 10px; /* Менший відступ у посиланнях */
-  }
+.sidebar a {
+  font-size: 16px; /* Зменшуємо розмір шрифту */
+  padding: 5px 10px; /* Менший відступ у посиланнях */
+}
 }
 
 @media (max-width: 480px) {
-  .sidebar {
-    flex-wrap: wrap; /* Дозволяємо перенос тексту на менших екранах */
-    gap: 5px; /* Зменшений відступ між елементами */
-  }
-
-  .sidebar a {
-    font-size: 14px; /* Ще менший шрифт для мобільних */
-    padding: 5px 8px;
-  }
+.sidebar {
+  flex-wrap: wrap; /* Дозволяємо перенос тексту на менших екранах */
+  gap: 5px; /* Зменшений відступ між елементами */
 }
 
-  
+.sidebar a {
+  font-size: 14px; /* Ще менший шрифт для мобільних */
+  padding: 5px 8px;
+}
+}
+
+

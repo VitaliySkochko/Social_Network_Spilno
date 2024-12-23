@@ -46,6 +46,7 @@ const Header = () => {
                     ) : (
                         <div className="user-info">
                             <UserCard
+                                uid={user.uid} 
                                 profilePhoto={userData?.profilePhoto}
                                 firstName={userData?.firstName}
                                 lastName={userData?.lastName}

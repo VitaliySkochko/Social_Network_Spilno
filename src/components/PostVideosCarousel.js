@@ -1,6 +1,7 @@
 //// Компонент для перегляду відео в постах більше одного(карусель відео) 
 
 import React, { useState } from "react";
+import '../styles/PostCarousel.css';
 
 const PostVideosCarousel = ({ videos }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

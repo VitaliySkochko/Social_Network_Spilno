@@ -115,6 +115,3 @@ const ProfilePhotoSection = ({
 };
 
 export default ProfilePhotoSection;
-
-
-

@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 body {
   margin: 0;
@@ -356,92 +357,6 @@ label{
 }
 
 
-/*-------Контейнер для каруселі зображень-------*/
-.post-images {
-  display: flex;
-  justify-content: center; /* Центрування */
-  align-items: center;
-  margin-top: 10px;
-  overflow: hidden;
-  width: 100%; /* Ширина на весь блок */
-}
-/* Стилі для одного зображення */
-.post-thumbnail {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
-  margin: 0 auto; /* Центрує зображення */
-}
-/* Стилі для Swiper */
-.post-carousel {
-  width: 100%; /* Займає всю ширину батьківського контейнера */
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* Стилі для SwiperSlide */
-.swiper-slide {
-  display: flex;
-  justify-content: center; /* Центрує контент усередині слайду */
-  align-items: center;
-}
-
-
-/*-------Контейнер для каруселі відео-------*/
-.post-videos {
-  display: flex;
-  justify-content: center; /* Центрування */
-  align-items: center;
-  margin-top: 10px;
-  overflow: hidden;
-  width: 100%; /* Ширина на весь блок */
-}
-/* Стилі для одного відео */
-.post-video {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
-  margin: 0 auto; /* Центрує відео */
-}
-/* Стилі для каруселі відео */
-.video-carousel {
-  width: 100%; /* Займає всю ширину батьківського контейнера */
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative; /* Для розміщення кнопок перемикання */
-}
-/* Кнопки перемикання між відео */
-.carousel-button {
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  font-size: 24px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  z-index: 10;
-}
-.prev-button {
-  left: 10px;
-}
-.next-button {
-  right: 10px;
-}
-/* Стилі для відео, коли кілька відео в каруселі */
-.carousel-video {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
 
 
 

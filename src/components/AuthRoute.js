@@ -8,12 +8,16 @@ import { auth } from '../services/firebase';
 const AuthRoute = () => { 
   const [user, loading] = useAuthState(auth);
 
-  if (loading) return 
-  <div className="loading-spinner">
-     <div className="spinner"></div>
-  </div>;
+  if (loading) {
+    return (
+      <div className="loading-spinner">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
 
   return user ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default AuthRoute;
+

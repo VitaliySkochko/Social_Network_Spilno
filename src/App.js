@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import './Media.css';
 import FeedPage from './pages/FeedPage';
 import ProfilePage from './pages/profile/ProfilePage';
+import EditProfile from './pages/profile/EditProfile'; // Імпортуємо EditProfile
 import CommunityPage from './pages/comunities/CommunityPage';
 import CreateCommunityPage from './pages/comunities/CreateCommunityPage';
 import CommunityList from './pages/comunities/CommunityList';
@@ -24,7 +24,8 @@ function App() {
         <Route element={<AuthRoute />}>
           <Route element={<MainLayout />}>
             <Route path="/" element={<FeedPage />} />
-            <Route path="/profile" element={<ProfilePage />} />           
+            <Route path="/profile/:uid" element={<ProfilePage />} />       
+            <Route path="/edit-profile" element={<EditProfile />} /> {/* Додаємо маршрут */}
             <Route path="/communities/:id" element={<CommunityPage />} />
             <Route path="/create-community" element={<CreateCommunityPage />} />
             <Route path="/communities" element={<CommunityList/>} />

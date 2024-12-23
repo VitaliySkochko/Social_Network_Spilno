@@ -12,6 +12,7 @@ const MembersModal = ({ members, onClose }) => {
                     members.map((member, index) => (
                         <UserCard
                             key={index}
+                            uid={member.uid}
                             profilePhoto={member.profilePhoto}
                             firstName={member.firstName}
                             lastName={member.lastName}

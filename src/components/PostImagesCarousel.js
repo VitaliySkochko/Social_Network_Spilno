@@ -6,6 +6,7 @@ import "swiper/css"; // Основні стилі Swiper
 import "swiper/css/navigation"; // Стилі для навігації
 import "swiper/css/pagination"; // Стилі для пагінації
 import { Navigation, Pagination } from "swiper/modules";
+import '../styles/PostCarousel.css';
 
 const PostImagesCarousel = ({ images }) => {
   return (

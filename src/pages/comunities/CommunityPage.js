@@ -9,7 +9,7 @@ import { auth } from '../../services/firebase';
 import JoinCommunityButton from './JoinCommunityButton';
 import UserCard from '../../components/UserCard';
 import MembersModal from '../../components/MembersModal';
-import CommunityPosts from './CommunityPosts';
+import CommunityPosts from '../posts/CommunityPosts';
 import CommunityInfo from './CommunityInfo';
 import '../../styles/CommunityPage.css';
 
@@ -82,6 +82,7 @@ const CommunityPage = () => {
                         members.slice(0, 3).map((member, index) => (
                             <UserCard
                                 key={index}
+                                uid={member.uid}
                                 profilePhoto={member.profilePhoto}
                                 firstName={member.firstName}
                                 lastName={member.lastName}
