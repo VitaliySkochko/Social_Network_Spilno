@@ -48,6 +48,7 @@ const PostList = ({ communityId }) => {
           <div className="post-author-date">
             {post.authorProfile ? (
               <UserCard
+              uid={post.userId} 
                 profilePhoto={post.authorProfile.profilePhoto}
                 firstName={post.authorProfile.firstName}
                 lastName={post.authorProfile.lastName}

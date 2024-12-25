@@ -1,7 +1,7 @@
 
 import { auth, db } from "./firebase";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc  } from "firebase/firestore";
 
 // Функція входу
 export const login = async (email, password) => {
@@ -21,7 +21,17 @@ export const signup = async (userData) => {
     birthDate,
     gender,
     email,
+    createdAt: new Date(), // Дата реєстрації
+    lastLogin: new Date(), // Час останнього входу
   });
 
   return user;
+};
+
+// Функція для оновлення часу останнього входу
+export const updateLastLogin = async (uid) => {
+  const userRef = doc(db, 'users', uid);
+  await updateDoc(userRef, {
+    lastLogin: new Date() // Оновлюємо час останнього входу
+  });
 };

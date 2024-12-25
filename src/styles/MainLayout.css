@@ -2,47 +2,44 @@
 .main-layout {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Повна висота екрана */
+  height: 100vh;
 }
 
-/* Контейнер для Sidebar і основного вмісту */
 .content-container {
   display: flex;
-  flex: 1; /* Займає весь доступний простір */
-  overflow: hidden; /* Прибирає прокрутку з цього контейнера */
+  flex: 1;
+  overflow: hidden;
 }
 
-/* Sidebar з фіксованою позицією */
 .sidebar {
   margin-top: 10px;
   width: 250px;
   border-radius: 15px;
-  position: sticky; /* Фіксуємо на місці */
+  position: sticky;
   top: 0;
-  height: 100vh; /* Повна висота Sidebar */
-  overflow-y: auto; /* Прокрутка для контенту Sidebar */
-  background-color: #f8f9fa; /* Світлий фон */
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #f8f9fa;
   padding: 15px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease; /* Додамо анімацію */
 }
 
-/* Основний контент із прокруткою */
 .scrollable-content {
-  flex: 1; /* Займає весь доступний простір після Sidebar */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: auto; /* Прокрутка для основного контенту */
+  overflow-y: auto;
 }
 
 .main-content {
   padding: 20px;
-  flex: 1; /* Займає весь доступний простір */
+  flex: 1;
   background-color: #ffffff;
   border-radius: 15px;
   margin: 10px 0;
 }
 
-/* Footer в кінці основного контенту */
 .footer-content {
   padding: 10px;
   background-color: #f1f1f1;
@@ -51,39 +48,74 @@
   margin-top: 10px;
 }
 
-/* Адаптивні стилі для планшетів */
-@media (max-width: 768px) {
-  .content-container {
-    flex-direction: column; /* Вертикальне розташування */
-  }
+/* Кнопка відображається тільки на мобільних */
+.toggle-sidebar-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
 
-  .sidebar {
-    width: 100%; /* Повна ширина */
-    height: auto; /* Автоматична висота */
-    position: static; /* Відносна позиція */
-    margin-bottom: 10px; /* Відступ знизу */
-  }
+.toggle-sidebar-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  .scrollable-content {
-    overflow-y: auto; /* Прокрутка залишається */
-  }
-
-  .main-content {
-    margin-left: 0;
-    margin-top: 10px;
-    width: 100%;
-    border-radius: 0; /* Вирівнюємо кути */
-  }
+.toggle-sidebar-btn:hover {
+  background-color: #0056b3;
 }
 
 /* Адаптивні стилі для мобільних пристроїв */
-@media (max-width: 480px) {
-  .main-content {
-    padding: 10px; /* Зменшений padding */
+@media (max-width: 768px) {
+  .toggle-sidebar-btn {
+    display: block;
   }
 
   .sidebar {
-    padding: 10px; /* Менший padding */
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    width: 250px;
+    height: 100vh;
+    z-index: 999;
+    background-color: #f8f9fa;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .main-layout.sidebar-visible .sidebar {
+    transform: translateX(0); /* Відображаємо Sidebar */
+  }
+
+  .scrollable-content {
+    padding-top: 60px; /* Щоб контент не перекривався кнопкою */
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 10px;
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .sidebar {
+    padding: 10px;
+  }
+}
+
+/* Приховуємо кнопку для пристроїв з екраном >768px */
+@media (min-width: 769px) {
+  .toggle-sidebar-container {
+    display: none;
   }
 }
 

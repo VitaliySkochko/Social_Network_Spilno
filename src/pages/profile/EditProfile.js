@@ -48,7 +48,7 @@ const EditProfile = () => {
             setMessageType('success');
             setTimeout(() => {
                 setMessage(null);
-                navigate('/profile');
+                navigate(`/profile/${auth.currentUser.uid}`);
             }, 3000);
         } catch (error) {
             console.error('Помилка при оновленні профілю:', error);
@@ -89,7 +89,7 @@ const EditProfile = () => {
                 <button className="button-main" onClick={handleSave}> 
                     Зберегти
                 </button>
-                <button className="button-main" onClick={() => navigate('/profile')}>
+                <button className="button-main" onClick={() => navigate('/profile/:uid')}>
                     Скасувати
                 </button>
             </div>

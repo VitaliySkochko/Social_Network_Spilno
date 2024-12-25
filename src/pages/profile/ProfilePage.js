@@ -9,6 +9,7 @@ import ProfileInfo from './ProfileInfo';
 import ContactInfo from './ContactInfo';
 import Modal from '../../components/Modal.js';
 import { useNavigate } from 'react-router-dom';
+import UserActivity from './UserActivity'; 
 import '../../styles/Profile.css';
 
 const ProfilePage = () => {
@@ -67,6 +68,8 @@ const ProfilePage = () => {
                     <ProfileInfo userData={userData} />
                     <ContactInfo userData={userData} />
                     
+                    {/* Додаємо компонент UserActivity */}
+                    <UserActivity uid={uid} />
                 </>
             )}
 
@@ -81,5 +84,6 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
 
 

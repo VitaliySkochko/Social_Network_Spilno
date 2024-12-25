@@ -41,13 +41,13 @@ const SignupPage = () => {
     if (!validateForm()) return;
 
     try {
-      await signup({ firstName, lastName, birthDate, gender, email, password });
-      navigate("/profile");
+        const user = await signup({ firstName, lastName, birthDate, gender, email, password });
+        navigate(`/profile/${user.uid}`); // UID нового користувача
     } catch (error) {
-      console.error("Помилка реєстрації:", error.message);
-      setError("Не вдалося зареєструватися: " + error.message);
+        console.error("Помилка реєстрації:", error.message);
+        setError("Не вдалося зареєструватися: " + error.message);
     }
-  };
+};
 
   return (
     <div className="login-conteiner">

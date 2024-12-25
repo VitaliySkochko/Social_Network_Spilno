@@ -1,0 +1,68 @@
+/*------Бокова панель списка спільнот користувача*/
+.user-communities {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .communities-list-sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .communities-list-sidebar li {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .communities-list-sidebar li:hover {
+    background-color: #f0f8ff; /* Легкий синій фон при наведенні */
+  }
+ 
+  .communities-list-sidebar a {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Без підкреслення */
+    color: #333; /* Основний колір тексту */
+    gap: 10px;
+    flex-grow: 1;
+  }
+  .communities-list-sidebar a:hover{
+    text-decoration: none; /* Без підкреслення */
+  }
+  
+  .community-thumbnail {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Круглий аватар */
+    object-fit: cover;
+    border: 2px solid #007BFF; /* Синя обводка */
+  }
+  
+  .community-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Круглий блок */
+    background-color: #007BFF; /* Синій фон */
+    color: #fff; /* Білий текст */
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .communities-list span {
+    font-size: 16px;
+    font-weight: 500;
+    flex-grow: 1;
+  }
+  
+  .user-communities-sidebar p {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  
