@@ -1,7 +1,7 @@
 // Спільнота
 
 import React, { useEffect, useState, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchCommunityById, fetchCommunityMembers, fetchUserDetails } from '../../services/firebaseCommunityService';
 import { FaUsers } from 'react-icons/fa';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -15,12 +15,14 @@ import '../../styles/CommunityPage.css';
 
 const CommunityPage = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [community, setCommunity] = useState(null);
     const [members, setMembers] = useState([]);
     const [admin, setAdmin] = useState(null);
     const [user] = useAuthState(auth);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [showInfo, setShowInfo] = useState(false); // Стан для перемикання розділів
+    const [isAdmin, setIsAdmin] = useState(false); // Перевірка на адміністратора
 
     // Завантаження даних про спільноту
     const loadCommunityData = useCallback(async () => {
@@ -35,11 +37,16 @@ const CommunityPage = () => {
             if (communityData.adminId) {
                 const adminDetails = await fetchUserDetails(communityData.adminId);
                 setAdmin(adminDetails);
+
+                // Перевірка, чи є поточний користувач адміністратором
+                if (user && communityData.adminId === user.uid) {
+                    setIsAdmin(true);
+                }
             }
         } catch (error) {
             console.error('Помилка при завантаженні даних:', error);
         }
-    }, [id]);
+    }, [id, user]);
 
     useEffect(() => {
         loadCommunityData();
@@ -47,6 +54,10 @@ const CommunityPage = () => {
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
+
+    const goToAdminPanel = () => {
+        navigate(`/community/${id}/admin`);
+    };
 
     if (!community) return <p>Завантаження...</p>;
 
@@ -61,18 +72,23 @@ const CommunityPage = () => {
                 <div className="community-details">
                     <h2 className="community-title">{community.name}</h2>
                     <p className="community-description">{community.description}</p>
-                    <div className='community-button-group'>
-                    {user && (
-                        <JoinCommunityButton
-                            communityId={id}
-                            userId={user.uid}
-                            isMember={community?.members?.includes(user?.uid)}
-                            onUpdateMembers={loadCommunityData}
-                        /> 
-                    )}
-                    <button className="button-main" onClick={() => setShowInfo(!showInfo)}>
-                        {showInfo ? 'Повернутися до постів' : 'Інформація спільноти'}
-                    </button>
+                    <div className="community-button-group">
+                        {user && (
+                            <JoinCommunityButton
+                                communityId={id}
+                                userId={user.uid}
+                                isMember={community?.members?.includes(user?.uid)}
+                                onUpdateMembers={loadCommunityData}
+                            />
+                        )}
+                        <button className="button-main" onClick={() => setShowInfo(!showInfo)}>
+                            {showInfo ? 'Повернутися до постів' : 'Інформація спільноти'}
+                        </button>
+                        {isAdmin && (
+                            <button className="button-main admin-button" onClick={goToAdminPanel}>
+                                Панель адміністратора
+                            </button>
+                        )}
                     </div>
                 </div>
 
@@ -111,4 +127,5 @@ const CommunityPage = () => {
 };
 
 export default CommunityPage;
+
 

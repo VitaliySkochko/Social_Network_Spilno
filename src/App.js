@@ -11,6 +11,8 @@ import LoginPage from './pages/registration/LoginPage';
 import SignupPage from './pages/registration/SignupPage';
 import AuthRoute from './components/AuthRoute';
 import MainLayout from './components/MainLayout';
+import AdminPanel from './pages/admin/AdminPanel';
+import EditCommunityPage from './pages/admin/EditCommunityPage';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
             <Route path="/communities/:id" element={<CommunityPage />} />
             <Route path="/create-community" element={<CreateCommunityPage />} />
             <Route path="/communities" element={<CommunityList/>} />
+            <Route path="/community/:id/admin" element={<AdminPanel />} />
+            <Route path="/edit-community/:communityId" element={<EditCommunityPage />} />
           </Route>
         </Route>
       </Routes>

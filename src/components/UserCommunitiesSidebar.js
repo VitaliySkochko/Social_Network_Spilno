@@ -2,34 +2,35 @@
 
 import React, { useEffect, useState } from 'react';
 import { onSnapshot, collection, query, where } from 'firebase/firestore';
-import { db } from '../services/firebase';  // Переконайтеся, що імпортуєте db
+import { db } from '../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../services/firebase';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';  // Імпортуємо useLocation
 
 const UserCommunitiesSidebar = () => {
     const [user] = useAuthState(auth);
     const [communities, setCommunities] = useState([]);
+    const location = useLocation();  // Отримуємо поточний шлях
 
     useEffect(() => {
         if (user) {
-            // Підписка на зміни в колекції спільнот
             const q = query(collection(db, 'communities'), where('members', 'array-contains', user.uid));
-            
+
             const unsubscribe = onSnapshot(q, (querySnapshot) => {
                 const userCommunities = querySnapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 }));
-                setCommunities(userCommunities);  // Оновлюємо список спільнот
+                setCommunities(userCommunities);
+            }, (error) => {
+                console.error("Error fetching communities:", error);  // Обробка помилок
             });
 
-            // Очищення підписки при відключенні компонента
-            return () => unsubscribe();
+            return () => unsubscribe(); // Очищення підписки
         }
-    }, [user]);
+    }, [user, location]);  // Додаємо location в залежність, щоб оновлювати при зміні маршруту
 
-    if (!user) return null;
+    if (!user) return null;  // Якщо користувач не авторизований, повертаємо null
 
     return (
         <div className="user-communities">
@@ -58,6 +59,7 @@ const UserCommunitiesSidebar = () => {
             )}
         </div>
     );
-}; 
+};
 
 export default UserCommunitiesSidebar;
+

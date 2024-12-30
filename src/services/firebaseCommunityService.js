@@ -84,3 +84,8 @@ export const fetchCommunityMembers = async (members) => {
 };
 
 
+export const updateCommunity = async (id, updatedData) => {
+    const communityRef = doc(db, "communities", id);
+    await updateDoc(communityRef, updatedData);
+  };
+  

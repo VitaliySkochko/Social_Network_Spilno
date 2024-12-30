@@ -2,34 +2,30 @@
 .main-layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh; /* Займає всю висоту вікна браузера */
+  overflow: hidden; /* Запобігаємо зайвим прокруткам */
 }
 
 .content-container {
   display: flex;
   flex: 1;
-  overflow: hidden;
+  overflow: hidden; /* Уникаємо вертикального переповнення */
 }
 
 .sidebar {
-  margin-top: 10px;
   width: 250px;
-  border-radius: 15px;
   position: sticky;
   top: 0;
-  height: 100vh;
-  overflow-y: auto;
+  height: 100%; /* Виправляємо висоту для Sidebar */
+  overflow-y: auto; /* Додаємо прокрутку */
   background-color: #f8f9fa;
-  padding: 15px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease; /* Додамо анімацію */
 }
 
 .scrollable-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: auto; /* Прокрутка для вмісту */
 }
 
 .main-content {
@@ -41,7 +37,6 @@
 }
 
 .footer-content {
-  padding: 10px;
   background-color: #f1f1f1;
   text-align: center;
   border-radius: 15px;
@@ -93,6 +88,17 @@
     transform: translateX(0); /* Відображаємо Sidebar */
   }
 
+  .main-layout.sidebar-visible::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Тло для затінення */
+    z-index: 998;
+  }
+
   .scrollable-content {
     padding-top: 60px; /* Щоб контент не перекривався кнопкою */
   }
@@ -101,8 +107,7 @@
 @media (max-width: 480px) {
   .main-content {
     padding: 10px;
-    margin-left: 0;
-    margin-top: 10px;
+    margin: 10px 0;
     width: 100%;
     border-radius: 0;
   }
@@ -118,7 +123,3 @@
     display: none;
   }
 }
-
-
-
-

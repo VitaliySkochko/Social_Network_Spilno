@@ -4,16 +4,17 @@
   width: 250px;
   height: 100vh; /* Повна висота вікна */
   background: linear-gradient(180deg, #ffffff, #f0f0f0); /* Градієнт */
-  padding: 20px;
-  box-shadow: 2px 0 2px rgba(0, 0, 0, 0.3); /* Тінь */
+  padding: 3px;
   position: fixed; /* Фіксована позиція */
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Відступ між елементами */
+  gap: 5px; /* Відступ між елементами */
   font-family: 'Arial', sans-serif;
   transition: transform 0.3s ease; /* Плавний перехід */
+  margin-top: 20px;
+  border-radius: 15px;
 }
 
 /* Відкритий стан Sidebar */

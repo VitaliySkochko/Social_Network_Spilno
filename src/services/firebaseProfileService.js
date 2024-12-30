@@ -4,18 +4,22 @@ import { db, auth } from './firebase';
 
 const storage = getStorage();
 
-// Отримання даних користувача
 export const fetchUserData = async (uid) => {
+  if (!uid) {
+    console.error('UID не вказано або він некоректний:', uid);
+    return null;
+  }
   try {
     const userDoc = await getDoc(doc(db, 'users', uid));
     if (userDoc.exists()) {
       return userDoc.data();
     } else {
-      throw new Error('Не знайдено даних користувача.');
+      console.warn(`Користувача з UID ${uid} не знайдено.`);
+      return null;
     }
   } catch (error) {
     console.error('Помилка при завантаженні даних користувача:', error);
-    throw error;
+    return null;
   }
 };
 

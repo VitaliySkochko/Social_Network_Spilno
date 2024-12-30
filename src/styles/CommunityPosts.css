@@ -166,3 +166,21 @@
   object-fit: cover;
   border-radius: 8px;
 }
+
+/*Іконка коментаря*/
+.button-icon-group .comments-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.button-icon-group  .comments-icon:hover {
+  background-color: #007bff;
+  color: #ffffff;
+  transform: scale(1.1);
+}

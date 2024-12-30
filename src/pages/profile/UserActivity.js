@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
-import UserCommunities from './UserCommunities';
 import { db } from '../../services/firebase';
+
+// Додаємо імпорт для UserCommunities
+import UserCommunities from './UserCommunities';
 
 const UserActivity = ({ uid }) => {
     const [userActivity, setUserActivity] = useState({
         registrationDate: null,
         lastLogin: null,
-        totalPosts: 0
+        totalPosts: 0,
+        totalCommunities: 0,
     });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -15,23 +18,29 @@ const UserActivity = ({ uid }) => {
     useEffect(() => {
         const fetchUserActivity = async () => {
             try {
-                // Отримуємо дані користувача
                 const userDoc = await getDoc(doc(db, 'users', uid));
                 if (userDoc.exists()) {
                     const userData = userDoc.data();
                     setUserActivity((prev) => ({
                         ...prev,
-                        registrationDate: userData.createdAt?.toDate().toLocaleDateString(), // Дата реєстрації
-                        lastLogin: userData.lastLogin?.toDate().toLocaleString(), // Час останнього входу
+                        registrationDate: userData.createdAt?.toDate().toLocaleDateString(),
+                        lastLogin: userData.lastLogin?.toDate().toLocaleString(),
                     }));
 
-                    // Підраховуємо кількість постів користувача
                     const postsRef = collection(db, 'communityPosts');
                     const q = query(postsRef, where('userId', '==', uid));
                     const querySnapshot = await getDocs(q);
                     setUserActivity((prev) => ({
                         ...prev,
-                        totalPosts: querySnapshot.size, // Кількість постів
+                        totalPosts: querySnapshot.size,
+                    }));
+
+                    const communitiesRef = collection(db, 'communities');
+                    const communitiesQuery = query(communitiesRef, where('members', 'array-contains', uid));
+                    const communitiesSnapshot = await getDocs(communitiesQuery);
+                    setUserActivity((prev) => ({
+                        ...prev,
+                        totalCommunities: communitiesSnapshot.size,
                     }));
                 } else {
                     setError('Не знайдено даних користувача.');
@@ -64,6 +73,7 @@ const UserActivity = ({ uid }) => {
                 <p><strong>Час останнього входу:</strong> {userActivity.lastLogin}</p>
             )}
             <p><strong>Кількість постів:</strong> {userActivity.totalPosts}</p>
+            <p><strong>Кількість спільнот:</strong> {userActivity.totalCommunities}</p>
 
             {/* Додаємо компонент UserCommunities */}
             <UserCommunities uid={uid} />
@@ -72,3 +82,4 @@ const UserActivity = ({ uid }) => {
 };
 
 export default UserActivity;
+

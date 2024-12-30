@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import Header from './Header';
-import Sidebar from '../pages/Sidebar';
-import Footer from './Footer';
-import '../styles/MainLayout.css';
+import React, { useState, useEffect, useRef } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import Header from "./Header";
+import Sidebar from "../pages/Sidebar";
+import Footer from "./Footer";
+import "../styles/MainLayout.css";
 
 const MainLayout = () => {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false); // Стан для перевірки мобільного екрану
   const location = useLocation();
+  const sidebarRef = useRef(null); // Реф для Sidebar
 
   const toggleSidebar = () => {
     setSidebarVisible((prev) => !prev);
@@ -21,10 +22,10 @@ const MainLayout = () => {
     };
 
     handleResize(); // Перевіряємо при завантаженні
-    window.addEventListener('resize', handleResize); // Перевіряємо при зміні розміру
+    window.addEventListener("resize", handleResize); // Перевіряємо при зміні розміру
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -33,19 +34,41 @@ const MainLayout = () => {
     setSidebarVisible(false);
   }, [location]);
 
+  // Закриття Sidebar при кліку поза його межами
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target) &&
+        isSidebarVisible
+      ) {
+        setSidebarVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSidebarVisible]);
+
   return (
-    <div className={`main-layout ${isSidebarVisible ? 'sidebar-visible' : ''}`}>
+    <div className={`main-layout ${isSidebarVisible ? "sidebar-visible" : ""}`}>
       <Header />
-      {isMobile && ( // Кнопка відображається тільки на мобільних пристроях
+      {isMobile && (
         <div className="toggle-sidebar-container">
           <button className="toggle-sidebar-btn" onClick={toggleSidebar}>
-            {isSidebarVisible ? 'Закрити меню' : 'Меню'}
+            {isSidebarVisible ? "Закрити меню" : "Меню"}
           </button>
         </div>
       )}
       <div className="content-container">
-        {isMobile && isSidebarVisible && <Sidebar />} {/* Показуємо Sidebar тільки на мобільних пристроях при його видимості */}
-        {!isMobile && <Sidebar />} {/* Sidebar завжди видимий на десктопах */}
+        <aside
+          className={`sidebar ${isSidebarVisible ? "visible" : "hidden"}`}
+          ref={sidebarRef}
+        >
+          <Sidebar />
+        </aside>
         <div className="scrollable-content">
           <main className="main-content">
             <Outlet />
@@ -58,4 +81,3 @@ const MainLayout = () => {
 };
 
 export default MainLayout;
-

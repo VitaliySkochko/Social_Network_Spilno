@@ -147,7 +147,13 @@ body {
   background-color: #ffffff;
   border: none;
 }
-
+/*коментарі*/
+.comments-icon{
+  color:#007bff;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: none;
+}
 
 /*------СПІНЕР НА ЗАВАНТАЖЕННЯ-------*/
 .loading-spinner {
