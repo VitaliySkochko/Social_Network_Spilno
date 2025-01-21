@@ -3,7 +3,7 @@
 import React from 'react';
 import { format } from 'date-fns';
 
-const ProfileInfo = ({ userData, setIsEditing }) => {
+const ProfileInfo = ({ userData, setIsEditing }) => { 
     return (
         <div className="profile-info">
             <div className="profile-group-name-surname">

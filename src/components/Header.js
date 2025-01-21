@@ -4,14 +4,17 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../services/firebase';
 import { signOut } from 'firebase/auth';
 import { doc, onSnapshot } from 'firebase/firestore';
-import logo from '../img/logo-title.PNG';
+import { FaSignOutAlt } from 'react-icons/fa';
+import logo from '../img/logo-title(white2).PNG'; 
 import '../styles/Header.css';
 import UserCard from '../components/UserCard';
+import LogoutModal from '../pages/modal/LogoutModal'; // Імпорт модального вікна
 
 const Header = () => {
     const [user] = useAuthState(auth);
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); // Стан для відкриття/закриття модального вікна
 
     useEffect(() => {
         let unsubscribe;
@@ -30,6 +33,7 @@ const Header = () => {
 
     const handleLogout = async () => {
         await signOut(auth);
+        setIsLogoutModalOpen(false); // Закрити модальне вікно після виходу
     };
 
     return (
@@ -51,9 +55,9 @@ const Header = () => {
                                 firstName={userData?.firstName}
                                 lastName={userData?.lastName}
                             />
-                            <button onClick={handleLogout} className="button-exit">
-                                Вийти
-                            </button>
+                            <div onClick={() => setIsLogoutModalOpen(true)} className="logout-icon-wrapper">
+                                <FaSignOutAlt className="logout-icon" />
+                            </div>
                         </div>
                     )
                 ) : (
@@ -64,11 +68,22 @@ const Header = () => {
                     </div>
                 )}
             </div>
+            {/* Модальне вікно */}
+            {isLogoutModalOpen && (
+                <LogoutModal 
+                    onConfirm={handleLogout} 
+                    onCancel={() => setIsLogoutModalOpen(false)} 
+                    profilePhoto={userData?.profilePhoto}  // Передаємо аватар
+                    firstName={userData?.firstName}       // Передаємо ім'я
+                    lastName={userData?.lastName}         // Передаємо прізвище
+                />
+            )}
         </div>
     );
 };
 
 export default Header;
+
 
 
 

@@ -6,7 +6,7 @@ import { FaUser, FaImage, FaTrash } from "react-icons/fa";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../services/firebase";
 import { v4 as uuidv4 } from "uuid";
-import Modal from "../../components/Modal.js"; // Імпортуємо компонент Modal
+import Modal from "../modal/PhotoModal.js"; // Імпортуємо компонент Modal
 
 const ProfilePhotoSection = ({
   formData,

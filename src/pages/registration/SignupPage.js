@@ -5,35 +5,37 @@ import { useNavigate } from "react-router-dom";
 import { signup } from "../../services/firebaseAuthService";
 
 const SignupPage = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [birthDate, setBirthDate] = useState("");
-  const [gender, setGender] = useState("чоловіча");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    birthDate: "",
+    gender: "чоловіча",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const validateForm = () => {
-    if (!firstName || !lastName || !birthDate) {
-      setError("Будь ласка, заповніть всі обов'язкові поля.");
-      return false;
-    }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setError("Введіть дійсну електронну пошту.");
-      return false;
-    }
-    if (password.length < 7) {
-      setError("Пароль повинен містити не менше 7 символів.");
-      return false;
-    }
-    if (password !== confirmPassword) {
-      setError("Паролі не співпадають.");
-      return false;
-    }
-    setError("");
-    return true;
+    const newErrors = {};
+
+    if (!formData.firstName) newErrors.firstName = "Введіть ім'я.";
+    if (!formData.lastName) newErrors.lastName = "Введіть прізвище.";
+    if (!formData.birthDate) newErrors.birthDate = "Оберіть дату народження.";
+    if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Введіть дійсну електронну пошту.";
+    if (formData.password.length < 7) newErrors.password = "Пароль повинен містити не менше 7 символів.";
+    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = "Паролі не співпадають.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    setErrors({ ...errors, [name]: "" }); // Очистити помилку для відповідного поля
   };
 
   const handleSignup = async (e) => {
@@ -41,94 +43,109 @@ const SignupPage = () => {
     if (!validateForm()) return;
 
     try {
-        const user = await signup({ firstName, lastName, birthDate, gender, email, password });
-        navigate(`/profile/${user.uid}`); // UID нового користувача
+      const user = await signup(formData);
+      console.log("Токен користувача:", user.token);
+      navigate(`/profile/${user.uid}`);
     } catch (error) {
-        console.error("Помилка реєстрації:", error.message);
-        setError("Не вдалося зареєструватися: " + error.message);
+      console.error("Помилка реєстрації:", error.message);
+      setErrors({ global: "Не вдалося зареєструватися: " + error.message });
     }
-};
+  };
 
   return (
     <div className="login-conteiner">
       <div className="login-spilno">
         <h1 className="login-title">Створити обліковий запис</h1>
         <form className="login-form" onSubmit={handleSignup}>
-          {error && <p className="error-message">{error}</p>}
+          {errors.global && <p className="error-message">{errors.global}</p>}
+
           <div className="form-group">
             <input
               type="text"
+              name="firstName"
               placeholder="Ім'я"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={formData.firstName}
+              onChange={handleChange}
               className="login-input"
-              required
             />
+            {errors.firstName && <p className="error-message">{errors.firstName}</p>}
           </div>
+
           <div className="form-group">
             <input
               type="text"
+              name="lastName"
               placeholder="Прізвище"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              value={formData.lastName}
+              onChange={handleChange}
               className="login-input"
-              required
             />
+            {errors.lastName && <p className="error-message">{errors.lastName}</p>}
           </div>
+
           <div className="form-group">
             <input
               type="date"
-              value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)}
+              name="birthDate"
+              value={formData.birthDate}
+              onChange={handleChange}
               className="login-input"
-              required
             />
+            {errors.birthDate && <p className="error-message">{errors.birthDate}</p>}
           </div>
+
           <div className="form-group">
             <select
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
               className="login-input"
-              required
             >
               <option value="чоловіча">Чоловіча</option>
               <option value="жіноча">Жіноча</option>
               <option value="інше">Інше</option>
             </select>
           </div>
+
           <div className="form-group">
             <input
               type="email"
+              name="email"
               placeholder="Електронна пошта"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
               className="login-input"
-              required
             />
+            {errors.email && <p className="error-message">{errors.email}</p>}
           </div>
+
           <div className="form-group">
             <input
               type="password"
+              name="password"
               placeholder="Пароль"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
               className="login-input"
-              required
             />
+            {errors.password && <p className="error-message">{errors.password}</p>}
           </div>
+
           <div className="form-group">
             <input
               type="password"
+              name="confirmPassword"
               placeholder="Підтвердження пароля"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={formData.confirmPassword}
+              onChange={handleChange}
               className="login-input"
-              required
             />
+            {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
           </div>
-          <div className="button-main-conteiner">
-            <button type="submit" className="button-main">Зареєструватися</button>
-            <button type="button" onClick={() => navigate("/login")} className="button-main">Назад</button>
+
+          <div className="button-registration-conteiner">
+            <button type="submit" className="button-registration">Зареєструватися</button>
+            <button type="button" onClick={() => navigate("/login")} className="button-registration">Назад</button>
           </div>
         </form>
       </div>
@@ -137,5 +154,4 @@ const SignupPage = () => {
 };
 
 export default SignupPage;
-
 

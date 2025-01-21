@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Modal = ({ imageSrc, onClose }) => {
+const PhotoModal = ({ imageSrc, onClose }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleImageLoad = () => {
@@ -29,4 +29,4 @@ const Modal = ({ imageSrc, onClose }) => {
   );
 };
 
-export default Modal;
+export default PhotoModal;

@@ -6,27 +6,28 @@ import {
   fetchCommunityById,
   updateCommunity,
 } from "../../services/firebaseCommunityService";
-import CommunityPhotoUpload from "../comunities/CommunityPhotoUpload"; // Компонент для завантаження фото
-
+import CommunityPhotoUpload from "../comunities/CommunityPhotoUpload";
+import '../../styles/CommunityPage.css';
 
 const EditCommunityPage = () => {
-  const { communityId } = useParams(); // Отримуємо ID спільноти з URL
+  const { communityId } = useParams();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState(null);
   const [photoURL, setPhotoURL] = useState("");
+  const [communityType, setCommunityType] = useState("public"); // Тип спільноти
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Завантаження даних спільноти
     const loadCommunityData = async () => {
       try {
         const community = await fetchCommunityById(communityId);
         setName(community.name);
         setDescription(community.description);
         setPhotoURL(community.photoURL);
+        setCommunityType(community.type || "public"); // Завантаження типу спільноти
       } catch (error) {
         console.error("Помилка при завантаженні даних спільноти:", error.message);
       } finally {
@@ -45,7 +46,6 @@ const EditCommunityPage = () => {
       let newPhotoURL = photoURL;
 
       if (photo) {
-        // Завантаження нового фото
         newPhotoURL = await uploadPhoto(photo);
       }
 
@@ -54,6 +54,7 @@ const EditCommunityPage = () => {
         name,
         description,
         photoURL: newPhotoURL,
+        type: communityType, // Оновлення типу спільноти
       });
 
       alert("Спільноту оновлено успішно!");
@@ -70,7 +71,7 @@ const EditCommunityPage = () => {
   }
 
   return (
-    <div className="community-page-edit">
+    <div className="community-page-edit"> 
       <h2>Редагувати спільноту</h2>
       <form className="community-form" onSubmit={handleUpdateCommunity}>
         <input
@@ -92,6 +93,39 @@ const EditCommunityPage = () => {
           onPhotoSelect={(file) => setPhoto(file)}
           existingPhotoURL={photoURL}
         />
+
+        <div className="community-type-selector">
+          <label>
+            <input
+              type="radio"
+              value="public"
+              checked={communityType === "public"}
+              onChange={() => setCommunityType("public")}
+            />
+            Публічна
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="private"
+              checked={communityType === "private"}
+              onChange={() => setCommunityType("private")}
+            />
+            Приватна
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="blog"
+              checked={communityType === "blog"}
+              onChange={() => setCommunityType("blog")}
+            />
+            Блог
+          </label>
+        </div>
+
+       
+
         <div className="button-main-conteiner">
           <button className="button-main" type="submit" disabled={uploading}>
             {uploading ? (

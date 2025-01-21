@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { addComment, fetchComments } from '../../services/firebaseComments';
+import { addComment, fetchComments, deleteComment, updateComment } from '../../services/firebaseComments';
 import UserCard from '../../components/UserCard';
-import '../../styles/CommentSection.css'
+import CommentMenu from './CommentMenu'; // Імпортуємо CommentMenu
+import { useAuthState } from 'react-firebase-hooks/auth'; // Імпортуємо хук для отримання користувача
+import { auth } from '../../services/firebase'; // Перевірити коректний шлях до auth
+import '../../styles/CommentSection.css';
 
-const CommentSection = ({ postId }) => {
+const CommentSection = ({ postId, isAdmin }) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
+    const [user] = useAuthState(auth); // Отримуємо поточного користувача
 
     useEffect(() => {
         const loadComments = async () => {
@@ -23,12 +27,24 @@ const CommentSection = ({ postId }) => {
         setComments(updatedComments);
     };
 
+    const handleDeleteComment = async (commentId) => {
+        await deleteComment(commentId);
+        const updatedComments = await fetchComments(postId);
+        setComments(updatedComments);
+    };
+
+    const handleEditComment = async (commentId, newContent) => {
+        await updateComment(commentId, { text: newContent });
+        const updatedComments = await fetchComments(postId);
+        setComments(updatedComments);
+    };
+
     return (
         <div className="comment-section">
             <div className="comment-list">
                 {comments.map((comment) => (
                     <div key={comment.id} className="comment-item-group">
-                        <div className='comment-item'>
+                        <div className="comment-item">
                             <UserCard
                                 uid={comment.authorId}
                                 profilePhoto={comment.author?.profilePhoto || ''}
@@ -36,7 +52,7 @@ const CommentSection = ({ postId }) => {
                                 lastName={comment.author?.lastName || ''}
                             />
                             <span className="comment-date">
-                                {comment.timestamp?.toDate 
+                                {comment.timestamp?.toDate
                                     ? new Date(comment.timestamp.toDate()).toLocaleDateString("uk-UA", {
                                         day: "2-digit",
                                         month: "2-digit",
@@ -48,6 +64,16 @@ const CommentSection = ({ postId }) => {
                                     })
                                     : 'Невідома дата'}
                             </span>
+                            {(comment.authorId === user?.uid || isAdmin) && (
+                                <CommentMenu
+                                    commentId={comment.id}
+                                    onEdit={handleEditComment}
+                                    onDelete={handleDeleteComment}
+                                    existingContent={comment.text}
+                                    reloadComments={() => fetchComments(postId).then(setComments)}
+                                    isAdmin={isAdmin} // Передаємо isAdmin
+                                />
+                            )}
                         </div>
                         <p>{comment.text}</p>
                     </div>
@@ -67,5 +93,6 @@ const CommentSection = ({ postId }) => {
     );
 };
 
-export default CommentSection;
 
+
+export default CommentSection;

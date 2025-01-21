@@ -15,15 +15,13 @@
     align-items: center;
     margin-top: 10px;
   }
-  .communities-list-sidebar li:hover {
-    background-color: #f0f8ff; /* Легкий синій фон при наведенні */
-  }
+ 
  
   .communities-list-sidebar a {
     display: flex;
     align-items: center;
     text-decoration: none; /* Без підкреслення */
-    color: #333; /* Основний колір тексту */
+    color: white; /* Основний колір тексту */
     gap: 10px;
     flex-grow: 1;
   }
@@ -36,7 +34,7 @@
     height: 40px;
     border-radius: 50%; /* Круглий аватар */
     object-fit: cover;
-    border: 2px solid #007BFF; /* Синя обводка */
+    border: 2px solid white; /* Синя обводка */
   }
   
   .community-placeholder {
@@ -46,8 +44,8 @@
     width: 40px;
     height: 40px;
     border-radius: 50%; /* Круглий блок */
-    background-color: #007BFF; /* Синій фон */
-    color: #fff; /* Білий текст */
+    background-color: white; /* Синій фон */
+    color: black; /* Білий текст */
     font-weight: bold;
     font-size: 16px;
   }

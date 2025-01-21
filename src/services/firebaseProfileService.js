@@ -12,7 +12,8 @@ export const fetchUserData = async (uid) => {
   try {
     const userDoc = await getDoc(doc(db, 'users', uid));
     if (userDoc.exists()) {
-      return userDoc.data();
+      const userData = userDoc.data();
+      return userData;  // Повертає всі дані користувача, включаючи роль
     } else {
       console.warn(`Користувача з UID ${uid} не знайдено.`);
       return null;
@@ -22,7 +23,6 @@ export const fetchUserData = async (uid) => {
     return null;
   }
 };
-
 // Оновлення даних користувача
 export const updateUserData = async (uid, data) => {
   try {

@@ -1,6 +1,6 @@
 
 import { db } from './firebase'; // Firebase конфігурація
-import { collection, addDoc, getDocs, query, where, deleteDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, where, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 
 // Колекція постів
 const postsCollection = 'communityPosts';
@@ -61,5 +61,16 @@ export const deletePost = async (postId) => {
         throw error;
     }
 };
+
+// Редагування поста
+export const updatePost = async (postId, updatedData) => {
+    try {
+      const postRef = doc(db, postsCollection, postId);
+      await updateDoc(postRef, updatedData);
+    } catch (error) {
+      console.error('Помилка редагування поста:', error);
+      throw error;
+    }
+  };
 
 

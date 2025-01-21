@@ -1,7 +1,8 @@
 import { db, auth } from './firebase';
-import { collection, addDoc, getDocs, query, where, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, where, serverTimestamp, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { fetchUserData } from './firebaseProfileService';
 
+// Додавання коментаря
 export const addComment = async (postId, text) => {
     try {
         if (!auth.currentUser) {
@@ -20,6 +21,7 @@ export const addComment = async (postId, text) => {
     }
 };
 
+// Отримання коментарів для поста
 export const fetchComments = async (postId) => {
     try {
         const commentsRef = collection(db, 'comments');
@@ -43,5 +45,30 @@ export const fetchComments = async (postId) => {
     } catch (error) {
         console.error('Помилка завантаження коментарів:', error);
         return [];
+    }
+};
+
+// Видалення коментаря
+export const deleteComment = async (commentId) => {
+    try {
+        const commentRef = doc(db, 'comments', commentId);
+        await deleteDoc(commentRef);
+        console.log('Коментар успішно видалено');
+    } catch (error) {
+        console.error('Помилка видалення коментаря:', error);
+    }
+};
+
+// Оновлення коментаря
+export const updateComment = async (commentId, newContent) => {
+    try {
+        const commentRef = doc(db, 'comments', commentId);
+        await updateDoc(commentRef, {
+            text: newContent,
+            timestamp: serverTimestamp(),  // Оновлюємо час
+        });
+        console.log('Коментар успішно оновлено');
+    } catch (error) {
+        console.error('Помилка оновлення коментаря:', error);
     }
 };

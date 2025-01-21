@@ -1,28 +1,61 @@
 /*Спільнота*/
-.community-page{
+
+.community-page{ 
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     padding: 20px;
     gap: 100px;
-    background: linear-gradient(to right, #007BFF, #ffffff); /* Синьо-білий градієнт */
+    background: linear-gradient(135deg, #1a1a1a, #222222);
     border-radius: 15px;
   }
-  
+  .community-page-details-photo{
+    display: flex;
+    justify-content:space-around;
+    padding: 10px;
+    gap: 50px;
+  }
   .community-details{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
-  .community-members-group{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  .community-details h2{
+  color: white;
+  }
+  .community-details p{
+  color: white;
+  font-style: italic;
+  margin-top: 20px;
+  }
+  .community-type {
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  .type-public {
+    background-color: #28a745; /* Зелений для публічної */
+    color: #fff;
+    border: 1px solid #218838;
+  }
+  .type-private {
+    background-color: #dc3545; /* Червоний для приватної */
+    color: #fff;
+    border: 1px solid #c82333;
+  }
+  .type-blog {
+    background-color: #17a2b8; /* Синій для блогу */
+    color: #fff;
+    border: 1px solid #117a8b;
   }
   .community-button-group{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
   }
 
@@ -42,38 +75,121 @@
     font-size: 15px;
     font-weight: bold;
   }
-
-  /* Медіазапит для планшетів (максимум 768px) */
-@media (max-width: 768px) {
-    .community-page {
-        flex-direction: column; /* Стає вертикальним */
-        gap: 50px; /* Зменшуємо проміжок */
-        padding: 15px; /* Менший відступ */
-    }
-
-    .community-details {
-        align-items: flex-start; /* Вирівнювання по лівому краю */
-    }
-
-    .community-members-group {
-        gap: 8px; /* Менший проміжок */
-    }
+/*редагування спільноти*/
+.community-page-edit{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Медіазапит для мобільних телефонів (максимум 480px) */
+
+ /* Медіазапити для адаптивності */
+
+/* Для екрану менше ніж 768px (планшети, мобільні телефони) */
+@media (max-width: 768px) {
+  .community-page {
+    padding: 10px;
+    gap: 50px;
+  }
+
+
+  .community-page-details-photo {
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center; /* Центрування елементів по вертикалі */
+    align-items: center; /* Центрування елементів по горизонталі */
+  }
+
+  .community-page-details-photo {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .community-details h2 {
+    font-size: 1.5rem;  /* Зменшення шрифта на мобільних */
+  }
+
+  .community-type {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .community-button-group {
+    gap: 10px;
+  }
+
+  .community-members-group {
+    flex-direction: column; /* Перехід до вертикального розташування */
+    align-items: center;
+  }
+
+  .community-members-group .user-photo-container {
+    width: 50px;
+    height: 50px;
+  }
+
+  .community-members-group .user-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .community-members-group .user-avatar-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .community-members-group .user-name {
+    font-size: 14px;
+  }
+
+  .button-modal {
+    font-size: 1rem;
+    padding: 10px 15px;
+    width: 100%; /* Розтягнути на всю ширину */
+  }
+}
+
+/* Для екрану менше ніж 480px (мобільні телефони) */
 @media (max-width: 480px) {
-    .community-page {
-        flex-direction: column; /* Вертикальне розташування */
-        gap: 30px; /* Ще менший проміжок */
-        padding: 10px; /* Менший відступ */
-        background: linear-gradient(to bottom, #007BFF, #ffffff); /* Градієнт змінюється */
-    }
+  .community-page {
+    gap: 30px;
+  }
 
-    .community-details {
-        align-items: center; /* Центруємо */
-    }
+  .community-details h2 {
+    font-size: 1.3rem; /* Зменшення заголовку для малих екранів */
+  }
 
-    .community-members-group {
-        gap: 5px; /* Мінімальний проміжок */
-    }
+  .community-type {
+    font-size: 11px;
+    padding: 3px 7px;
+  }
+
+  .community-members-container {
+    padding: 15px;
+  }
+
+  .community-members-group .user-photo-container {
+    width: 40px;
+    height: 40px;
+    
+  }
+
+  .community-members-group .user-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .community-members-group .user-avatar-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .community-members-group .user-name {
+    font-size: 13px;
+  }
+
+  .button-modal {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
 }

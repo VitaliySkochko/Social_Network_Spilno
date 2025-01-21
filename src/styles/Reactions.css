@@ -24,7 +24,7 @@
   .reaction-button.selected {
     background-color: #a8d8ff; /* Яскравий жовтий фон для вибраної реакції */
     border-color: blue; /* Темніше жовте для рамки */
-    color: #fff; /* Білий колір тексту (емодзі та цифри) */
+    color: blue; /* Білий колір тексту (емодзі та цифри) */
   }
   /* Стилі для лічильників реакцій */
   .reaction-button span {

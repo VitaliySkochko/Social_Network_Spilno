@@ -13,6 +13,8 @@ import AuthRoute from './components/AuthRoute';
 import MainLayout from './components/MainLayout';
 import AdminPanel from './pages/admin/AdminPanel';
 import EditCommunityPage from './pages/admin/EditCommunityPage';
+import SettingsPanel from './pages/admin/SettingsPanel'; 
+import JoinRequests from './pages/admin/JoinRequests';
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
             <Route path="/communities" element={<CommunityList/>} />
             <Route path="/community/:id/admin" element={<AdminPanel />} />
             <Route path="/edit-community/:communityId" element={<EditCommunityPage />} />
+            <Route path="/community/:id/settings" element={<SettingsPanel />} />
+            <Route path="/community/:communityId/join-requests" element={<JoinRequests />} />
           </Route>
         </Route>
       </Routes>

@@ -13,33 +13,36 @@ body {
 
 
 /*------КНОПКИ------*/
-.button-menu{
-  color: #333; 
-  text-decoration: none; /* Без підкреслення */
-  font-size: 18px;
+/*Кнопки реєстрації*/
+.button-registration-conteiner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  gap: 15px;
+}
+.button-registration{
+  padding: 14px;
+  font-size: 16px;
   font-weight: bold;
-  padding: 10px 15px;
-  transition: transform 0.2s; /* Плавні переходи */
-}
-.button-menu:hover{
-  transform: scale(1.05); /* Легке збільшення */
-  text-decoration: none;
-  color: #333;
-}
-.button-exit{
-  padding: 8px 12px;
-  background-color: #FF4D4D; /* Червоний колір кнопки */
-  color: white;
   border: none;
   border-radius: 15px;
+  color: black; /* Темно-сірий текст для контрасту */
+  background: linear-gradient(145deg, #ffffff, #e6e6e6); /* Білий градієнт */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Анімація при наведенні */
-  font-size: 14px;
-  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
-.button-exit:hover{
-  background-color: #E60000; /* Темніший червоний при наведенні */
+.button-registration:hover {
+  background: linear-gradient(145deg, #f2f2f2, #d9d9d9); /* Трохи темніший градієнт при наведенні */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
+.button-registration:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+/*основна кнопка*/
 .button-main-conteiner{
   display: flex;
   justify-content: center;
@@ -47,29 +50,35 @@ body {
   margin-top: 10px;
   gap: 15px;
 }
-.button-main{
-  padding: 14px;
+.button-main {
+  padding: 14px 20px;
   font-size: 16px;
   font-weight: bold;
   border: none;
-  border-radius: 15px;
-  color: #ffffff; /* Білий текст */
-  background: linear-gradient(145deg, #0066cc, #005bb5); /* Синій градієнт */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 50px;
+  color: white; /* Білий текст для контрасту */
+  background: linear-gradient(145deg, #333333, #000000); /* Чорний градієнт */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Тінь для глибини */
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
-.button-main:hover{
-  background: linear-gradient(145deg, #005bb5, #004080); /* Темніший градієнт при наведенні */
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+.button-main:hover {
+  background: linear-gradient(145deg, #4f4f4f, #1a1a1a); /* Трохи світліший чорний градієнт при наведенні */
+  transform: translateY(-3px); /* Підняття кнопки */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6); /* Більш виражена тінь */
 }
+.button-main:active {
+  background: linear-gradient(145deg, #1a1a1a, #000000); /* Темніший чорний градієнт при натисканні */
+  transform: translateY(1px); /* Легке опускання кнопки */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); /* Менша тінь */
+}
+/*кнопка видалити*/
 .button-delete {
   padding: 14px;
   font-size: 16px;
   font-weight: bold;
   border: none;
-  border-radius: 15px;
+  border-radius: 50px;
   color: #ffffff; /* Білий текст */
   background: linear-gradient(145deg, #ff4d4d, #cc0000); /* Червоний градієнт */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -81,6 +90,74 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
 }
+/*Кнопка меню адміністратора*/
+.menu-button-admin {
+  color: black;
+  font-size: 18px;
+  padding: 10px 20px;
+  text-decoration: none; 
+  border: none; /* Без рамки за замовчуванням */
+  border-radius: 50px; /* Округлені краї */
+  background: transparent; /* Прозорий фон */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+.menu-button-admin:hover {
+  transform: scale(1.1); /* Збільшення розміру кнопки */
+  color: white; /* Колір тексту при наведенні */
+  border: 2px solid white; /* Рамка з'являється при наведенні */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Тінь для глибини */
+  background-color: black;
+}
+.menu-button-admin:focus {
+  outline: none; /* Прибрати контур при фокусі */
+  box-shadow: 0 0 10px 2px rgba(246, 244, 244, 0.7); /* Яскравий фокус */
+}
+/*кнопка меню спільноти*/
+.menu-button-comynity {
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  color: black; 
+  background: linear-gradient(145deg, #ffffff, #d0f0fd);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Тінь для глибини */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.menu-button-comynity:hover {
+  background: linear-gradient(145deg, #ffffff, #ffe4e1); /* Трохи світліший чорний градієнт при наведенні */
+  transform: translateY(-3px); /* Підняття кнопки */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6); /* Більш виражена тінь */
+}
+.menu-button-comynity:active {
+  background: linear-gradient(145deg, #ffffff, #ffe4e1); /* Темніший чорний градієнт при натисканні */
+  transform: translateY(1px); /* Легке опускання кнопки */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); /* Менша тінь */
+}
+/*Кнопка підтвердити*/
+.button-approve {
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  color: #ffffff; /* Білий текст */
+  background: linear-gradient(145deg, #28a745, #218838); /* Зелений градієнт */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.button-approve:hover {
+  background: linear-gradient(145deg, #218838, #1e7e34); /* Темніший зелений градієнт при наведенні */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+}
+
+
+
 .button-modal{
   padding: 12px 24px;
   font-size: 16px;
@@ -93,60 +170,93 @@ body {
   transition: all 0.3s ease; /* Плавний перехід */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легка тінь */
 }
-
 .button-modal:hover {
   background: linear-gradient(135deg, #5d8bb8, #6e7dd7); /* Зміна кольору на ховер */
   transform: translateY(-2px); /* Підняття кнопки */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Підсилена тінь */
 }
-
 .button-modal:active {
   transform: translateY(1px); /* При натисканні кнопка опускається */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Повернення тіні до початкового стану */
 }
 
+/*кнопка зберегти*/
+.save-button{
+  padding: 8px 12px;
+  background-color: rgb(16, 207, 16); /* Червоний колір кнопки */
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Анімація при наведенні */
+  font-size: 14px;
+  font-weight: bold;
+}
+.save-button:hover{
+  background-color: green; /* Темніший червоний при наведенні */
+}
+
+
+
 
 
 /*-------ІКОНКИ-------*/
+/*виходу*/
+.logout-icon{
+  width: 38px;
+  height: 28px;
+  cursor: pointer;
+}
 /*користувач*/
 .user-icon {
-  font-size: 50px;
-  color:#007bff;
+  font-size: 100px;
+  color: black;
   cursor: pointer;
-}
-/*видалити*/
-.delete-icon{
-  color:#007bff;
-  cursor: pointer;
-  background-color: #ffffff;
-  border: none;
-}
-/*завантажити*/
-.download-icon{
-  color:#007bff;
-  cursor: pointer;
-}
-/*додати*/
-.add-icon{
-  color:#007bff;
-  cursor: pointer;
-  background-color: #ffffff;
-  border: none;
 }
 /*фото*/
 .photo-icon{
-  color:#007bff;
+  color:black;
+  cursor: pointer;
+  border: none;
+}
+/*видалити*/
+.delete-icon{
+  color:black;
+  cursor: pointer;
+  border: none;
+}
+/*додати*/
+.add-icon{
+  color:black;
   cursor: pointer;
   background-color: #ffffff;
   border: none;
 }
 /*відео*/
 .video-icon{
-  color:#007bff;
+  color:black;
   cursor: pointer;
   background-color: #ffffff;
   border: none;
 }
+.menu-icon{
+  color:brown;
+  cursor: pointer;
+  background-color:  #f9f9f9;
+  border: none;
+  font-size: 30px;
+}
+
+
+
+/*завантажити*/
+.download-icon{
+  color:black;
+  cursor: pointer;
+}
+
+
+
 /*коментарі*/
 .comments-icon{
   color:#007bff;
@@ -154,6 +264,7 @@ body {
   background-color: #ffffff;
   border: none;
 }
+/*Меню*/
 
 /*------СПІНЕР НА ЗАВАНТАЖЕННЯ-------*/
 .loading-spinner {
@@ -183,8 +294,8 @@ h2{
   font-size: 36px;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 40px;
-    color: #333; /* Білий текст */
+    margin-bottom: 5px;
+    color: #333; 
     text-transform: uppercase;
     letter-spacing: 1.5px;
     padding-bottom: 8px;
@@ -250,7 +361,7 @@ label{
   display: flex;
   align-items: center;
   text-decoration: none; /* Прибираємо підкреслення */
-  color: #333; /* Основний текстовий колір */
+  color: black; /* Основний текстовий колір */
   gap: 10px;
   transition: color 0.3s ease; /* Анімація при наведенні */
 }
@@ -265,22 +376,25 @@ label{
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #e0e0e0; /* Фон для іконки */
+  background-color: #f0f0f0; /* Фон для іконки */
   overflow: hidden;
 }
 .user-avatar {
   width: 60px;
   height: 60px;
   border-radius: 50%; /* Робимо аватар круглим */
-  border: 2px solid #007BFF; /* Окантовка */
+  border: 2px solid black; /* Окантовка */
   object-fit: cover; /* Забезпечує правильне відображення фото */
 }
 .user-avatar-icon{
   width: 60px;
   height: 60px;
   border-radius: 50%; /* Робимо аватар круглим */
-  border: 2px solid #007BFF; /* Окантовка */
+  border: 2px solid black; /* Окантовка */
   object-fit: cover; /* Забезпечує правильне відображення фото */
+}
+.user-avatar:hover{
+  border: 2px solid #007BFF; /* Окантовка */
 }
 .user-name {
   font-size: 20px;
@@ -289,7 +403,7 @@ label{
 
 
 
-/*-------СПІЛЬНОТИ-------*/
+
 
 
 /*-------Модельне вікно для фото-------*/
@@ -353,6 +467,19 @@ label{
   width: 100%;
 }
 
+/*------Повідомлення для Вас-------*/
+.community-type-description {
+  padding: 10px;
+  margin-top: 10px;
+  background: #ebf9ba;
+  border-left: 5px solid #0078d7;
+  color: #333;
+  border-radius: 5px;
+  font-style: italic;
+}
+.community-type-description strong {
+  color: #0078d7;
+}
 
 /*-------FOOTER-------*/
 .footer-conteiner {

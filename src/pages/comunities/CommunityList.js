@@ -1,14 +1,15 @@
 // Сторінка для перегляду списку спільнот
-import React, { useEffect, useState } from 'react';
-import { fetchCommunities } from '../../services/firebaseCommunityService';
-import { Link } from 'react-router-dom';
-import { FaUsers } from 'react-icons/fa';
-import CommunityCount from './CommunityCount';
-import CommunitySearch from './CommunitySearch';
+import React, { useEffect, useState } from 'react'; 
+import { fetchCommunities } from '../../services/firebaseCommunityService'; 
+import { Link } from 'react-router-dom'; 
+import { FaUsers } from 'react-icons/fa'; 
+import CommunityCount from './CommunityCount'; 
+import CommunitySearch from './CommunitySearch'; 
+import CommunitySearchByTopic from './CommunitySearchByTopic'; 
 import '../../styles/CommunityList.css';
 
 const CommunityList = () => {
-    const [communities, setCommunities] = useState([]);
+    const [communities, setCommunities] = useState([]); 
     const [filteredCommunities, setFilteredCommunities] = useState([]);
 
     useEffect(() => {
@@ -32,12 +33,20 @@ const CommunityList = () => {
         setFilteredCommunities(filtered);
     };
 
+    const handleSearchByTopic = (topic) => {
+        const filtered = communities.filter((community) =>
+            community.topics.some((t) => t.toLowerCase().includes(topic.toLowerCase()))  // Пошук за темою
+        );
+        setFilteredCommunities(filtered);
+    };
+
     return (
         <div className="community-list-page">
             <h2 className="communities-title">Спільноти</h2>
             <div className='community-list-count-search'>
-            <CommunityCount count={filteredCommunities.length} />
-            <CommunitySearch onSearch={handleSearch} />
+                <CommunityCount count={filteredCommunities.length} />
+                <CommunitySearch onSearch={handleSearch} />
+                <CommunitySearchByTopic onSearchByTopic={handleSearchByTopic} /> 
             </div>
             <ul className="communities-list">
                 {filteredCommunities.map((community) => (

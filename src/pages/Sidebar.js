@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../services/firebase'; // Імпортуйте auth із вашої конфігурації Firebase
+import { auth } from '../services/firebase'; 
 import UserCommunitiesSidebar from '../components/UserCommunitiesSidebar'; 
 import '../styles/Sidebar.css';
 import '../styles/UserCommunitiesSidebar.css'

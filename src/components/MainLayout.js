@@ -58,7 +58,7 @@ const MainLayout = () => {
       {isMobile && (
         <div className="toggle-sidebar-container">
           <button className="toggle-sidebar-btn" onClick={toggleSidebar}>
-            {isSidebarVisible ? "Закрити меню" : "Меню"}
+            {isSidebarVisible ? "Закрити меню" : "меню"}
           </button>
         </div>
       )}

@@ -33,7 +33,7 @@ const UserCommunitiesSidebar = () => {
     if (!user) return null;  // Якщо користувач не авторизований, повертаємо null
 
     return (
-        <div className="user-communities">
+        <div className="user-communities"> 
             <h3>Мої спільноти</h3>
             {communities.length > 0 ? (
                 <ul className="communities-list-sidebar">

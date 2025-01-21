@@ -1,100 +1,180 @@
 /* Основний контейнер для сторінки */
 /*Список спільнот*/
 .community-list-page { 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    font-family: 'Roboto', sans-serif;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    background-attachment: fixed;
-    border-radius: 16px;
-    
-  }
-  .communities-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-rows: repeat(3, 1fr); /* 3 фіксовані ряди */
-    gap: 30px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%; /* Щоб список займав повну висоту */
-  }
-  .communities-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 25px;
-    background: linear-gradient(145deg, #ffffff, #f0f8ff);
-    border-radius: 16px;
-    text-align: center;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-   
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    height: 350px; /* Фіксована висота для однакового вигляду */
-  }
-  .communities-link {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  .communities-link:hover {
-    text-decoration: none;
-  }
-  
-  .communities-photo {
-    width: 200px;
-    height: 150px; /* Фіксована висота */
-    border-radius: 10%;
-    object-fit: cover; /* Робить фото однакового розміру */
-    margin-bottom: 20px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  .user-icon-list{
-    width: 200px;
-    height: 150px; /* Фіксована висота */
-    border-radius: 10%;
-    object-fit: cover; /* Робить фото однакового розміру */
-    margin-bottom: 20px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  font-family: 'Roboto', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  background-attachment: fixed;
+  border-radius: 16px;
+}
+.communities-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.communities-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  background: linear-gradient(145deg, #333, #444); /* Темний фон з градієнтом */
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4); /* Тіні для темного вигляду */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Легке обведення */
+  height: 350px; /* Фіксована висота */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавний ефект на hover */
+}
+.communities-item:hover {
+  transform: translateY(-10px); /* Підняття картки при наведенні */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.6); /* Збільшена тінь */
+}
+.communities-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.communities-photo {
+  width: 200px;
+  height: 150px; /* Фіксована висота */
+  border-radius: 10%;
+  object-fit: cover; /* Робить фото однакового розміру */
+  margin-bottom: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.user-icon-list{
+  width: 200px;
+  height: 150px; /* Фіксована висота */
+  border-radius: 10%;
+  object-fit: cover; /* Робить фото однакового розміру */
+  margin-bottom: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+.communities-photo:hover, .user-icon-list:hover {
+  transform: scale(1.05); /* Збільшення фото при наведенні */
+}
+.communities-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff; /* Світлий текст для контрасту */
+  margin: 10px 0 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Тінь для покращення контрасту */
+}
+.communities-description {
+  font-size: 16px;
+  color: #ddd; /* Світло-сірий текст */
+  margin-top: 8px;
+  line-height: 1.6;
+  max-height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.community-list-count-search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  margin-bottom: 50px;
+}
 
-  }
-  .communities-name {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333; 
-    margin: 10px 0 5px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-  }
-  .communities-description {
-    font-size: 16px;
-    color: #444;
-    margin-top: 8px;
-    line-height: 1.6;
-    max-height: 3em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-  }
-  .community-list-count-search{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 70px;
-    margin-bottom: 50px;
-  }
+/*Кількість спільнот*/
+.community-count{
+  background-color: #333;
+  padding: 15px 20px;
+  font-size: 14px;
+  border-radius: 50px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+.community-count p {
+  color: #f2c4c4;
+}
+.community-count strong {
+  color: white;
+}
+
+/*Кнопка пошуку*/
+.search-form {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+}
+.title-input-search {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+.title-input-search:focus {
+  outline: none;
+  background-color: #444; 
+}
+.search-button {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color:white;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+.search-button:hover {
+  background-color: wheat;
+}
+.search-button:active {
+  background-color: wheat;
+}
+.search-icon {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+.search-button:hover .search-icon {
+  transform: scale(1.2); /* Анімація збільшення іконки */
+}
+/*Список тем*/
+.topic-selector-conteiner{
+  background-color: #333;
+  padding: 15px 20px;
+  font-size: 16px;
+  border-radius: 50px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.topic-selector-conteiner select{
+  color: white;
+  background-color: #333;
+  border-radius: 50px;
+}
 
   /* Медіазапит для планшетів (максимум 768px) */
 @media (max-width: 768px) {
@@ -119,12 +199,12 @@
   }
 
   .communities-name {
-      font-size: 20px;
-  }
+    font-size: clamp(18px, 2vw, 24px);
+}
 
   .communities-description {
-      font-size: 14px;
-  }
+    font-size: clamp(14px, 1.5vw, 16px);
+}
 
   .community-list-count-search {
       gap: 50px;

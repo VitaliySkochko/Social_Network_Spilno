@@ -1,0 +1,63 @@
+.settings-panel {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings-group {
+  margin-bottom: 20px;
+}
+
+.members-list {
+  list-style: none;
+  padding: 0;
+}
+
+.member-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.button-small {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  height: 80%;
+  max-width: 1200px;
+  max-height: 90%;
+  overflow-y: auto;
+}
+
+/* Адаптивність для телефонів (ширина екрану до 768px) */
+@media (max-width: 768px) {
+  .member-item {
+    flex-direction: column; /* Розташування елементів у стовпчик */
+    align-items: center; /* Вирівнювання по лівому краю */
+    padding: 15px; /* Збільшення відступів */
+    gap: 10px;
+  }
+
+  .button-small {
+    width: 100%; /* Кнопки займають всю ширину */
+    margin-top: 10px; /* Відступ між кнопками */
+  }
+
+  .modal-content {
+    width: 95%; /* Ширина модального вікна для телефонів */
+    padding: 20px; /* Зменшені внутрішні відступи */
+  }
+}

@@ -1,22 +1,24 @@
-.admin-panel{
-    margin: 20px auto;
-    padding: 20px;
-}
-
-.admin-panel p{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.admin-panel-group{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.community-page-edit{
+.admin-panel {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-}
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+  }
+  .admin-panel p {
+    font-size: 20px;
+    color: #666; /* Сірий текст */
+    margin-bottom: 20px;
+  }
+  
+  .admin-panel-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+
+  

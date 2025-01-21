@@ -7,7 +7,7 @@ import { auth, db } from '../../services/firebase';
 import ProfilePhoto from './ProfilePhoto';
 import ProfileInfo from './ProfileInfo';
 import ContactInfo from './ContactInfo';
-import Modal from '../../components/Modal.js';
+import Modal from '../modal/PhotoModal.js';
 import { useNavigate } from 'react-router-dom';
 import UserActivity from './UserActivity'; 
 import '../../styles/Profile.css';
@@ -58,18 +58,23 @@ const ProfilePage = () => {
     }
 
     return (
-        <div className="profile-container">
+        <div className="profile-container"> 
+        <h2 className="edit-profile-title">Профіль користувача</h2>
             {userData && (
                 <>
+                <div className='profile-user-container'>
                     <ProfilePhoto 
                         profilePhoto={userData.profilePhoto} 
                         openModal={openModal} 
                     />
                     <ProfileInfo userData={userData} />
+                    </div>
+                    <div className='profile-user-info-container'>
                     <ContactInfo userData={userData} />
-                    
-                    {/* Додаємо компонент UserActivity */}
+                    </div>
+                    <div className='profile-user-activity-container'>
                     <UserActivity uid={uid} />
+                    </div>
                 </>
             )}
 

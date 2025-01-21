@@ -4,7 +4,7 @@
     align-items: center; /* Вирівнювання по вертикалі */
     padding: 5px 15px;
     border-radius: 15px;
-    background: linear-gradient(to right, #007BFF, #ffffff); /* Синьо-білий градієнт */
+    background: white; /* Синьо-білий градієнт */
     flex-wrap: nowrap; /* Елементи не переносяться на новий рядок */
     max-width: 100%; /* Контейнер займає всю ширину */
     box-sizing: border-box; /* Враховує padding у розмірах */
@@ -12,7 +12,7 @@
 .header-logo {
     height: 60px;
     border-radius: 15px;
-    flex-shrink: 0; /* Логотип не стискається */
+    flex-shrink: 0; /* Логотип не стискається */ 
 }
 .header-user-info {
     display: flex;
@@ -27,6 +27,10 @@
     align-items: center;
     gap: 10px;
     padding: 10px 15px;
+}
+
+.logout-icon:hover{
+    color: #007bff;
 }
 
 /* Медіазапити для телефонів (екрани до 768px) */

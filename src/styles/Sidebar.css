@@ -1,10 +1,10 @@
 /* Загальний контейнер для Sidebar */
 /* Основні стилі Sidebar */
 .sidebar {
-  width: 250px;
+  width: 260px;
   height: 100vh; /* Повна висота вікна */
-  background: linear-gradient(180deg, #ffffff, #f0f0f0); /* Градієнт */
-  padding: 3px;
+  background: linear-gradient(180deg, #1e1e1e, #000000); /* Чорний градієнт */
+  padding: 20px;
   position: fixed; /* Фіксована позиція */
   top: 0;
   left: 0;
@@ -12,9 +12,12 @@
   flex-direction: column;
   gap: 5px; /* Відступ між елементами */
   font-family: 'Arial', sans-serif;
-  transition: transform 0.3s ease; /* Плавний перехід */
-  margin-top: 20px;
-  border-radius: 15px;
+  color: white; /* Білий текст */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавний перехід */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Тінь */
+  border-right: 2px solid #333; /* Тонка рамка з правого боку */
+  border-radius: 0 15px 15px 0; /* Закруглені краї справа */
+  overflow: hidden; /* Ховає зайвий контент */
 }
 
 /* Відкритий стан Sidebar */
@@ -38,6 +41,53 @@
   }
 }
 
+/* Заголовок Sidebar */
+.sidebar h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  border-bottom: 2px solid #444444; /* Лінія під заголовком */
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Кнопки меню */
+.button-menu {
+  color: #ffffff; /* Білий текст */
+  background: linear-gradient(90deg, #333333, #1a1a1a); /* Горизонтальний градієнт */
+  border: 1px solid #444444; /* Легка рамка */
+  text-decoration: none; /* Без підкреслення */
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 20px;
+  text-align: left;
+  border-radius: 8px; /* Закруглені краї */
+  transition: all 0.3s ease; /* Плавний перехід для всіх властивостей */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Тінь кнопок */
+}
+
+/* Ефект наведення на кнопки */
+.button-menu:hover {
+  background: linear-gradient(90deg, #555555, #2a2a2a); /* Світліший градієнт */
+  transform: translateX(5px); /* Зсув праворуч */
+  text-decoration: none;
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Глибша тінь */
+}
+
+/* Активна кнопка меню */
+.button-menu.active {
+  background: #444444; /* Фон активної кнопки */
+  border: 2px solid #ffffff; /* Виділення активної кнопки */
+  color: #ffffff; /* Білий текст */
+}
+
+/* Адаптація для мобільних пристроїв */
+@media (max-width: 767px) {
+  .sidebar {
+    width: 220px; /* Зменшена ширина */
+  }
+}
 
 
 

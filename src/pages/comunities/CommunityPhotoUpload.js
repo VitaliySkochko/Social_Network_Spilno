@@ -1,7 +1,7 @@
 // Завантаження фото для спільноти
 
 import React, { useState } from "react";
-import { FaEdit } from "react-icons/fa";
+import { FaImage } from "react-icons/fa";
 import { useDropzone } from "react-dropzone";
 import "../../styles/CreateCommunityPage.css";
 
@@ -44,8 +44,8 @@ const CommunityPhotoUpload = ({ onPhotoSelect }) => {
 
       {/* Іконка для додавання фото, по натисканню на неї відкривається діалог вибору файлів */}
       {!photoPreview && (
-        <label className="download-icon" title="Завантажити фото" onClick={handleIconClick}>
-          <FaEdit />
+        <label className="photo-icon" title="Завантажити фото" onClick={handleIconClick}>
+          <FaImage/>
         </label>
       )}
     </div>

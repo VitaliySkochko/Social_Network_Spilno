@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../img/logo-title.PNG";
+import logo from "../../img/logo-title(black2).PNG";
 import { login } from "../../services/firebaseAuthService";
 import '../../styles/LoginPage.css'
 
@@ -67,12 +67,12 @@ const LoginPage = () => {
               className="login-input"
             />
           </div>
-          <div className="button-main-conteiner">
-            <button type="submit" className="button-main">Увійти</button>
+          <div className="button-registration-conteiner">
+            <button type="submit" className="button-registration">Увійти</button>
             <button
               type="button"
               onClick={() => navigate("/signup")}
-              className="button-main"
+              className="button-registration"
             >
               Зареєструватись
             </button>
@@ -83,7 +83,7 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default LoginPage; 
 
 
 

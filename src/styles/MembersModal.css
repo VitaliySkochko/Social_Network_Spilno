@@ -1,0 +1,69 @@
+/* Стилі для затемненого фону */
+.modal-overlay-group {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Напівпрозорий чорний фон */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out; /* Плавне входження */
+}
+
+/* Основна модальне вікно */
+.modal {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto; /* Прокручування, якщо вміст більше ніж висота */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: modalFadeIn 0.3s ease-out; /* Плавне появлення */
+}
+
+/* Заголовок в модальному вікні */
+.modal h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Стилі для списку учасників */
+.community-members-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+
+
+/* Анімація для появи */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Анімація для появи модального вікна */
+@keyframes modalFadeIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

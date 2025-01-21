@@ -1,0 +1,112 @@
+/*------Бокова панель списка спільнот користувача*/
+.user-communities-activity {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .communities-list-sidebar-activity{
+    display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Чотири колонки */
+  gap: 10px;
+  }
+  .communities-list-sidebar-activity li {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+ 
+ 
+  .communities-list-sidebar-activity a {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Без підкреслення */
+    color: black; /* Основний колір тексту */
+    gap: 10px;
+    flex-grow: 1;
+  }
+  .communities-list-sidebar-activity a:hover{
+    text-decoration: none; /* Без підкреслення */
+  }
+  
+  .community-thumbnail-activity {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Круглий аватар */
+    object-fit: cover;
+    border: 2px solid black; /* Синя обводка */
+  }
+  
+  .community-placeholder-activity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Круглий блок */
+    background-color: black; /* Синій фон */
+    color: white; /* Білий текст */
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .communities-list-activity span {
+    font-size: 16px;
+    font-weight: 500;
+    flex-grow: 1;
+  }
+  
+  .user-communities-sidebar-activity p {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  /* Адаптація для мобільних пристроїв */
+@media (max-width: 768px) {
+  .communities-list-sidebar-activity {
+    grid-template-columns: repeat(2, 1fr); /* Дві колонки на мобільних */
+    gap: 8px; /* Зменшуємо відстань між елементами */
+  }
+
+  .community-thumbnail-activity {
+    width: 30px;
+    height: 30px; /* Менший розмір аватарів */
+  }
+
+  .community-placeholder-activity {
+    width: 30px;
+    height: 30px; /* Менший розмір блоку */
+    font-size: 14px; /* Зменшений шрифт */
+  }
+
+  .communities-list-activity span {
+    font-size: 14px; /* Зменшений розмір тексту */
+  }
+
+  .user-communities-sidebar-activity p {
+    font-size: 12px; /* Зменшений текст для опису */
+  }
+}
+
+@media (max-width: 480px) {
+  .communities-list-sidebar-activity {
+    grid-template-columns: repeat(1, 1fr); /* Одна колонка для дуже малих екранів */
+  }
+
+  .community-thumbnail-activity {
+    width: 25px;
+    height: 25px; /* Ще менший розмір аватарів */
+  }
+
+  .community-placeholder-activity {
+    width: 25px;
+    height: 25px;
+    font-size: 12px; /* Ще менший шрифт */
+  }
+
+  .communities-list-activity span {
+    font-size: 12px; /* Ще менший текст */
+  }
+}

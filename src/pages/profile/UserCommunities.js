@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { onSnapshot, collection, query, where } from 'firebase/firestore';
 import { db } from '../../services/firebase'; // Переконайтеся, що імпортуєте db
 import { Link } from 'react-router-dom';
+import '../../styles/UserCommunities.css'
 
 const UserCommunities = ({ uid }) => {
     const [communities, setCommunities] = useState([]);
@@ -29,10 +30,10 @@ const UserCommunities = ({ uid }) => {
     if (!uid) return <p>Користувач не знайдений</p>;
 
     return (
-        <div className="user-communities">
+        <div className="user-communities-activity">
             <h3>Спільноти користувача</h3>
             {communities.length > 0 ? (
-                <ul className="communities-list-sidebar">
+                <ul className="communities-list-sidebar-activity">
                     {communities.map((community) => (
                         <li key={community.id}>
                             <Link to={`/communities/${community.id}`}>
@@ -40,10 +41,10 @@ const UserCommunities = ({ uid }) => {
                                     <img
                                         src={community.photoURL}
                                         alt={community.name}
-                                        className="community-thumbnail"
+                                        className="community-thumbnail-activity"
                                     />
                                 ) : (
-                                    <div className="community-placeholder">{community.name.charAt(0)}</div>
+                                    <div className="community-placeholder-activity">{community.name.charAt(0)}</div>
                                 )}
                                 <span>{community.name}</span>
                             </Link>

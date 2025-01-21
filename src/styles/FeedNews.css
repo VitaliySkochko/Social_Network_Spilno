@@ -1,14 +1,24 @@
 .feednews-container {
-    flex: 1;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    margin-left: 260px; /* Відступ зліва для десктопів (враховуючи ширину sidebar) */
-    transition: margin 0.3s ease; /* Плавна зміна для адаптивного переходу */
-  }
+  max-width: 900px; /* Зменшення ширини */
+  margin: 0 auto; /* Центрування контейнера */
+  padding: 10px; /* Зменшення внутрішніх відступів */
   
-  .news-item {
-    margin-bottom: 10px;
-  }
+}
+
+
+
+.community-link-news{
+  color: #007bff; /* Синій колір для посилання */
+  text-decoration: none; /* Прибрати підкреслення */
+  font-weight: bold; /* Жирний шрифт */
+}
+.community-link-news:hover {
+  text-decoration: none; /* Підкреслення при наведенні */
+  color: #0056b3; /* Темніший синій при наведенні */
+}
+
+.community-link-news:active {
+  color: #003d80; /* Ще темніший синій при кліці */
+}
+
   

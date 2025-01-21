@@ -1,0 +1,23 @@
+/*------СПІНЕР НА ЗАВАНТАЖЕННЯ-------*/
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрування спінера */
+    z-index: 9999;
+  }
+  
+  .spinner {
+    border: 8px solid rgba(255, 255, 255, 0.2); /* Світла прозора обводка */
+    border-top: 8px solid #333; /* Темно-сірий колір для обертання */
+    border-radius: 50%;
+    width: 100px; /* Збільшення розміру спінера */
+    height: 100px; /* Збільшення розміру спінера */
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }

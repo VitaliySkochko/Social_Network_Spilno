@@ -1,0 +1,114 @@
+/* Загальний контейнер для вибору тем */
+.topic-selector {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+
+  .topic-selector-description{
+    margin: 10px;
+  }
+  
+  .dark-theme .topic-selector {
+    background-color: #2c2c2c;
+    border-color: #444;
+  }
+  
+  .topic-selector h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .dark-theme .topic-selector h3 {
+    color: #f1f1f1;
+  }
+  
+  /* Список тем */
+  .topics-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Елемент теми */
+  .topic-item {
+    margin: 0;
+  }
+  
+  .topic-item label {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .dark-theme .topic-item label {
+    border-color: #555;
+    background-color: #3a3a3a;
+    color: #f1f1f1;
+  }
+  
+  .topic-item label:hover {
+    background-color: #f0f0f0;
+    border-color: #bbb;
+  }
+  
+  .dark-theme .topic-item label:hover {
+    background-color: #444;
+    border-color: #666;
+  }
+  
+  /* Стиль для чекбоксів */
+  .topic-item input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #0078d7; /* Синій колір */
+  }
+  
+  .dark-theme .topic-item input[type="checkbox"] {
+    accent-color: #1e90ff; /* Світліший синій для темної теми */
+  }
+
+  /* Обрані теми */
+  .selected-topics {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .selected-topics h4 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .selected-topics ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .selected-topics li {
+    padding: 5px 10px;
+    margin: 5px 0;
+    background-color: #e0f7fa;
+    border-radius: 4px;
+    color: #00796b;
+    font-weight: 500;
+  }
+  
+  .selected-topics p {
+    font-style: italic;
+    color: #757575;
+  }

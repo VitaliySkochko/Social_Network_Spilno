@@ -11,17 +11,28 @@ const CommunitySearch = ({ onSearch }) => {
         onSearch(value);
     };
 
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        onSearch(searchTerm);
+    };
+
     return (
         <div className="community-search">
-            <input
-                type="text"
-                placeholder="Пошук спільнот..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="title-input"
-            />
+            <form onSubmit={handleSearchSubmit} className="search-form">
+                <input
+                    type="text"
+                    placeholder="Пошук спільнот..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    className="title-input-search"
+                />
+                <button type="submit" className="search-button">
+                    <span className="search-icon">🔍</span>
+                </button>
+            </form>
         </div>
     );
 };
 
 export default CommunitySearch;
+
