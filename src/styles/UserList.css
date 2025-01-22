@@ -1,0 +1,48 @@
+.user-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-list-count-search{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/*Кількість користувачів*/
+.user-count{
+    background-color: #333;
+    padding: 15px 20px;
+    font-size: 14px;
+    border-radius: 50px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+.user-count p {
+    color: #f2c4c4;
+}
+.user-count strong {
+    color: white;
+}
+
+.user-list .user-photo-container {
+    width: 65px;
+    height: 65px;
+}
+
+.user-list .user-avatar{
+    width: 65px;
+    height: 65px;
+}
+
+.user-list .user-avatar-icon{
+    width: 65px;
+    height: 65px;
+}
+
+.user-list .user-name{
+    font-size: 30px;
+}

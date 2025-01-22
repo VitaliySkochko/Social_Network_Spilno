@@ -15,6 +15,8 @@ import AdminPanel from './pages/admin/AdminPanel';
 import EditCommunityPage from './pages/admin/EditCommunityPage';
 import SettingsPanel from './pages/admin/SettingsPanel'; 
 import JoinRequests from './pages/admin/JoinRequests';
+import UserList from './pages/users/UserList';
+
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
             <Route path="/edit-community/:communityId" element={<EditCommunityPage />} />
             <Route path="/community/:id/settings" element={<SettingsPanel />} />
             <Route path="/community/:communityId/join-requests" element={<JoinRequests />} />
+            <Route path="/users" element={<UserList />} />
+            
           </Route>
         </Route>
       </Routes>

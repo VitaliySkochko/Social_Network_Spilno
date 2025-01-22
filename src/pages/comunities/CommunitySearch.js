@@ -6,14 +6,17 @@ const CommunitySearch = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearchChange = (e) => {
-        const value = e.target.value;
-        setSearchTerm(value);
-        onSearch(value);
+        setSearchTerm(e.target.value); // Оновлюємо стан при зміні тексту
     };
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        onSearch(searchTerm);
+        if (searchTerm.trim() === '') {
+            alert('Введіть назву для пошуку'); // Якщо поле пусте
+            return;
+        }
+        onSearch(searchTerm.trim()); // Викликаємо пошук
+        setSearchTerm(''); // Очищуємо поле після пошуку
     };
 
     return (
@@ -21,7 +24,7 @@ const CommunitySearch = ({ onSearch }) => {
             <form onSubmit={handleSearchSubmit} className="search-form">
                 <input
                     type="text"
-                    placeholder="Пошук спільнот..."
+                    placeholder="Введіть назву для пошуку..."
                     value={searchTerm}
                     onChange={handleSearchChange}
                     className="title-input-search"
@@ -35,4 +38,3 @@ const CommunitySearch = ({ onSearch }) => {
 };
 
 export default CommunitySearch;
-
