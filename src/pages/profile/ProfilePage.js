@@ -9,7 +9,8 @@ import ProfileInfo from './ProfileInfo';
 import ContactInfo from './ContactInfo';
 import Modal from '../modal/PhotoModal.js';
 import { useNavigate } from 'react-router-dom';
-import UserActivity from './UserActivity'; 
+import UserActivity from './UserActivity';
+import FriendButton from './FriendButton.js'; 
 import '../../styles/Profile.css';
 
 const ProfilePage = () => {
@@ -67,7 +68,10 @@ const ProfilePage = () => {
                         profilePhoto={userData.profilePhoto} 
                         openModal={openModal} 
                     />
+                    <div className='button-profile-container-group'>
+                    <FriendButton uid={uid} />     
                     <ProfileInfo userData={userData} />
+                    </div>
                     </div>
                     <div className='profile-user-info-container'>
                     <ContactInfo userData={userData} />
@@ -75,6 +79,7 @@ const ProfilePage = () => {
                     <div className='profile-user-activity-container'>
                     <UserActivity uid={uid} />
                     </div>
+                    
                 </>
             )}
 

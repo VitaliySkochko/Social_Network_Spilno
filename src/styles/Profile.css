@@ -48,6 +48,15 @@
     border: 3px solid white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
+
+  .button-profile-container-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
   .profile-info{
     display: flex;
     flex-direction: column;

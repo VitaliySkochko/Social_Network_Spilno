@@ -5,6 +5,7 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 .join-requests h3 {
     font-size: 24px;
@@ -31,6 +32,53 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 20px; 
 }
 
+/* --- Адаптивність --- */
+
+/* Для планшетів */
+@media (max-width: 768px) {
+    .join-requests {
+        padding: 15px;
+        max-width: 90%;
+    }
+
+    .join-requests h3 {
+        font-size: 20px;
+    }
+
+    .join-request {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .button-group-join-request {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+}
+
+/* Для мобільних пристроїв */
+@media (max-width: 480px) {
+    .join-requests {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    .join-requests h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .join-request {
+        padding: 10px;
+    }
+
+    .button-group-join-request {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+}

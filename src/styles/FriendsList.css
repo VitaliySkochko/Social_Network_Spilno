@@ -1,43 +1,24 @@
-/* Контейнер списку користувачів */
-.user-list-container {
+.friends-list {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Заголовок */
-.user-list-container h2 {
+.friends-list h2 {
     font-size: 24px;
     color: #333;
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Секція з кількістю користувачів та пошуком */
-.user-list-count-search {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-/* Блок з кількістю користувачів */
-.user-count p {
-    font-size: 18px;
-    margin: 0;
-    color: #444;
-}
-
-/* Секція списку користувачів */
-.user-list {
+.friends-section {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 стовпчики */
     gap: 20px; /* Відступи між картками */
     margin-top: 20px;
 }
 
-/* Картки користувачів */
-.user-list > * {
+.friends-section > * {
     background-color: #f9f9f9;
     border-radius: 8px;
     padding: 15px;
@@ -46,8 +27,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Анімація при наведенні */
-.user-list > *:hover {
+.friends-section > *:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
@@ -56,24 +36,24 @@
 
 /* Для планшетів */
 @media (max-width: 1024px) {
-    .user-list {
+    .friends-section {
         grid-template-columns: repeat(3, 1fr); /* 3 стовпчики */
     }
 }
 
 /* Для мобільних пристроїв */
 @media (max-width: 768px) {
-    .user-list {
+    .friends-section {
         grid-template-columns: repeat(2, 1fr); /* 2 стовпчики */
     }
 }
 
 @media (max-width: 480px) {
-    .user-list {
+    .friends-section {
         grid-template-columns: 1fr; /* 1 стовпчик */
     }
 
-    .user-list-container h2 {
+    .friends-list h2 {
         font-size: 20px;
     }
 }

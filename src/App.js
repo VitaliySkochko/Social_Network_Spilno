@@ -16,6 +16,7 @@ import EditCommunityPage from './pages/admin/EditCommunityPage';
 import SettingsPanel from './pages/admin/SettingsPanel'; 
 import JoinRequests from './pages/admin/JoinRequests';
 import UserList from './pages/users/UserList';
+import FriendsList from './pages/users/FriendsList';
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
             <Route path="/community/:id/settings" element={<SettingsPanel />} />
             <Route path="/community/:communityId/join-requests" element={<JoinRequests />} />
             <Route path="/users" element={<UserList />} />
-            
+            <Route path="/friends" element={<FriendsList />} />
           </Route>
         </Route>
       </Routes>
