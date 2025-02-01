@@ -3,6 +3,7 @@ import EditCommentModal from "./EditCommentModal"; // Імпортуємо EditC
 import '../../styles/CommentMenu.css'
 
 
+
 const CommentMenu = ({ commentId, onEdit, onDelete, existingContent, reloadComments, isAdmin }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -55,10 +56,10 @@ const CommentMenu = ({ commentId, onEdit, onDelete, existingContent, reloadComme
           <div className="modal">
             <p>Ви впевнені, що хочете видалити цей коментар?</p>
             <div className="modal-buttons">
-              <button className="save-button" onClick={handleDelete}>
+              <button className="button-delete" onClick={handleDelete}> 
                 Так
               </button>
-              <button className="button-exit" onClick={() => setShowConfirmModal(false)}>
+              <button className="button-delete" onClick={() => setShowConfirmModal(false)}>
                 Ні
               </button>
             </div>

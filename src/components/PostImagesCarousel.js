@@ -8,12 +8,17 @@ import "swiper/css/pagination"; // Стилі для пагінації
 import { Navigation, Pagination } from "swiper/modules";
 import '../styles/PostCarousel.css';
 
-const PostImagesCarousel = ({ images }) => {
+const PostImagesCarousel = ({ images, openModal }) => {
   return (
     <div className="post-images">
       {images.length === 1 ? (
         // Відображає одне зображення без каруселі
-        <img src={images[0]} alt="Зображення" className="post-thumbnail" />
+        <img
+          src={images[0]}
+          alt="Зображення"
+          className="post-thumbnail"
+          onClick={() => openModal(images[0])} // Відкриваємо модальне вікно
+        />
       ) : (
         // Використовує Swiper для кількох зображень
         <Swiper
@@ -26,7 +31,12 @@ const PostImagesCarousel = ({ images }) => {
         >
           {images.map((url, index) => (
             <SwiperSlide key={index}>
-              <img src={url} alt={`Зображення ${index + 1}`} className="post-thumbnail" />
+              <img
+                src={url}
+                alt={`Зображення ${index + 1}`}
+                className="post-thumbnail"
+                onClick={() => openModal(url)} // Відкриваємо модальне вікно
+              />
             </SwiperSlide>
           ))}
         </Swiper>

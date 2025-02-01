@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { auth, db } from '../services/firebase';
+import { Link, useLocation } from 'react-router-dom'; 
+import { auth } from '../services/firebase';
+import { fetchUnreadChatsCount, listenForUnreadChatsChanges, markMessagesAsRead } from '../services/firebaseMessages';  
+import { db } from '../services/firebase';  
 import { collection, getDocs, onSnapshot } from 'firebase/firestore';
 import UserCommunitiesSidebar from '../components/UserCommunitiesSidebar';
 import '../styles/Sidebar.css';
@@ -8,43 +10,61 @@ import '../styles/UserCommunitiesSidebar.css';
 
 const Sidebar = () => {
   const [userUID, setUserUID] = useState(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Контроль меню
-  const [friendRequestsCount, setFriendRequestsCount] = useState(0); // Кількість заявок
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [friendRequestsCount, setFriendRequestsCount] = useState(0);
+  const [unreadChatsCount, setUnreadChatsCount] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUserUID(user.uid);
-        fetchFriendRequestsCount(user.uid); // Оновлюємо кількість заявок після входу
-        listenForRequestChanges(user.uid); // Підписка на зміни заявок
+        fetchFriendRequestsCount(user.uid);
+        listenForRequestChanges(user.uid);
+        fetchUnreadChatsCount(user.uid, setUnreadChatsCount);
+        listenForUnreadChatsChanges(user.uid, setUnreadChatsCount);
       }
     });
 
     return () => unsubscribe();
   }, []);
 
-  // Функція для отримання кількості заявок
   const fetchFriendRequestsCount = async (userId) => {
     try {
       const requestsRef = collection(db, 'friendRequests', userId, 'receivedRequests');
       const snapshot = await getDocs(requestsRef);
-      setFriendRequestsCount(snapshot.size); // Оновлюємо стан кількості заявок
+      setFriendRequestsCount(snapshot.size);
     } catch (error) {
       console.error('Помилка завантаження заявок:', error);
     }
   };
 
-  // Підписка на зміни в колекції заявок
   const listenForRequestChanges = (userId) => {
     const requestsRef = collection(db, 'friendRequests', userId, 'receivedRequests');
     onSnapshot(requestsRef, (snapshot) => {
-      setFriendRequestsCount(snapshot.size); // Оновлюємо кількість заявок в реальному часі
+      setFriendRequestsCount(snapshot.size);
     });
   };
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen); // Перемикач меню
+    setIsMenuOpen(!isMenuOpen);
   };
+
+  // Оновлення лічильника непрочитаних повідомлень при переході на чат
+  useEffect(() => {
+    if (location.pathname.includes('/messages')) {
+      const chatId = location.pathname.split('/').pop();  // Отримуємо ID чату з URL
+      if (chatId) {
+        // Оновлюємо статус непрочитаних повідомлень як прочитані для цього чату
+        markMessagesAsRead(chatId, auth.currentUser.uid);
+
+        // Оновлюємо лічильник непрочитаних повідомлень
+        fetchUnreadChatsCount(auth.currentUser.uid, setUnreadChatsCount);
+      }
+    }
+  }, [location]);
+
+  const isInChat = location.pathname.includes('/messages'); 
 
   return (
     <aside className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
@@ -61,8 +81,13 @@ const Sidebar = () => {
             Редагування профілю
           </Link>
           <Link to="/friends" className="button-menu" onClick={toggleMenu}>
-            Друзі {friendRequestsCount > 0 && `(${friendRequestsCount})`} {/* Відображення кількості заявок */}
+            Друзі {friendRequestsCount > 0 && `(${friendRequestsCount})`}
           </Link>
+          
+          <Link to="/messages" className="button-menu" onClick={toggleMenu}>
+            Повідомлення {(!isInChat && unreadChatsCount > 0) ? `(${unreadChatsCount})` : ''}
+          </Link>
+          
           <Link to="/users" className="button-menu" onClick={toggleMenu}>
             Пошук користувачів
           </Link>

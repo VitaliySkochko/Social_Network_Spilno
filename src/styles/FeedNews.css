@@ -4,9 +4,6 @@
   padding: 10px; /* Зменшення внутрішніх відступів */
   
 }
-
-
-
 .community-link-news{
   color: #007bff; /* Синій колір для посилання */
   text-decoration: none; /* Прибрати підкреслення */
@@ -21,4 +18,64 @@
   color: #003d80; /* Ще темніший синій при кліці */
 }
 
+
+.post-header-cont{
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
   
+}
+.post-author-date-news{
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.post-author-date-news .user-photo-container {
+  width: 50px;
+  height: 50px;
+}
+
+.post-author-date-news .user-avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.post-author-date-news .user-avatar-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.post-author-date-news .user-name {
+  font-size: 14px;
+}
+
+/* Стиль для поста */
+.post-author-date {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Медіа-запит для мобільних пристроїв */
+@media (max-width: 600px) {
+  .post-author-date-news .user-avatar {
+    width: 33px;
+    height: 33px;
+  }
+  
+  .post-author-date-news .user-avatar-icon {
+    width: 33px;
+    height: 33px;
+  }
+  
+  .post-author-date-news .user-name {
+    font-size: 12px;
+  }
+  /* Можна додавати додаткові стилі для UserCard, якщо потрібно */
+}

@@ -13,12 +13,14 @@ import CommentSection from "../comments/CommentSection";
 import { FaCommentAlt } from "react-icons/fa";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../services/firebase";
-//import "../../styles/PostList.css"; 
+import PhotoModal from "../modal/PhotoModal"; // Імпортуємо компонент для фото
 
 const PostList = ({ communityId, isAdmin }) => {
   const [posts, setPosts] = useState([]);
   const [expandedPost, setExpandedPost] = useState(null);
-  const [user] = useAuthState(auth); // Отримуємо поточного користувача
+  const [user] = useAuthState(auth);
+  const [showModal, setShowModal] = useState(false); // Стан для відкриття модального вікна
+  const [selectedImage, setSelectedImage] = useState(""); // Зображення, яке буде відображатись у модальному вікні
 
   const loadPosts = useCallback(async () => {
     try {
@@ -42,6 +44,16 @@ const PostList = ({ communityId, isAdmin }) => {
 
   const toggleComments = (postId) => {
     setExpandedPost(expandedPost === postId ? null : postId);
+  };
+
+  const openModal = (imageSrc) => {
+    setSelectedImage(imageSrc);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedImage("");
   };
 
   return (
@@ -73,19 +85,18 @@ const PostList = ({ communityId, isAdmin }) => {
                 })}
               </p>
 
-              {/* Передача пропсу isAdmin */}
               {(post.userId === user?.uid || isAdmin) && (
                 <PostMenu
                   postId={post.id}
                   onEdit={updatePost}
                   onDelete={deletePost}
-                  reloadPosts={loadPosts} // Для оновлення списку
+                  reloadPosts={loadPosts}
                   existingContent={post.content}
                   existingImages={post.images || []}
                   existingVideo={post.video || ""}
-                  isAdmin={isAdmin} // Передача пропсу
-                  userId={post.userId} // Додано userId
-                  currentUser={user} // Додано currentUser
+                  isAdmin={isAdmin}
+                  userId={post.userId}
+                  currentUser={user}
                 />
               )}
             </div>
@@ -93,7 +104,12 @@ const PostList = ({ communityId, isAdmin }) => {
 
           <p>{post.content}</p>
 
-          {post.images && post.images.length > 0 && <PostImagesCarousel images={post.images} />}
+          {post.images && post.images.length > 0 && (
+            <PostImagesCarousel
+              images={post.images}
+              openModal={openModal} // Додаємо можливість відкрити модальне вікно
+            />
+          )}
           {post.videos && post.videos.length > 0 && <PostVideosCarousel videos={post.videos} />}
 
           <Reactions postId={post.id} />
@@ -105,9 +121,12 @@ const PostList = ({ communityId, isAdmin }) => {
             </div>
           </div>
 
-          {expandedPost === post.id && <CommentSection postId={post.id} isAdmin={isAdmin}/>}
+          {expandedPost === post.id && <CommentSection postId={post.id} isAdmin={isAdmin} />}
         </div>
       ))}
+
+      {/* Модальне вікно для фото */}
+      {showModal && <PhotoModal imageSrc={selectedImage} onClose={closeModal} />}
     </div>
   );
 };

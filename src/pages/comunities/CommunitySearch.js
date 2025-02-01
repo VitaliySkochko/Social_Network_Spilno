@@ -24,7 +24,7 @@ const CommunitySearch = ({ onSearch }) => {
             <form onSubmit={handleSearchSubmit} className="search-form">
                 <input
                     type="text"
-                    placeholder="Введіть назву для пошуку..."
+                    placeholder="Пошук..."
                     value={searchTerm}
                     onChange={handleSearchChange}
                     className="title-input-search"

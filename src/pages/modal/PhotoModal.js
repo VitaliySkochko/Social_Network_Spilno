@@ -7,9 +7,9 @@ const PhotoModal = ({ imageSrc, onClose }) => {
     setIsLoading(false);  // Оновлюємо стан після завантаження зображення
   };
 
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+  return ( 
+    <div className="modal-overlay-profile" onClick={onClose}>
+      <div className="modal-content-profile" onClick={(e) => e.stopPropagation()}>
         {isLoading && (
           <div className="loading-spinner">
             <div className="spinner"></div>
@@ -18,10 +18,10 @@ const PhotoModal = ({ imageSrc, onClose }) => {
         <img
           src={imageSrc}
           alt="Фото"
-          className="modal-photo"
+          className="modal-photo-profile"
           onLoad={handleImageLoad}  // Додаємо обробник для завантаження зображення
         />
-        <button className="close-modal" onClick={onClose}>
+        <button className="close-modal-profile" onClick={onClose}>
           X
         </button>
       </div>

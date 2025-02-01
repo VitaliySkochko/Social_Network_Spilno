@@ -57,6 +57,14 @@
     margin-bottom: 20px;
     margin-top: 20px;
   }
+
+  .button-profile-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
   .profile-info{
     display: flex;
     flex-direction: column;

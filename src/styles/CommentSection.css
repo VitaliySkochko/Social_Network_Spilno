@@ -71,4 +71,102 @@
     background-color: #0056b3;
   }
   
-  
+  /* Мобільна адаптація */
+@media (max-width: 768px) {
+  .comment-section {
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .comment-list {
+    max-height: 180px;
+  }
+
+  .comment-item-group {
+    margin-bottom: 12px;
+    padding: 8px;
+  }
+
+  .comment-item {
+    gap: 15px;
+  }
+
+  .comment-item .user-photo-container {
+    width: 35px;
+    height: 35px;
+  }
+
+  .comment-item .user-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .comment-item .user-name {
+    font-size: 14px;
+  }
+
+  .comment-item .comment-date {
+    font-size: 14px;
+  }
+
+  .comment-input {
+    gap: 8px;
+  }
+
+  .comment-input input {
+    padding: 6px;
+  }
+
+  .comment-input button {
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .comment-section {
+    padding: 10px;
+  }
+
+  .comment-list {
+    max-height: 150px;
+  }
+
+  .comment-item-group {
+    margin-bottom: 10px;
+    padding: 6px;
+  }
+
+  .comment-item {
+    gap: 10px;
+  }
+
+  .comment-item .user-photo-container {
+    width: 30px;
+    height: 30px;
+  }
+
+  .comment-item .user-avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .comment-item .user-name {
+    font-size: 13px;
+  }
+
+  .comment-item .comment-date {
+    font-size: 13px;
+  }
+
+  .comment-input {
+    gap: 6px;
+  }
+
+  .comment-input input {
+    padding: 5px;
+  }
+
+  .comment-input button {
+    padding: 5px 10px;
+  }
+}

@@ -1,11 +1,11 @@
+// FeedNews.js
 import React, { useEffect, useState } from "react";
-import { fetchUserSubscriptions, fetchPostsByCriteria } from "../services/firebaseFeedService";
+import { fetchPosts } from "../services/firebaseFeedService"; 
 import { fetchUserData } from "../services/firebaseProfileService";
 import { fetchComments } from "../services/firebaseComments";
-import { fetchCommunityById } from "../services/firebaseCommunityService"; // Додано
-import { Link } from "react-router-dom"; // Додано
+import { fetchCommunityById } from "../services/firebaseCommunityService"; 
+import { Link } from "react-router-dom";
 import PostImagesCarousel from "../components/PostImagesCarousel";
-import PostVideosCarousel from "../components/PostVideosCarousel";
 import UserCard from "../components/UserCard";
 import PostMenu from "../pages/posts/PostMenu";
 import Reactions from "../components/Reactions";
@@ -14,6 +14,7 @@ import CommentSection from "./comments/CommentSection";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../services/firebase";
 import Spinner from "../components/Spinner";
+import PhotoModal from "../pages/modal/PhotoModal"; // Імпортуємо компонент для модального вікна для зображень
 import "../styles/FeedNews.css";
 
 const FeedNews = ({ userId }) => {
@@ -21,49 +22,45 @@ const FeedNews = ({ userId }) => {
   const [loading, setLoading] = useState(true);
   const [expandedPost, setExpandedPost] = useState(null);
   const [user] = useAuthState(auth);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Стан для модального вікна
+  const [modalImage, setModalImage] = useState(null); // Стан для зображення в модальному вікні
 
   useEffect(() => {
     const fetchFeed = async () => {
       setLoading(true);
       try {
-        const subscriptions = await fetchUserSubscriptions(userId);
-        const subscriptionPosts = await fetchPostsByCriteria({
-          subscriptions,
+        const popularPosts = await fetchPosts({
           limitCount: 10,
         });
-
-        const popularPosts = await fetchPostsByCriteria({
-          subscriptions: [],
-          limitCount: 10,
-          minLikes: 50,
-        });
-
-        const allPosts = [...subscriptionPosts, ...popularPosts];
 
         const postsWithDetails = await Promise.all(
-          allPosts.map(async (post) => {
+          popularPosts.map(async (post) => {
             const authorProfile = await fetchUserData(post.userId);
             const comments = await fetchComments(post.id);
 
-            // Отримання інформації про спільноту
             let communityName = null;
+            let communityType = null;
             if (post.communityId) {
               const communityData = await fetchCommunityById(post.communityId);
-              communityName = communityData?.name || "Невідома спільнота";
+              communityType = communityData?.type;
+
+              if (communityType !== "private") {
+                communityName = communityData?.name || "Невідома спільнота";
+              }
             }
 
             return {
               ...post,
               authorProfile,
               commentsCount: comments.length,
-              communityName, // Додано
-              communityId: post.communityId, // Зберігаємо communityId
+              communityName,
+              communityId: post.communityId,
             };
           })
         );
 
         const sortedPosts = postsWithDetails
-          .filter((post) => post.userId !== user?.uid) // Виключення постів поточного користувача
+          .filter((post) => post.userId !== user?.uid && post.communityName !== null)
           .sort((a, b) => b.createdAt.toDate() - a.createdAt.toDate());
 
         setNews(sortedPosts);
@@ -81,6 +78,16 @@ const FeedNews = ({ userId }) => {
     setExpandedPost(expandedPost === postId ? null : postId);
   };
 
+  const openModal = (image) => {
+    setModalImage(image); // Встановлюємо зображення для модального вікна
+    setIsModalOpen(true); // Відкриваємо модальне вікно
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Закриваємо модальне вікно
+    setModalImage(null); // Очищаємо зображення
+  };
+
   if (loading) {
     return (
       <div className="feednews-container">
@@ -94,8 +101,8 @@ const FeedNews = ({ userId }) => {
       <h2>Стрічка новин</h2>
       {news.map((post) => (
         <div key={post.id} className="post">
-          <div className="post-header">
-            <div className="post-author-date">
+          <div className="post-header-cont">
+            <div className="post-author-date-news">
               {post.authorProfile ? (
                 <UserCard
                   uid={post.userId}
@@ -122,7 +129,7 @@ const FeedNews = ({ userId }) => {
                 <p>
                   <strong>Спільнота:{" "}</strong>
                   <Link to={`/communities/${post.communityId}`} className="community-link-news">
-                     {post.communityName}
+                    {post.communityName}
                   </Link>
                 </p>
               )}
@@ -144,9 +151,11 @@ const FeedNews = ({ userId }) => {
           </div>
 
           <p>{post.content}</p>
-          {post.images && post.images.length > 0 && <PostImagesCarousel images={post.images} />}
-          {post.videos && post.videos.length > 0 && <PostVideosCarousel videos={post.videos} />}
 
+          {post.images && post.images.length > 0 && (
+            <PostImagesCarousel images={post.images} openModal={openModal} />
+          )}
+          
           <Reactions postId={post.id} />
 
           <div className="button-icon-group">
@@ -159,9 +168,13 @@ const FeedNews = ({ userId }) => {
           {expandedPost === post.id && <CommentSection postId={post.id} isAdmin={user?.isAdmin} />}
         </div>
       ))}
+
+      {/* Модальне вікно для зображень */}
+      {isModalOpen && modalImage && (
+        <PhotoModal imageSrc={modalImage} onClose={closeModal} />
+      )}
     </div>
   );
 };
 
 export default FeedNews;
-

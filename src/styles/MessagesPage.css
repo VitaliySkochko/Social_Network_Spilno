@@ -1,0 +1,58 @@
+/* Загальні стилі для сторінки повідомлень */
+.messages-page {
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background-color: #f4f7fc;
+}
+
+.messages-page h2 {
+  text-align: center;
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.chats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.chats-list h3 {
+  color: #555;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Стилі для елементів чату */
+.chat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.chat-item:hover {
+  background-color: #eaf1fe;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: #4f84fd;
+}
+
+.chat-item:active {
+  background-color: #d9e6fb;
+  transform: scale(0.98);
+}
+
+
+
+
+
